@@ -36,3 +36,10 @@ export const MockDoneRecipes2 = [
     tags: [],
   },
 ];
+
+export const MockProvider = {
+  Food: 'meal',
+  HandleFood: () => {},
+  doneRecipes: MockDoneRecipes2,
+  HandleDoneRecipes: () => {},
+};

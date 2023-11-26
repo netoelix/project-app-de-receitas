@@ -12,10 +12,10 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
   const [copied, setCopied] = useState(false);
   const { image, name, nationality, category, tags, doneDate, type, id } = Food;
   const dataTest = `${index}-horizontal-`;
+  const link = `http://localhost:3000/${type}s/${id}`;
 
-  const copyToClipBoard = (link : string) => {
-    const linkFood = `http://localhost:3000/meals/${link}`;
-    navigator.clipboard.writeText(linkFood);
+  const copyToClipBoard = () => {
+    navigator.clipboard.writeText(link);
     setCopied(true);
   };
 
@@ -26,10 +26,19 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
   return (
     <div>
       <div className="Img">
-        <img src={ image } alt="food" width="150px" data-testid={ `${dataTest}image` } />
+        <a href={ link }>
+          <img
+            src={ image }
+            alt="food"
+            width="150px"
+            data-testid={ `${dataTest}image` }
+          />
+        </a>
       </div>
       <div className="Recipe-Info">
-        <h1 data-testid={ `${dataTest}name` }>{name}</h1>
+        <a href={ link }>
+          <h1 data-testid={ `${dataTest}name` }>{name}</h1>
+        </a>
         {(type === 'meal') && (
           <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
         )}
@@ -56,7 +65,7 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
           })}
         </div>
       </div>
-      <button onClick={ () => copyToClipBoard(id) }>
+      <button onClick={ () => copyToClipBoard() }>
         {copied ? 'Link copied!' : share}
       </button>
     </div>
