@@ -1,4 +1,5 @@
 import { FoodCardType } from '../Utils/Types';
+import shareIcon from '../images/shareIcon.svg';
 
 type CardRecipeProps = {
   Food : FoodCardType
@@ -7,7 +8,7 @@ type CardRecipeProps = {
 };
 
 function CardRecipe({ Food, Page, index } : CardRecipeProps) {
-  const { image, name, nationality, category, tags } = Food;
+  const { image, name, nationality, category, tags, doneDate } = Food;
   const dataTest = `${index}-horizontal-`;
   return (
     <div>
@@ -16,12 +17,13 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
       </div>
       <div className="Recipe-Info">
         <h1 data-testid={ `${dataTest}name` }>{name}</h1>
-        <p data-testid={ `${dataTest}top-text` }>{`${nationality}-${category}`}</p>
+        <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
       </div>
+
       <div className="Done-Info">
         {(Page === 'DoneRecipes') && (
           <p data-testid={ `${dataTest}done-date` }>
-            Done-Date
+            {doneDate}
           </p>)}
 
         <div className="Tags">
@@ -34,11 +36,11 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
             );
           })}
         </div>
+      </div>
 
-      </div>
-      <div className="Btns-Card">
-        <button data-testid={ `${dataTest}share-btn` }>Share</button>
-      </div>
+      <button className="Btns-Card">
+        <img data-testid={ `${dataTest}share-btn` } src={ shareIcon } alt="share" />
+      </button>
     </div>
   );
 }
