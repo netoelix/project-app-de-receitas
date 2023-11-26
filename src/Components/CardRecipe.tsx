@@ -6,9 +6,12 @@ type CardRecipeProps = {
   Page: string
   index: number
 };
+// drink: Foto, Nome, AlcoholicOrNot, DoneDate,Share
+// meal : Foto, Nome, Category, DoneDate ,Tags ,Share
+// CardPadrão :Foto,Nome,DoneDate ,Share [AlcholoicOrNot | [Category,Tags]]
 
 function CardRecipe({ Food, Page, index } : CardRecipeProps) {
-  const { image, name, nationality, category, tags, doneDate } = Food;
+  const { image, name, nationality, category, tags, doneDate, type } = Food;
   const dataTest = `${index}-horizontal-`;
   return (
     <div>
@@ -17,7 +20,13 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
       </div>
       <div className="Recipe-Info">
         <h1 data-testid={ `${dataTest}name` }>{name}</h1>
-        <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
+        {(type === 'meal') && (
+          <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
+        )}
+        {(type === 'drink') && (
+          <p data-testid={ `${dataTest}top-text` }>{Food.alcoholicOrNot}</p>
+        )}
+
       </div>
 
       <div className="Done-Info">

@@ -9,6 +9,7 @@ function DoneRecipes() {
     const storageDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
     if (storageDoneRecipes) setDoneRecipes(storageDoneRecipes);
   }, []);
+
   const ElementDoneRecipes = (
     <div>
       {doneRecipes.map((recipe, index) => (
