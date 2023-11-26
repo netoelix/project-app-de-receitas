@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FoodCardType } from '../Utils/Types';
 import shareIcon from '../images/shareIcon.svg';
 
@@ -6,13 +7,22 @@ type CardRecipeProps = {
   Page: string
   index: number
 };
-// drink: Foto, Nome, AlcoholicOrNot, DoneDate,Share
-// meal : Foto, Nome, Category, DoneDate ,Tags ,Share
-// CardPadrão :Foto,Nome,DoneDate ,Share [AlcholoicOrNot | [Category,Tags]]
 
 function CardRecipe({ Food, Page, index } : CardRecipeProps) {
-  const { image, name, nationality, category, tags, doneDate, type } = Food;
+  const [copied, setCopied] = useState(false);
+  const { image, name, nationality, category, tags, doneDate, type, id } = Food;
   const dataTest = `${index}-horizontal-`;
+
+  const copyToClipBoard = (link : string) => {
+    const linkFood = `http://localhost:3000/meals/${link}`;
+    navigator.clipboard.writeText(linkFood);
+    setCopied(true);
+  };
+
+  const share = (
+    <img data-testid={ `${dataTest}share-btn` } src={ shareIcon } alt="share" />
+  );
+
   return (
     <div>
       <div className="Img">
@@ -46,9 +56,8 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
           })}
         </div>
       </div>
-
-      <button className="Btns-Card">
-        <img data-testid={ `${dataTest}share-btn` } src={ shareIcon } alt="share" />
+      <button onClick={ () => copyToClipBoard(id) }>
+        {copied ? 'Link copied!' : share}
       </button>
     </div>
   );
