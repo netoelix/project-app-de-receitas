@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import CardRecipe from '../Components/CardRecipe';
 import NavFilter from '../Components/NavFilter';
-import { MockDoneRecipes } from '../Utils/Mock';
+import { store } from '../Context/StoreContext';
 
 function DoneRecipes() {
-  const [doneRecipes, setDoneRecipes] = useState(MockDoneRecipes);
-  useEffect(() => {
-    const storageDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
-    if (storageDoneRecipes) setDoneRecipes(storageDoneRecipes);
-  }, []);
+  const { doneRecipes } = useContext(store);
 
   const ElementDoneRecipes = (
     <div>
