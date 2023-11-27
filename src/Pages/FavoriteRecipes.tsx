@@ -1,5 +1,24 @@
+import { useContext } from 'react';
+import NavFilter from '../Components/NavFilter';
+import { store } from '../Context/StoreContext';
+import CardRecipe from '../Components/CardRecipe';
+
 function FavoriteRecipes() {
-  return <h1> Pagina de FavoriteRecipes </h1>;
+  const { favoriteRecipes } = useContext(store);
+
+  const ElementFavRecipes = (
+    <div>
+      {favoriteRecipes.map((recipe, index) => (
+        <CardRecipe index={ index } key={ index } Food={ recipe } Page="Favorite" />
+      ))}
+    </div>
+  );
+  return (
+    <div>
+      <NavFilter />
+      {favoriteRecipes.length > 0 && ElementFavRecipes}
+    </div>
+  );
 }
 
 export default FavoriteRecipes;

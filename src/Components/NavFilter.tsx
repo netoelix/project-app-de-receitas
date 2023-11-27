@@ -10,7 +10,7 @@ function NavFilter() {
 
   return (
     <nav>
-      <button onClick={ () => setFilter('All') } data-testid="filter-by-all-btn">
+      <button onClick={ () => setFilter('all') } data-testid="filter-by-all-btn">
         All
       </button>
 

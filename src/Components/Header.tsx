@@ -37,7 +37,7 @@ function Header() {
         break;
 
       case '/favorite-recipes':
-        setTitle('Favorite Recipes');
+        setTitle('FAVORITES');
         setShowSearchIcon(false);
         break;
 

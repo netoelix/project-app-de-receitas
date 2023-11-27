@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FoodCardType } from '../Utils/Types';
 import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 type CardRecipeProps = {
   Food : FoodCardType
@@ -21,6 +22,15 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
 
   const share = (
     <img data-testid={ `${dataTest}share-btn` } src={ shareIcon } alt="share" />
+  );
+  const favBtn = (
+    <button>
+      <img
+        data-testid={ `${dataTest}favorite-btn` }
+        src={ blackHeartIcon }
+        alt="share"
+      />
+    </button>
   );
 
   return (
@@ -68,6 +78,7 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
       <button onClick={ () => copyToClipBoard() }>
         {copied ? 'Link copied!' : share}
       </button>
+      {(Page === 'Favorite') && (favBtn)}
     </div>
   );
 }

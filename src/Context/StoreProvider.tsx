@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { store } from './StoreContext';
 import { filterRecipes } from '../Utils/FilterRecipes';
 import { FoodCardType } from '../Utils/Types';
-import { MockDoneRecipes2 } from '../Utils/Mock';
+import { MockDoneRecipes2, MockfavoriteRecipes } from '../Utils/Mock';
 
 type StoreProviderProps = {
   children: React.ReactNode;
@@ -10,8 +10,11 @@ type StoreProviderProps = {
 
 function StoreProvider({ children } : StoreProviderProps) {
   const [Food, setFood] = useState('');
-  const [doneRecipes, setDoneRecipes] = useState<FoodCardType[]>([]);
   const [storage, setStorage] = useState<FoodCardType[]>([]);
+  const [doneRecipes, setDoneRecipes] = useState<FoodCardType[]>([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState<FoodCardType[]>(
+    MockfavoriteRecipes,
+  );
 
   useEffect(() => {
     const storageDoneRecipes:FoodCardType[] = JSON.parse(
@@ -33,9 +36,22 @@ function StoreProvider({ children } : StoreProviderProps) {
     const newDoneRecipes = filterRecipes(Filter, storage);
     setDoneRecipes(newDoneRecipes);
   };
+  const HandleFavorites = (Filter : string) => {
+    const newFavoriteRecipes = filterRecipes(Filter, storage);
+    setFavoriteRecipes(newFavoriteRecipes);
+  };
 
   return (
-    <store.Provider value={ { Food, HandleFood, doneRecipes, HandleDoneRecipes } }>
+    <store.Provider
+      value={
+        { Food,
+          HandleFood,
+          doneRecipes,
+          HandleDoneRecipes,
+          favoriteRecipes,
+          HandleFavorites }
+       }
+    >
       <div>
         {children}
       </div>
