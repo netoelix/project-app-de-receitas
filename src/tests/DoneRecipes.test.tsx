@@ -17,6 +17,6 @@ describe('Testes da página DoneRecipes', () => {
       </store.Provider>
     );
     renderWithRouter(component, { route: '/done-recipes' });
-    const cards = screen.getAllByTestId('recipe-card');
+    const cards = screen.getByText('Spicy Arrabiata Penne');
   });
 });

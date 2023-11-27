@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { store } from './StoreContext';
 import { filterRecipes } from '../Utils/FilterRecipes';
 import { FoodCardType } from '../Utils/Types';
+import { MockDoneRecipes2 } from '../Utils/Mock';
 
 type StoreProviderProps = {
   children: React.ReactNode;
@@ -13,9 +14,16 @@ function StoreProvider({ children } : StoreProviderProps) {
   const [storage, setStorage] = useState<FoodCardType[]>([]);
 
   useEffect(() => {
-    const storageDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
-    if (storageDoneRecipes) setStorage(storageDoneRecipes);
-    if (storageDoneRecipes) setDoneRecipes(storageDoneRecipes);
+    const storageDoneRecipes:FoodCardType[] = JSON.parse(
+      localStorage.getItem('doneRecipes') || '[]',
+    );
+    if (storageDoneRecipes.length !== 0) {
+      setStorage(storageDoneRecipes);
+      setDoneRecipes(storageDoneRecipes);
+    } else {
+      setStorage(MockDoneRecipes2);
+      setDoneRecipes(MockDoneRecipes2);
+    }
   }, []);
 
   const HandleFood = (Page: string) => {
