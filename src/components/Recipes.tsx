@@ -1,41 +1,28 @@
-import { useContext } from 'react';
-import Context from '../context/Context';
-import { RecipesTypeType } from '../types';
+import { RecipesType } from '../types';
 
-export default function Recipes({ recipesType }: RecipesTypeType) {
-  const { meals, drinks } = useContext(Context);
-
+export default function Recipes({ title, recipes, categories }: RecipesType) {
   return (
     <div>
-      {recipesType === 'meals' ? (
-        <>
-          <h2>Meals</h2>
-          {meals.slice(0, 12).map((meal, index) => (
-            <div key={ meal.idMeal } data-testid={ `${index}-recipe-card` }>
-              <img
-                src={ meal.strMealThumb }
-                alt={ meal.strMeal }
-                data-testid={ `${index}-card-img` }
-              />
-              <h4 data-testid={ `${index}-card-name` }>{meal.strMeal}</h4>
-            </div>
-          ))}
-        </>
-      ) : (
-        <>
-          <h2>Drinks</h2>
-          {drinks.slice(0, 12).map((drink, index) => (
-            <div key={ drink.idDrink } data-testid={ `${index}-recipe-card` }>
-              <img
-                src={ drink.strDrinkThumb }
-                alt={ drink.strDrink }
-                data-testid={ `${index}-card-img` }
-              />
-              <h4 data-testid={ `${index}-card-name` }>{drink.strDrink}</h4>
-            </div>
-          ))}
-        </>
-      )}
+      <h2>{`${title}s`}</h2>
+      {categories.slice(0, 5).map(({ strCategory }, index) => (
+        <button
+          data-testid={ `${strCategory}-category-filter` }
+          key={ index }
+        >
+          {strCategory}
+
+        </button>
+      ))}
+      {recipes.slice(0, 12).map((recipe, index) => (
+        <div key={ recipe[`id${title}`] } data-testid={ `${index}-recipe-card` }>
+          <img
+            src={ recipe[`str${title}Thumb`] }
+            alt={ recipe[`str${title}`] }
+            data-testid={ `${index}-card-img` }
+          />
+          <h4 data-testid={ `${index}-card-name` }>{recipe[`str${title}`]}</h4>
+        </div>
+      ))}
     </div>
   );
 }

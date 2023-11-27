@@ -12,15 +12,23 @@ export type DrinksType = {
   strDrinkThumb: string,
 };
 
+export type StrCategoryType = {
+  strCategory: string,
+};
+
 export type ContextType = {
   meals: MealsType[],
   drinks: DrinksType[],
+  mealsCategories: StrCategoryType[],
+  drinksCategories: StrCategoryType[],
 };
 
 export type ContextProviderProps = {
   children: React.ReactNode;
 };
 
-export type RecipesTypeType = {
-  recipesType: 'meals' | 'drinks';
+export type RecipesType = {
+  title: string,
+  recipes: MealsType[] | DrinksType[],
+  categories: StrCategoryType[],
 };
