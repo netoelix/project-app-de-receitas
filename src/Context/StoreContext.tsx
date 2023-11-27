@@ -1,12 +1,12 @@
 import { createContext } from 'react';
-import { FavoritesCardType, FoodCardType } from '../Utils/Types';
+import { FoodCardType } from '../Utils/Types';
 
 type StoreContextProps = {
   Food : string
   HandleFood : (page : string) => void
   doneRecipes : FoodCardType[]
   HandleDoneRecipes : (Filter : string) => void
-  favoriteRecipes : FavoritesCardType[]
+  favoriteRecipes : FoodCardType[]
   HandleFavorites: (Filter : string) => void
 };
 

@@ -67,4 +67,6 @@ export const MockProvider = {
   HandleFood: () => {},
   doneRecipes: MockDoneRecipes2,
   HandleDoneRecipes: () => {},
+  favoriteRecipes: MockfavoriteRecipes,
+  HandleFavorites: () => {},
 };
