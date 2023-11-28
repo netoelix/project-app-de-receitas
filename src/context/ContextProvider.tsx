@@ -5,12 +5,15 @@ import Context from './Context';
 import mealsCategoriesAPI from '../services/mealsCategoriesAPI';
 import drinksCategoriesAPI from '../services/drinksCategoriesAPI';
 import mealsAPI from '../services/mealsAPI';
+import filterByCategorie from '../services/filterByCateorie';
 
 // Criando a lógica de um provider falso para depois transferir para o arquivo correto.
 
 export default function ContextProvider({ children }: ContextProviderProps) {
   const [meals, setMeals] = useState([]);
+  const [allMeals, setAllMeals] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [allDrinks, setAllDrinks] = useState([]);
   const [mealsCategories, setMealsCategories] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState([]);
 
@@ -20,6 +23,8 @@ export default function ContextProvider({ children }: ContextProviderProps) {
       const drinksAPIInfos = await drinksAPI();
       const mealsCategoriesInfos = await mealsCategoriesAPI();
       const drinksCategoriesInfos = await drinksCategoriesAPI();
+      setAllMeals(mealsAPIInfos);
+      setAllDrinks(drinksAPIInfos);
       setMeals(mealsAPIInfos);
       setDrinks(drinksAPIInfos);
       setMealsCategories(mealsCategoriesInfos);
@@ -28,8 +33,34 @@ export default function ContextProvider({ children }: ContextProviderProps) {
     getAPIInfos();
   }, []);
 
+  const categorieSelected = async (categorie: string, type: string) => {
+    const items = await filterByCategorie(categorie, type);
+    if (type === 'Meal') {
+      setMeals(items);
+    } else {
+      setDrinks(items);
+    }
+  };
+
+  const clearFilter = (type: string) => {
+    if (type === 'Meal') {
+      setMeals(allMeals);
+    } else {
+      setDrinks(allDrinks);
+    }
+  };
+
   return (
-    <Context.Provider value={ { meals, drinks, mealsCategories, drinksCategories } }>
+    <Context.Provider
+      value={ {
+        meals,
+        drinks,
+        mealsCategories,
+        drinksCategories,
+        categorieSelected,
+        clearFilter,
+      } }
+    >
       {children}
     </Context.Provider>
   );

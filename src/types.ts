@@ -21,6 +21,8 @@ export type ContextType = {
   drinks: DrinksType[],
   mealsCategories: StrCategoryType[],
   drinksCategories: StrCategoryType[],
+  categorieSelected: (categorie: string, type: string) => void,
+  clearFilter: (type: string) => void,
 };
 
 export type ContextProviderProps = {
