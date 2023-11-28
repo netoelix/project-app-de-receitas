@@ -1,5 +1,4 @@
 import { createContext } from 'react';
-import { StorageType } from '../Utils/Types';
 
 type StoreContextProps = {
   Food : string
@@ -10,4 +9,8 @@ type StoreContextProps = {
   RemoveFavorites: (Recipe : string) => void
 };
 
-export const store = createContext({} as StoreContextProps);
+import { StoreContextType } from '../Utils/Types';
+
+const StoreContext = createContext({} as StoreContextType);
+        
+export default StoreContext;

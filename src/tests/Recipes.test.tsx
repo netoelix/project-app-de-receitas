@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import App from '../App';
 import { mockFetch } from './mockFetch';
-import renderWithRouterAndProvider from '../utils/renderWithRouterAndProvider';
+import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
 
 describe('Testando a aplicação', () => {
   beforeEach(() => {

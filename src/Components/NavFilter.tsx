@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import { store } from '../Context/StoreContext';
+import StoreContext from '../Context/StoreContext';
+
 
 type NavProps = {
   Page: string;

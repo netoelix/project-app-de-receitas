@@ -1,21 +1,19 @@
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import ContextProvider from '../context/ContextProvider';
+import StoreProvider from '../Context/StoreProvider';
 
-function renderWithRouterAndProvider(ui: JSX.Element, { route = '/' } = {}) {
+export const renderWithRouterAndProvider = (ui: JSX.Element, { route = '/' } = {}) => {
   window.history.pushState({}, '', route);
 
   return {
     user: userEvent.setup(),
     ...render(
-      <ContextProvider>
+      <StoreProvider>
         <BrowserRouter>
           {ui}
         </BrowserRouter>
-      </ContextProvider>,
+      </StoreProvider>,
     ),
   };
-}
-
-export default renderWithRouterAndProvider;
+};
