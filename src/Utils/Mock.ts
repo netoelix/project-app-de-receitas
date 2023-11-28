@@ -75,9 +75,8 @@ export const mockStorage = {
 export const MockProvider = {
   Food: 'meal',
   HandleFood: () => {},
-  doneRecipes: MockDoneRecipes2,
   HandleDoneRecipes: () => {},
-  favoriteRecipes: MockfavoriteRecipes,
   HandleFavorites: () => {},
-  storageRecipes: mockStorage,
+  RemoveFavorites: () => {},
+  storeRecipes: mockStorage,
 };

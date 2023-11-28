@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FoodCardType } from '../Utils/Types';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import { store } from '../Context/StoreContext';
 
 type CardRecipeProps = {
   Food : FoodCardType
@@ -10,6 +11,7 @@ type CardRecipeProps = {
 };
 
 function CardRecipe({ Food, Page, index } : CardRecipeProps) {
+  const { RemoveFavorites } = useContext(store);
   const [copied, setCopied] = useState(false);
   const { image, name, nationality, category, tags, doneDate, type, id } = Food;
   const dataTest = `${index}-horizontal-`;
@@ -24,7 +26,7 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
     <img data-testid={ `${dataTest}share-btn` } src={ shareIcon } alt="share" />
   );
   const favBtn = (
-    <button>
+    <button onClick={ () => RemoveFavorites(name) }>
       <img
         data-testid={ `${dataTest}favorite-btn` }
         src={ blackHeartIcon }
@@ -65,7 +67,7 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
           </p>)}
 
         <div className="Tags">
-          {tags.map((tagName) => {
+          {(Page === 'DoneRecipes') && tags.map((tagName) => {
             const dataTestTag = `${index}-${tagName}-horizontal-tag`;
             return (
               <p key={ tagName } data-testid={ dataTestTag }>

@@ -43,6 +43,12 @@ function StoreProvider({ children } : StoreProviderProps) {
     const newStore = { ...storeRecipes, favoriteRecipes: newFavRecipes };
     setStoreRecipes(newStore);
   };
+  const RemoveFavorites = (Recipe : string) => {
+    const newFavs = storage.favoriteRecipes.filter((Favs) => Favs.name !== Recipe);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavs));
+    setStorage({ ...storage, favoriteRecipes: newFavs });
+    setStoreRecipes({ ...storeRecipes, favoriteRecipes: newFavs });
+  };
 
   return (
     <store.Provider
@@ -51,6 +57,7 @@ function StoreProvider({ children } : StoreProviderProps) {
           HandleFood,
           HandleDoneRecipes,
           HandleFavorites,
+          RemoveFavorites,
           storeRecipes }
        }
     >

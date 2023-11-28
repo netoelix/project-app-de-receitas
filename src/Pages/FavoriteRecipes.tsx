@@ -5,12 +5,15 @@ import CardRecipe from '../Components/CardRecipe';
 
 function FavoriteRecipes() {
   const { storeRecipes: { favoriteRecipes } } = useContext(store);
+  console.log(favoriteRecipes);
 
   const ElementFavRecipes = (
     <div>
-      {favoriteRecipes.map((recipe, index) => (
+      {
+      favoriteRecipes.length > 0 && favoriteRecipes.map((recipe, index) => (
         <CardRecipe index={ index } key={ index } Food={ recipe } Page="Favorite" />
-      ))}
+      ))
+}
     </div>
   );
   return (

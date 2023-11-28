@@ -7,6 +7,7 @@ type StoreContextProps = {
   HandleDoneRecipes : (Filter : string) => void
   HandleFavorites: (Filter : string) => void
   storeRecipes : StorageType
+  RemoveFavorites: (Recipe : string) => void
 };
 
 export const store = createContext({} as StoreContextProps);
