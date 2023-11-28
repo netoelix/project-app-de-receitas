@@ -8,7 +8,7 @@ describe('Testes da página FavoriteRecipes', () => {
   it('Testa se o header é devidamente renderizado', () => {
     renderWithRouter(<App />, { route: '/favorite-recipes' });
     const header = screen.getByTestId('page-title');
-    expect(header).toHaveTextContent('FAVORITES');
+    expect(header).toHaveTextContent('Favorite Recipes');
   });
   it('Testa se os cards de cada receitas são renderizados corretamente', () => {
     const component = (
