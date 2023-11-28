@@ -1,15 +1,15 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { requestApi } from '../Utils/ApiRequest';
-import { store } from '../Context/StoreContext';
+import StoreContext from '../Context/StoreContext';
 
 function SearchBar() {
-  const { Food } = useContext(store);
+  const { food } = useContext(StoreContext);
   const [data, setData] = useState([{}] as any);
 
   const handleSearch = async () => {
     const { searchInput, radioSearch } = getValues();
-    const resultApi = requestApi(Food, radioSearch, searchInput);
+    const resultApi = requestApi(food, radioSearch, searchInput);
     if (radioSearch === 'firstLetter' && searchInput.length > 1) {
       window.alert('Your search must have only 1 (one) character');
     }

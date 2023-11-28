@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
-import { store } from '../Context/StoreContext';
+import StoreContext from '../Context/StoreContext';
 
 function Meals() {
-  const { HandleFood } = useContext(store);
+  const { HandleFood } = useContext(StoreContext);
   useEffect(() => {
     HandleFood('meals');
   }, [HandleFood]);
