@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import ContextProvider from './context/ContextProvider';
+import StoreProvider from './Context/StoreProvider';
 
 ReactDOM
   .createRoot(document.getElementById('root') as HTMLElement)
   .render(
-    <ContextProvider>
+    <StoreProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </ContextProvider>,
+    </StoreProvider>,
   );
