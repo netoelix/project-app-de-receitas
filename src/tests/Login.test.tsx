@@ -1,16 +1,16 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import { renderWithRouter } from '../Utils/renderWithRouter';
+import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
 
 describe('Testes da página de Login', () => {
   it('Verifica se o input de email e senha estão na tela.', () => {
-    renderWithRouter(<App />, { route: '/' });
+    renderWithRouterAndProvider(<App />, { route: '/' });
     screen.getByTestId('email-input');
     screen.getByTestId('password-input');
   });
   it('Verifica se ao inserir um email e senha válidos a rota é mudada ao clickar no botão login', async () => {
-    renderWithRouter(<App />, { route: '/' });
+    renderWithRouterAndProvider(<App />, { route: '/' });
     const email = screen.getByTestId('email-input');
     const password = screen.getByTestId('password-input');
     const btnLogin = screen.getByTestId('login-submit-btn');

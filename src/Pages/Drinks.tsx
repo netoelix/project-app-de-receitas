@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
-import { store } from '../Context/StoreContext';
+import StoreContext from '../Context/StoreContext';
 
 function Drinks() {
-  const { HandleFood } = useContext(store);
+  const { handleFood } = useContext(StoreContext);
   useEffect(() => {
-    HandleFood('drinks');
-  }, [HandleFood]);
+    handleFood('drinks');
+  }, [handleFood]);
 
   return <h1> Pagina de Drinks </h1>;
 }

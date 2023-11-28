@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import { renderWithRouter } from '../Utils/renderWithRouter';
+import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
 
 describe('Testes do componente Header', () => {
   it('Verifica se ao clicar  no icone de perfil é redirecionado para página de perfil', async () => {
-    renderWithRouter(<App />, { route: '/done-recipes' });
+    renderWithRouterAndProvider(<App />, { route: '/done-recipes' });
     const title = screen.getByTestId('page-title');
     const btnProfile = screen.getByTestId('profile-top-btn');
 
@@ -19,7 +19,7 @@ describe('Testes do componente Header', () => {
     expect(btnSearch).toBe(null);
   });
   it('Verifica se o botão search funciona devidamente', async () => {
-    renderWithRouter(<App />, { route: '/drinks' });
+    renderWithRouterAndProvider(<App />, { route: '/drinks' });
     const btnSearch = screen.getByTestId('search-top-btn');
     await userEvent.click(btnSearch);
     screen.getByTestId('search-input');

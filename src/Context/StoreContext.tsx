@@ -1,13 +1,6 @@
 import { createContext } from 'react';
-import { StorageType } from '../Utils/Types';
+import { StoreContextType } from '../Utils/Types';
 
-type StoreContextProps = {
-  Food : string
-  HandleFood : (page : string) => void
-  HandleDoneRecipes : (Filter : string) => void
-  HandleFavorites: (Filter : string) => void
-  storeRecipes : StorageType
-  RemoveFavorites: (Recipe : string) => void
-};
+const StoreContext = createContext({} as StoreContextType);
 
-export const store = createContext({} as StoreContextProps);
+export default StoreContext;

@@ -1,5 +1,5 @@
-const createUrlFood = (food: string, action : string, input : string) => {
-  const url = (food === 'drinks') ? (
+const createUrlFood = (type: string, action : string, input : string) => {
+  const url = (type === 'drinks') ? (
     'https://www.thecocktaildb.com/api/json/v1/1/') : (
     'https://www.themealdb.com/api/json/v1/1/');
   switch (action) {
@@ -19,8 +19,8 @@ const createUrlFood = (food: string, action : string, input : string) => {
   }
 };
 
-export const requestApi = async (food: string, action : string, input : string) => {
-  const url = createUrlFood(food, action, input);
+export const requestApi = async (type: string, action : string, input : string) => {
+  const url = createUrlFood(type, action, input);
   const response = await fetch(url);
   const data = await response.json();
   return data;

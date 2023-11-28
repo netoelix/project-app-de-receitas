@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
-import { store } from '../Context/StoreContext';
+import StoreContext from '../Context/StoreContext';
 
 function Meals() {
-  const { HandleFood } = useContext(store);
+  const { handleFood } = useContext(StoreContext);
   useEffect(() => {
-    HandleFood('meals');
-  }, [HandleFood]);
+    handleFood('meals');
+  }, [handleFood]);
 
   return (
     <h5>conteudo pagina meals</h5>

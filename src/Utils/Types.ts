@@ -19,3 +19,53 @@ export type StorageType = {
     meals: string,
   },
 };
+
+export type MealsType = {
+  idMeal: string,
+  strMeal: string,
+  strMealThumb: string,
+};
+
+export type DrinksType = {
+  idDrink: string,
+  strDrink: string,
+  strDrinkThumb: string,
+};
+
+export type StrCategoryType = {
+  strCategory: string,
+};
+
+export type RecipesType = {
+  title: string,
+  recipes: MealsType[] | DrinksType[],
+  categories: StrCategoryType[],
+};
+
+export type StoreContextType = {
+  food : string,
+  handleFood : (page : string) => void,
+  handleDoneRecipes : (filter : string) => void,
+  handleFavorites: (filter : string) => void,
+  storeRecipes : StorageType,
+  removeFavorites: (recipe : string) => void,
+  meals: MealsType[],
+  drinks: DrinksType[],
+  mealsCategories: StrCategoryType[],
+  drinksCategories: StrCategoryType[],
+  categorieSelected: (categorie: string, type: string) => void,
+  clearFilter: (type: string) => void,
+};
+
+export type StoreProviderProps = {
+  children: React.ReactNode;
+};
+export type CardRecipeProps = {
+  food : FoodCardType
+  page: string
+  index: number
+};
+
+export type NavProps = {
+  Page: string;
+};
