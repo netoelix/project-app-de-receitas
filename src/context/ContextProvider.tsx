@@ -16,6 +16,7 @@ export default function ContextProvider({ children }: ContextProviderProps) {
   const [allDrinks, setAllDrinks] = useState([]);
   const [mealsCategories, setMealsCategories] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState([]);
+  const [lastCategorieSelected, setLastCategorieSelected] = useState('');
 
   useEffect(() => {
     const getAPIInfos = async () => {
@@ -34,11 +35,21 @@ export default function ContextProvider({ children }: ContextProviderProps) {
   }, []);
 
   const categorieSelected = async (categorie: string, type: string) => {
-    const items = await filterByCategorie(categorie, type);
-    if (type === 'Meal') {
-      setMeals(items);
+    if (categorie === lastCategorieSelected) {
+      if (type === 'Meal') {
+        setMeals(allMeals);
+      } else {
+        setDrinks(allDrinks);
+      }
+      setLastCategorieSelected('');
     } else {
-      setDrinks(items);
+      const items = await filterByCategorie(categorie, type);
+      if (type === 'Meal') {
+        setMeals(items);
+      } else {
+        setDrinks(items);
+      }
+      setLastCategorieSelected(categorie);
     }
   };
 

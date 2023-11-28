@@ -98,4 +98,46 @@ describe('Testando a aplicação', () => {
     const newDrinksCardsNames = await screen.findAllByRole('heading', { level: 4 });
     expect(newDrinksCardsNames[0]).toHaveTextContent('A1');
   });
+
+  test('Testa na rota /meals se ao clicar duas vezes no botão da mesma categoria as receitas sem filtro retornam', async () => {
+    const { user } = renderWithRouterAndProvider(<App />, { route: '/meals' });
+
+    await waitFor(() => {
+      expect(screen.getByText('Koshari')).toBeInTheDocument();
+    });
+
+    const categoriesButtons = await screen.findAllByRole('button');
+    expect(categoriesButtons).toHaveLength(6);
+
+    await user.click(categoriesButtons[0]);
+
+    const mealsCardsNames = await screen.findAllByRole('heading', { level: 4 });
+    expect(mealsCardsNames[0]).toHaveTextContent('Beef and Mustard Pie');
+
+    await user.click(categoriesButtons[0]);
+
+    const newMealsCardsNames = await screen.findAllByRole('heading', { level: 4 });
+    expect(newMealsCardsNames[0]).toHaveTextContent('Corba');
+  });
+
+  test('Testa na rota /drinks se ao clicar duas vezes no botão da mesma categoria as receitas sem filtro retornam', async () => {
+    const { user } = renderWithRouterAndProvider(<App />, { route: '/drinks' });
+
+    await waitFor(() => {
+      expect(screen.getByText('A1')).toBeInTheDocument();
+    });
+
+    const categoriesButtons = await screen.findAllByRole('button');
+    expect(categoriesButtons).toHaveLength(6);
+
+    await user.click(categoriesButtons[0]);
+
+    const drinksCardsNames = await screen.findAllByRole('heading', { level: 4 });
+    expect(drinksCardsNames[0]).toHaveTextContent('3-Mile Long Island Iced Tea');
+
+    await user.click(categoriesButtons[0]);
+
+    const newDrinksCardsNames = await screen.findAllByRole('heading', { level: 4 });
+    expect(newDrinksCardsNames[0]).toHaveTextContent('A1');
+  });
 });
