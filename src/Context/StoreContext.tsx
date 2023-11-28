@@ -1,11 +1,6 @@
 import { createContext } from 'react';
-import { FoodCardType } from '../Utils/Types';
+import { StoreContextType } from '../Utils/Types';
 
-type StoreContextProps = {
-  Food : string
-  HandleFood : (page : string) => void
-  doneRecipes : FoodCardType[]
-  HandleDoneRecipes : (Filter : string) => void
-};
+const StoreContext = createContext({} as StoreContextType);
 
-export const store = createContext({} as StoreContextProps);
+export default StoreContext;

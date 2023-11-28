@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { store } from '../Context/StoreContext';
+import StoreContext from '../Context/StoreContext';
 
 function NavFilter() {
-  const { HandleDoneRecipes } = useContext(store);
+  const { HandleDoneRecipes } = useContext(StoreContext);
 
   function setFilter(filter: string) {
     HandleDoneRecipes(filter);

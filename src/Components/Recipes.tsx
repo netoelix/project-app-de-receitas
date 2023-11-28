@@ -1,15 +1,14 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { RecipesType } from '../types';
-import Context from '../context/Context';
+import { RecipesType } from '../Utils/Types';
+import StoreContext from '../Context/StoreContext';
 
 export default function Recipes({ title, recipes, categories }: RecipesType) {
-  const { categorieSelected, clearFilter } = useContext(Context);
+  const { categorieSelected, clearFilter } = useContext(StoreContext);
   const titlePath = `${title.charAt(0).toLocaleLowerCase()}${title.slice(1)}`;
 
   return (
     <div>
-      <h2>{`${title}s`}</h2>
       {categories.slice(0, 5).map(({ strCategory }, index) => (
         <button
           data-testid={ `${strCategory}-category-filter` }
