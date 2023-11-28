@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import validator from 'validator';
 import { useNavigate } from 'react-router-dom';
-import { requestApi } from '../Utils/ApiRequest';
 
 function Login() {
   const { register, getValues, handleSubmit, formState: { isValid } } = useForm();
@@ -13,16 +12,9 @@ function Login() {
     navigate('/meals');
   };
 
-  async function teste() {
-    console.log(await requestApi('', 'firstLetter', 'E'));
-  }
-  teste();
-
   return (
     <div>
-
       <h1>LOGIN</h1>
-
       <input
         type="email"
         data-testid="email-input"
