@@ -62,6 +62,16 @@ export const MockfavoriteRecipes = [
   },
 ];
 
+export const mockStorage = {
+  email: 'emailPessoa',
+  doneRecipes: MockDoneRecipes2,
+  favoriteRecipes: MockfavoriteRecipes,
+  inProgressRecipes: {
+    drinks: 'mockDrinks',
+    meals: 'mockMeals',
+  },
+};
+
 export const MockProvider = {
   Food: 'meal',
   HandleFood: () => {},
@@ -69,4 +79,5 @@ export const MockProvider = {
   HandleDoneRecipes: () => {},
   favoriteRecipes: MockfavoriteRecipes,
   HandleFavorites: () => {},
+  storageRecipes: mockStorage,
 };

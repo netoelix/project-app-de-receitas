@@ -9,3 +9,13 @@ export type FoodCardType = {
   doneDate: string,
   tags: string[],
 };
+
+export type StorageType = {
+  email: string,
+  doneRecipes: FoodCardType[],
+  favoriteRecipes: FoodCardType[],
+  inProgressRecipes: {
+    drinks: string,
+    meals: string,
+  },
+};

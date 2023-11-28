@@ -4,7 +4,7 @@ import NavFilter from '../Components/NavFilter';
 import { store } from '../Context/StoreContext';
 
 function DoneRecipes() {
-  const { doneRecipes } = useContext(store);
+  const { storeRecipes: { doneRecipes } } = useContext(store);
 
   const ElementDoneRecipes = (
     <div>
@@ -16,7 +16,7 @@ function DoneRecipes() {
 
   return (
     <main>
-      <NavFilter />
+      <NavFilter Page="DoneRecipes" />
       <div>
         {doneRecipes.length === 0 && <p>Nenhuma receita feita</p>}
         {doneRecipes.length > 0 && ElementDoneRecipes}

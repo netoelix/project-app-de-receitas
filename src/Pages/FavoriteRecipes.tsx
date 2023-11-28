@@ -4,7 +4,7 @@ import { store } from '../Context/StoreContext';
 import CardRecipe from '../Components/CardRecipe';
 
 function FavoriteRecipes() {
-  const { favoriteRecipes } = useContext(store);
+  const { storeRecipes: { favoriteRecipes } } = useContext(store);
 
   const ElementFavRecipes = (
     <div>
@@ -15,7 +15,7 @@ function FavoriteRecipes() {
   );
   return (
     <div>
-      <NavFilter />
+      <NavFilter Page="Favorite" />
       {favoriteRecipes.length > 0 && ElementFavRecipes}
     </div>
   );

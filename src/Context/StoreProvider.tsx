@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { store } from './StoreContext';
+import { FoodCardType, StorageType } from '../Utils/Types';
+import { mockStorage } from '../Utils/Mock';
 import { filterRecipes } from '../Utils/FilterRecipes';
-import { FoodCardType } from '../Utils/Types';
-import { MockDoneRecipes2, MockfavoriteRecipes } from '../Utils/Mock';
 
 type StoreProviderProps = {
   children: React.ReactNode;
@@ -10,35 +10,38 @@ type StoreProviderProps = {
 
 function StoreProvider({ children } : StoreProviderProps) {
   const [Food, setFood] = useState('');
-  const [storage, setStorage] = useState<FoodCardType[]>([]);
-  const [doneRecipes, setDoneRecipes] = useState<FoodCardType[]>([]);
-  const [favoriteRecipes, setFavoriteRecipes] = useState<FoodCardType[]>(
-    MockfavoriteRecipes,
-  );
+  const [storage, setStorage] = useState({} as StorageType);
+  const [storeRecipes, setStoreRecipes] = useState<StorageType>(mockStorage);
 
   useEffect(() => {
     const storageDoneRecipes:FoodCardType[] = JSON.parse(
       localStorage.getItem('doneRecipes') || '[]',
     );
-    if (storageDoneRecipes.length !== 0) {
-      setStorage(storageDoneRecipes);
-      setDoneRecipes(storageDoneRecipes);
-    } else {
-      setStorage(MockDoneRecipes2);
-      setDoneRecipes(MockDoneRecipes2);
-    }
+    const storageFavRecipes:FoodCardType[] = JSON.parse(
+      localStorage.getItem('favoriteRecipes') || '[]',
+    );
+    setStorage(mockStorage);
+
+    const favStorage = { ...mockStorage, favoriteRecipes: storageFavRecipes };
+    const doneStorage = { ...mockStorage, doneRecipes: storageDoneRecipes };
+
+    if (storageFavRecipes.length !== 0) setStorage(favStorage);
+    if (storageDoneRecipes.length !== 0) setStorage(doneStorage);
   }, []);
 
   const HandleFood = (Page: string) => {
     setFood(Page);
   };
+
   const HandleDoneRecipes = (Filter : string) => {
-    const newDoneRecipes = filterRecipes(Filter, storage);
-    setDoneRecipes(newDoneRecipes);
+    const newDoneRecipes = filterRecipes(Filter, storage.doneRecipes);
+    const newStore = { ...storeRecipes, doneRecipes: newDoneRecipes };
+    setStoreRecipes(newStore);
   };
   const HandleFavorites = (Filter : string) => {
-    const newFavoriteRecipes = filterRecipes(Filter, storage);
-    setFavoriteRecipes(newFavoriteRecipes);
+    const newFavRecipes = filterRecipes(Filter, storage.favoriteRecipes);
+    const newStore = { ...storeRecipes, favoriteRecipes: newFavRecipes };
+    setStoreRecipes(newStore);
   };
 
   return (
@@ -46,10 +49,9 @@ function StoreProvider({ children } : StoreProviderProps) {
       value={
         { Food,
           HandleFood,
-          doneRecipes,
           HandleDoneRecipes,
-          favoriteRecipes,
-          HandleFavorites }
+          HandleFavorites,
+          storeRecipes }
        }
     >
       <div>
