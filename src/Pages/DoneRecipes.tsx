@@ -16,7 +16,7 @@ function DoneRecipes() {
 
   return (
     <main>
-      <NavFilter Page="DoneRecipes" />
+      <NavFilter page="DoneRecipes" />
       <div>
         {doneRecipes.length === 0 && <p>Nenhuma receita feita</p>}
         {doneRecipes.length > 0 && ElementDoneRecipes}

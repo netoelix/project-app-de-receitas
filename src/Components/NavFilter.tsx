@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import StoreContext from '../Context/StoreContext';
 import { NavProps } from '../Utils/Types';
 
-function NavFilter({ Page } : NavProps) {
+function NavFilter({ page } : NavProps) {
   const { handleDoneRecipes, handleFavorites } = useContext(StoreContext);
 
   function setFilter(filter: string) {
-    if (Page === 'Favorite') return handleFavorites(filter);
-    if (Page === 'DoneRecipes') return handleDoneRecipes(filter);
+    if (page === 'Favorite') return handleFavorites(filter);
+    if (page === 'DoneRecipes') return handleDoneRecipes(filter);
   }
 
   return (

@@ -6,8 +6,8 @@ import Layout from './layout/Layout';
 import Profile from './Pages/Profile';
 import DoneRecipes from './Pages/DoneRecipes';
 import FavoriteRecipes from './Pages/FavoriteRecipes';
-import Recipes from './Components/Recipes';
 import StoreContext from './Context/StoreContext';
+import Recipes from './Components/Recipes';
 
 function App() {
   const { meals, drinks, mealsCategories, drinksCategories } = useContext(StoreContext);

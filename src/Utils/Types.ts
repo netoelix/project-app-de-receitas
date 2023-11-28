@@ -42,6 +42,10 @@ export type RecipesType = {
   categories: StrCategoryType[],
 };
 
+export type StoreProviderProps = {
+  children: React.ReactNode;
+};
+
 export type StoreContextType = {
   food : string,
   handleFood : (page : string) => void,
@@ -57,9 +61,6 @@ export type StoreContextType = {
   clearFilter: (type: string) => void,
 };
 
-export type StoreProviderProps = {
-  children: React.ReactNode;
-};
 export type CardRecipeProps = {
   food : FoodCardType
   page: string
@@ -67,5 +68,5 @@ export type CardRecipeProps = {
 };
 
 export type NavProps = {
-  Page: string;
+  page: string;
 };

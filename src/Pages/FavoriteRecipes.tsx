@@ -17,7 +17,7 @@ function FavoriteRecipes() {
   );
   return (
     <div>
-      <NavFilter Page="Favorite" />
+      <NavFilter page="Favorite" />
       {favoriteRecipes.length > 0 && ElementFavRecipes}
     </div>
   );
