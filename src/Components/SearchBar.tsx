@@ -14,7 +14,6 @@ function SearchBar() {
       window.alert('Your search must have only 1 (one) character');
     }
     setData(resultApi);
-    console.log(data);
   };
 
   const { register, getValues } = useForm();

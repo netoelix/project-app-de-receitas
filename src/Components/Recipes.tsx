@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { RecipesType } from '../Utils/Types';
 import StoreContext from '../Context/StoreContext';
-import SearchBar from './SearchBar';
 
 export default function Recipes({ title, recipes, categories }: RecipesType) {
   const { categorieSelected, clearFilter } = useContext(StoreContext);
@@ -10,7 +9,6 @@ export default function Recipes({ title, recipes, categories }: RecipesType) {
 
   return (
     <div>
-      <SearchBar />
       {categories.slice(0, 5).map(({ strCategory }, index) => (
         <button
           data-testid={ `${strCategory}-category-filter` }

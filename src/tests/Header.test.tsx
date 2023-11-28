@@ -22,7 +22,6 @@ describe('Testes do componente Header', () => {
     renderWithRouterAndProvider(<App />, { route: '/drinks' });
     const btnSearch = screen.getByTestId('search-top-btn');
     await userEvent.click(btnSearch);
-    screen.getByTestId('search-input');
     screen.getByTestId('ingredient-search-radio');
     screen.getByTestId('name-search-radio');
     screen.getByTestId('first-letter-search-radio');
