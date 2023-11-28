@@ -1,9 +1,11 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { RecipesType } from '../types';
 import Context from '../context/Context';
 
 export default function Recipes({ title, recipes, categories }: RecipesType) {
   const { categorieSelected, clearFilter } = useContext(Context);
+  const titlePath = `${title.charAt(0).toLocaleLowerCase()}${title.slice(1)}`;
 
   return (
     <div>
@@ -27,12 +29,14 @@ export default function Recipes({ title, recipes, categories }: RecipesType) {
       </button>
       {recipes.slice(0, 12).map((recipe, index) => (
         <div key={ recipe[`id${title}`] } data-testid={ `${index}-recipe-card` }>
-          <img
-            src={ recipe[`str${title}Thumb`] }
-            alt={ recipe[`str${title}`] }
-            data-testid={ `${index}-card-img` }
-          />
-          <h4 data-testid={ `${index}-card-name` }>{recipe[`str${title}`]}</h4>
+          <Link to={ `/${titlePath}/:${recipe[`id${title}`]}` }>
+            <img
+              src={ recipe[`str${title}Thumb`] }
+              alt={ recipe[`str${title}`] }
+              data-testid={ `${index}-card-img` }
+            />
+            <h4 data-testid={ `${index}-card-name` }>{recipe[`str${title}`]}</h4>
+          </Link>
         </div>
       ))}
     </div>
