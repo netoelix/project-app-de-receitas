@@ -8,9 +8,8 @@ import CardRecipe from './CardRecipe';
 import categoryFoods from '../Utils/categoryFoods';
 
 export default function Recipes() {
-  const { food } = useContext(StoreContext);
+  const { food, recipes, handleRecipes } = useContext(StoreContext);
   const [data, setData] = useState([] as FoodCardType[]);
-  const [recipes, setRecipes] = useState([] as FoodCardType[]);
   const [categories, setCategories] = useState([] as CategoryType[]);
   const [categorySelected, setCategorySelected] = useState('');
 
@@ -22,30 +21,31 @@ export default function Recipes() {
         const result = response[food].slice(0, 12);
         const newList :FoodCardType[] = DealResponse(food, result);
         setData(newList);
-        setRecipes(newList);
+        handleRecipes(newList);
       }
     }
     async function requestCategories() {
-      const response = await requestApi(food, `${food}-categories`, '');
+      const response = await requestApi(food, 'categories', '');
       if (response[food]) {
         const result: CategoryType[] = response[food].slice(0, 5);
         setCategories(result);
       }
     }
-
-    requestRecipes();
+    if (recipes.length === 0) {
+      requestRecipes();
+    }
     requestCategories();
-  }, [food]);
+  }, [food, handleRecipes, recipes]);
 
   async function changeRecipes(category: string) {
     if (category !== categorySelected) {
       const newRecipes = await categoryFoods(food, category);
       if (newRecipes) {
-        setRecipes(newRecipes);
+        handleRecipes(newRecipes);
         setCategorySelected(category);
       }
     } else {
-      setRecipes(data);
+      handleRecipes(data);
       setCategorySelected('');
     }
   }
@@ -63,7 +63,7 @@ export default function Recipes() {
       ))}
       <button
         data-testid="All-category-filter"
-        onClick={ () => setRecipes(data) }
+        onClick={ () => handleRecipes(data) }
       >
         All
 

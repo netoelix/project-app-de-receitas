@@ -9,6 +9,7 @@ function StoreProvider({ children } : StoreProviderProps) {
   const [storage, setStorage] = useState({} as StorageType);
   const [storeRecipes, setStoreRecipes] = useState<StorageType>(mockStorage);
   const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
+  const [recipes, setRecipes] = useState([] as FoodCardType[]);
 
   useEffect(() => {
     const storageDoneRecipes:FoodCardType[] = JSON.parse(
@@ -51,6 +52,10 @@ function StoreProvider({ children } : StoreProviderProps) {
     setRecipesScreen(List);
   };
 
+  const handleRecipes = (newRecipes: FoodCardType[]) => {
+    setRecipes(newRecipes);
+  };
+
   return (
     <StoreContext.Provider
       value={ {
@@ -62,6 +67,8 @@ function StoreProvider({ children } : StoreProviderProps) {
         handleScreen,
         removeFavorites,
         storeRecipes,
+        recipes,
+        handleRecipes,
       } }
     >
       <div>

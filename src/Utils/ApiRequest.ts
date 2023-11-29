@@ -13,24 +13,14 @@ const createUrlFood = (type: string, action : string, input : string) => {
       const newUrl = `${url}filter.php?i=${input}`;
       return newUrl;
     }
-    case 'meals-categories':
+    case 'categories':
     {
-      const newUrl = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+      const newUrl = `${url}list.php?c=list`;
       return newUrl;
     }
-    case 'drinks-categories':
+    case 'category-data':
     {
-      const newUrl = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
-      return newUrl;
-    }
-    case 'meals-data-category':
-    {
-      const newUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${input}`;
-      return newUrl;
-    }
-    case 'drinks-data-category':
-    {
-      const newUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${input}`;
+      const newUrl = `${url}filter.php?c=${input}`;
       return newUrl;
     }
     default:

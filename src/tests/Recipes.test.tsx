@@ -5,6 +5,8 @@ import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvide
 import App from '../App';
 import { mockResponseMeal } from './mocks/mockResponseMeal';
 
+const cardTestId = '0-card-name';
+
 describe('Recipes Component', () => {
   test('renders without errors', async () => {
     afterEach(() => vi.clearAllMocks());
@@ -26,15 +28,15 @@ describe('Recipes Component', () => {
     expect(firstFilter).toBeInTheDocument();
     expect(mockFetch).toHaveBeenCalledTimes(4);
     await userEvent.click(firstFilter);
-    const newfirstCard = await screen.findByTestId('0-card-name');
+    const newfirstCard = await screen.findByTestId(cardTestId);
     expect(newfirstCard.innerHTML).toBe('Corba');
 
     await userEvent.click(firstFilter);
-    const resetFirst = await screen.findByTestId('0-card-name');
+    const resetFirst = await screen.findByTestId(cardTestId);
     expect(resetFirst.innerHTML).toBe('Corba');
 
     await userEvent.click(allbtn);
-    const resultAll = await screen.findByTestId('0-card-name');
+    const resultAll = await screen.findByTestId(cardTestId);
     expect(resultAll.innerHTML).toBe('Corba');
   });
 });

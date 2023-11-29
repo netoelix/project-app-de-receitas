@@ -20,26 +20,8 @@ export type StorageType = {
   },
 };
 
-export type MealsType = {
-  idMeal: string,
-  strMeal: string,
-  strMealThumb: string,
-};
-
-export type DrinksType = {
-  idDrink: string,
-  strDrink: string,
-  strDrinkThumb: string,
-};
-
 export type CategoryType = {
   strCategory: string,
-};
-
-export type RecipesType = {
-  title: string,
-  recipes: MealsType[] | DrinksType[],
-  categories: CategoryType[],
 };
 
 export type StoreProviderProps = {
@@ -54,7 +36,9 @@ export type StoreContextType = {
   storeRecipes : StorageType,
   food : string,
   recipesScreen: FoodCardType[],
-  removeFavorites: (recipe : string) => void
+  removeFavorites: (recipe : string) => void,
+  recipes: FoodCardType[],
+  handleRecipes: (newRecipes: FoodCardType[]) => void,
 };
 
 export type CardRecipeProps = {
