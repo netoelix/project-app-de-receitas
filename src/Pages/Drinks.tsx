@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import StoreContext from '../Context/StoreContext';
+import Recipes from '../Components/Recipes';
 
 function Drinks() {
   const { handleFood } = useContext(StoreContext);
@@ -7,7 +8,9 @@ function Drinks() {
     handleFood('drinks');
   }, [handleFood]);
 
-  return <h1> Pagina de Drinks </h1>;
+  return (
+    <Recipes />
+  );
 }
 
 export default Drinks;

@@ -47,18 +47,14 @@ export type StoreProviderProps = {
 };
 
 export type StoreContextType = {
-  food : string,
   handleFood : (page : string) => void,
   handleDoneRecipes : (filter : string) => void,
   handleFavorites: (filter : string) => void,
+  handleScreen : (filter : string, string: FoodCardType[]) => void,
   storeRecipes : StorageType,
-  removeFavorites: (recipe : string) => void,
-  meals: MealsType[],
-  drinks: DrinksType[],
-  mealsCategories: StrCategoryType[],
-  drinksCategories: StrCategoryType[],
-  categorieSelected: (categorie: string, type: string) => void,
-  clearFilter: (type: string) => void,
+  food : string,
+  recipesScreen: FoodCardType[],
+  removeFavorites: (recipe : string) => void
 };
 
 export type CardRecipeProps = {

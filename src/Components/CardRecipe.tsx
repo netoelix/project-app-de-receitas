@@ -11,6 +11,9 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
   const dataTest = `${index}-horizontal-`;
   const link = `http://localhost:3000/${type}s/${id}`;
 
+  const testIdName = (page === 'recipes') ? (`${index}-card-name`) : (`${dataTest}name`);
+  const testIdImg = (page === 'recipes') ? (`${index}-card-img`) : (`${dataTest}img`);
+
   const copyToClipBoard = () => {
     navigator.clipboard.writeText(link);
     setCopied(true);
@@ -30,20 +33,20 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
   );
 
   return (
-    <div>
+    <div data-testid={ `${index}-recipe-card` }>
       <div className="Img">
         <a href={ link }>
           <img
             src={ image }
             alt="food"
             width="150px"
-            data-testid={ `${dataTest}image` }
+            data-testid={ testIdImg }
           />
         </a>
       </div>
       <div className="Recipe-Info">
         <a href={ link }>
-          <h1 data-testid={ `${dataTest}name` }>{name}</h1>
+          <h1 data-testid={ testIdName }>{name}</h1>
         </a>
         {(type === 'meal') && (
           <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
