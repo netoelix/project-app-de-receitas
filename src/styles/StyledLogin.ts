@@ -22,8 +22,8 @@ export const LoginContainer = styled.div`
         padding: 1rem;
         width: 200px;
         border-radius: 5px;
-        border: 1px solid #ccc;
-        background-color: #ccc;
+        background-color: #FCC436;
+        color: #FFF;
         font-size: 1.5rem;
         font-weight: 600;
         cursor: pointer;
