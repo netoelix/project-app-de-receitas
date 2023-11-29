@@ -32,14 +32,14 @@ export type DrinksType = {
   strDrinkThumb: string,
 };
 
-export type StrCategoryType = {
+export type CategoryType = {
   strCategory: string,
 };
 
 export type RecipesType = {
   title: string,
   recipes: MealsType[] | DrinksType[],
-  categories: StrCategoryType[],
+  categories: CategoryType[],
 };
 
 export type StoreProviderProps = {

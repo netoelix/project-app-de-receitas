@@ -1,14 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import StoreContext from '../Context/StoreContext';
 import { requestApi } from '../Utils/ApiRequest';
 import DealResponse from '../Utils/DealResponse';
-import { FoodCardType } from '../Utils/Types';
+import { CategoryType, FoodCardType } from '../Utils/Types';
 import CardRecipe from './CardRecipe';
+import categoryFoods from '../Utils/categoryFoods';
 
 export default function Recipes() {
   const { food } = useContext(StoreContext);
   const [data, setData] = useState([] as FoodCardType[]);
   const [recipes, setRecipes] = useState([] as FoodCardType[]);
+  const [categories, setCategories] = useState([] as CategoryType[]);
+  const [categorySelected, setCategorySelected] = useState('');
 
   useEffect(() => {
     async function requestRecipes() {
@@ -20,38 +24,62 @@ export default function Recipes() {
         setRecipes(newList);
       }
     }
+    async function requestCategories() {
+      const response = await requestApi(food, `${food}-categories`, '');
+      if (response[food]) {
+        const result: CategoryType[] = response[food].slice(0, 5);
+        setCategories(result);
+      }
+    }
 
     requestRecipes();
+    requestCategories();
   }, [food]);
-  console.log(data);
 
-  const FilterMeals = (
+  async function changeRecipes(category: string) {
+    if (category !== categorySelected) {
+      const newRecipes = await categoryFoods(food, category);
+      if (newRecipes) {
+        setRecipes(newRecipes);
+        setCategorySelected(category);
+      }
+    } else {
+      setRecipes(data);
+      setCategorySelected('');
+    }
+  }
+
+  const FilterCategories = (
     <div>
-      <button data-testid="All-category-filter">All</button>
-      <button data-testid="Side-category-filter">Side</button>
-      <button data-testid="Seafood-category-filter">Seafood</button>
-      <button data-testid="Beef-category-filter">Beef</button>
-      <button data-testid="Vegetarian-category-filter">Vegetarian</button>
-      <button data-testid="Pork-category-filter">Pork</button>
-    </div>
-  );
-  const FilterDrinks = (
-    <div>
-      <button data-testid="All-category-filter">All</button>
-      <button data-testid="Cocktail-category-filter">Cocktail</button>
-      <button data-testid="Ordinary-Drink-category-filter">Ordinary Drink</button>
-      <button data-testid="Other/Unknown-Drink-category-filter">Other/Unknown</button>
-      <button data-testid="Shake-category-filter">Shake</button>
-      <button data-testid="Cocoa-category-filter">Cocoa</button>
+      {categories.map(({ strCategory }, index) => (
+        <button
+          key={ index }
+          data-testid={ `${strCategory}-category-filter` }
+          onClick={ () => changeRecipes(strCategory) }
+        >
+          {strCategory}
+        </button>
+      ))}
+      <button
+        data-testid="All-category-filter"
+        onClick={ () => setRecipes(data) }
+      >
+        All
+
+      </button>
     </div>
   );
 
   return (
     <div>
-      {(food === 'meals') ? FilterMeals : FilterDrinks}
+      {FilterCategories}
       {
   recipes.map((recipe, index) => (
-    <CardRecipe key={ index } food={ recipe } page="recipes" index={ index } />))
+    <div key={ index }>
+      <Link to={ `/${food}/${recipe.id}` }>
+        <CardRecipe food={ recipe } page="recipes" index={ index } />
+      </Link>
+    </div>))
       }
     </div>
   );
