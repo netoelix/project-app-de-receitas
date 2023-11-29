@@ -12,11 +12,17 @@ function SearchBar() {
 
   const handleSearch = async () => {
     const { searchInput, radioSearch } = getValues();
+
     if (radioSearch === 'firstLetter' && searchInput.length > 1) {
       window.alert('Your search must have only 1 (one) character');
     } else {
+      console.log('Primeiro if');
       const response = await requestApi(food, radioSearch, searchInput);
+      console.log(response);
+
       if (response[food] === null) {
+        console.log('Segundo if');
+
         window.alert('Sorry, we haven\'t found any recipes for these filters');
       } else if (response[food]) {
         const result = response[food].slice(0, 12);

@@ -5,7 +5,7 @@ import { filterRecipes } from '../Utils/FilterRecipes';
 import StoreContext from './StoreContext';
 
 function StoreProvider({ children } : StoreProviderProps) {
-  const [food, setFood] = useState('');
+  const [food, setFood] = useState('meals');
   const [storage, setStorage] = useState({} as StorageType);
   const [storeRecipes, setStoreRecipes] = useState<StorageType>(mockStorage);
   const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
