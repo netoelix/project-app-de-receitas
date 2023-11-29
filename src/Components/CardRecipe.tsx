@@ -3,6 +3,7 @@ import { CardRecipeProps } from '../Utils/Types';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import StoreContext from '../Context/StoreContext';
+import styles from './CardRecipe.module.css';
 
 function CardRecipe({ food, page, index } : CardRecipeProps) {
   const { removeFavorites } = useContext(StoreContext);
@@ -12,7 +13,7 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
   const link = `http://localhost:3000/${type}s/${id}`;
 
   const testIdName = (page === 'recipes') ? (`${index}-card-name`) : (`${dataTest}name`);
-  const testIdImg = (page === 'recipes') ? (`${index}-card-img`) : (`${dataTest}img`);
+  const testIdImg = (page === 'recipes') ? (`${index}-card-img`) : (`${dataTest}image`);
 
   const copyToClipBoard = () => {
     navigator.clipboard.writeText(link);
@@ -27,13 +28,13 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
       <img
         data-testid={ `${dataTest}favorite-btn` }
         src={ blackHeartIcon }
-        alt="share"
+        alt="fav"
       />
     </button>
   );
 
   return (
-    <div data-testid={ `${index}-recipe-card` }>
+    <div data-testid={ `${index}-recipe-card` } className={ styles.Card }>
       <div className="Img">
         <a href={ link }>
           <img
