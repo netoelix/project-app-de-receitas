@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { store } from '../Context/StoreContext';
+import Footer from '../Components/Footer';
 
 function Meals() {
   const { HandleFood } = useContext(store);
@@ -8,7 +9,10 @@ function Meals() {
   }, [HandleFood]);
 
   return (
-    <h5>conteudo pagina meals</h5>
+    <>
+      <h5>conteudo pagina meals</h5>
+      <Footer />
+    </>
   );
 }
 

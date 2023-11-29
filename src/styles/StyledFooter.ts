@@ -11,8 +11,4 @@ export const StyledFooter = styled.footer`
     border-top: 1px solid #ccc;
     z-index: 100;
     background-color: #41197F;
-
-    img {
-        color: blue;
-    }
     `;

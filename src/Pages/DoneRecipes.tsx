@@ -2,16 +2,17 @@ import { useContext } from 'react';
 import CardRecipe from '../Components/CardRecipe';
 import NavFilter from '../Components/NavFilter';
 import { store } from '../Context/StoreContext';
+import { DoneRecipesContainer } from '../styles/StyledDoneRecipes';
 
 function DoneRecipes() {
   const { doneRecipes } = useContext(store);
 
   const ElementDoneRecipes = (
-    <div>
+    <DoneRecipesContainer>
       {doneRecipes.map((recipe, index) => (
         <CardRecipe index={ index } key={ index } Food={ recipe } Page="DoneRecipes" />
       ))}
-    </div>
+    </DoneRecipesContainer>
   );
 
   return (

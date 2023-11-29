@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { FoodCardType } from '../Utils/Types';
 import shareIcon from '../images/shareIcon.svg';
+import { CardRecipeContainer,
+  CardRecipeImage, CardRecipeInfo, TagContainer } from '../styles/StyledDoneRecipes';
 
 type CardRecipeProps = {
   Food : FoodCardType
@@ -24,10 +26,10 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
   );
 
   return (
-    <div>
+    <CardRecipeContainer>
       <div className="Img">
         <a href={ link }>
-          <img
+          <CardRecipeImage
             src={ image }
             alt="food"
             width="150px"
@@ -35,40 +37,46 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
           />
         </a>
       </div>
-      <div className="Recipe-Info">
-        <a href={ link }>
-          <h1 data-testid={ `${dataTest}name` }>{name}</h1>
-        </a>
-        {(type === 'meal') && (
-          <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
-        )}
-        {(type === 'drink') && (
-          <p data-testid={ `${dataTest}top-text` }>{Food.alcoholicOrNot}</p>
-        )}
+      <CardRecipeInfo>
+        <div className="Recipe-Info">
+          <a href={ link }>
+            <h1 data-testid={ `${dataTest}name` }>{name}</h1>
+          </a>
+          {(type === 'meal') && (
+            <p data-testid={ `${dataTest}top-text` }>
+              <span>
+                {`${nationality} - ${category}`}
+              </span>
+            </p>
+          )}
+          {(type === 'drink') && (
+            <p data-testid={ `${dataTest}top-text` }>{Food.alcoholicOrNot}</p>
+          )}
 
-      </div>
-
-      <div className="Done-Info">
-        {(Page === 'DoneRecipes') && (
-          <p data-testid={ `${dataTest}done-date` }>
-            {doneDate}
-          </p>)}
-
-        <div className="Tags">
-          {tags.map((tagName) => {
-            const dataTestTag = `${index}-${tagName}-horizontal-tag`;
-            return (
-              <p key={ tagName } data-testid={ dataTestTag }>
-                {tagName}
-              </p>
-            );
-          })}
         </div>
-      </div>
+
+        <div className="Done-Info">
+          {(Page === 'DoneRecipes') && (
+            <p data-testid={ `${dataTest}done-date` }>
+              {doneDate}
+            </p>)}
+
+          <TagContainer className="Tags">
+            {tags.map((tagName) => {
+              const dataTestTag = `${index}-${tagName}-horizontal-tag`;
+              return (
+                <p key={ tagName } data-testid={ dataTestTag }>
+                  {tagName}
+                </p>
+              );
+            })}
+          </TagContainer>
+        </div>
+      </CardRecipeInfo>
       <button onClick={ () => copyToClipBoard() }>
         {copied ? 'Link copied!' : share}
       </button>
-    </div>
+    </CardRecipeContainer>
   );
 }
 
