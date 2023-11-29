@@ -17,6 +17,7 @@ export default function Recipes() {
   useEffect(() => {
     async function requestRecipes() {
       const response = await requestApi(food, '', '');
+
       if (response[food]) {
         const result = response[food].slice(0, 12);
         const newList :FoodCardType[] = DealResponse(food, result);
