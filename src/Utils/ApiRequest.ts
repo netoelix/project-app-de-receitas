@@ -18,6 +18,11 @@ const createUrlFood = (type: string, action : string, input : string) => {
       const newUrl = `${url}list.php?c=list`;
       return newUrl;
     }
+    case 'id':
+    {
+      const newUrl = `${url}lookup.php?i=${input}`;
+      return newUrl;
+    }
     case 'category-data':
     {
       const newUrl = `${url}filter.php?c=${input}`;

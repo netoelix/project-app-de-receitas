@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
-import { FoodCardType, StorageType, StoreProviderProps } from '../Utils/Types';
+import { FoodCardType, StorageType } from '../Utils/Types';
 import { mockStorage } from '../Utils/Mock';
 import { filterRecipes } from '../Utils/FilterRecipes';
 import StoreContext from './StoreContext';
+
+export type StoreProviderProps = {
+  children: React.ReactNode;
+};
+// Se um type só é usado em um compoenente,deixa nele.
 
 function StoreProvider({ children } : StoreProviderProps) {
   const [food, setFood] = useState('meals');

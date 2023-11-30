@@ -8,7 +8,6 @@ export type FoodCardType = {
   image: string,
   doneDate: string,
   tags: string[],
-  instructions: string,
 };
 
 export type StorageType = {
@@ -19,14 +18,6 @@ export type StorageType = {
     drinks: string,
     meals: string,
   },
-};
-
-export type CategoryType = {
-  strCategory: string,
-};
-
-export type StoreProviderProps = {
-  children: React.ReactNode;
 };
 
 export type StoreContextType = {
