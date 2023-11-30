@@ -66,3 +66,25 @@
     transform: rotate(-10deg);
   }
 }
+
+.footer {
+  background-color: white;
+  border-top: 1px solid #ccc;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+}
+
+.footer button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.footer img {
+  height: 24px;
+  width: 24px;
+}

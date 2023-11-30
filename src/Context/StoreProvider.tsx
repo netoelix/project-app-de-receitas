@@ -1,101 +1,74 @@
 import { useEffect, useState } from 'react';
-import StoreContext from './StoreContext';
+import { FoodCardType, StorageType, StoreProviderProps } from '../Utils/Types';
+import { mockStorage } from '../Utils/Mock';
 import { filterRecipes } from '../Utils/FilterRecipes';
-import { FoodCardType, StoreProviderProps } from '../Utils/Types';
-import { MockDoneRecipes2 } from '../Utils/Mock';
-
-import mealsAPI from '../services/mealsAPI';
-import drinksAPI from '../services/drinksAPI';
-import mealsCategoriesAPI from '../services/mealsCategoriesAPI';
-import drinksCategoriesAPI from '../services/drinksCategoriesAPI';
-import filterByCategorie from '../Utils/filterByCateorie';
+import StoreContext from './StoreContext';
 
 function StoreProvider({ children } : StoreProviderProps) {
-  const [food, setFood] = useState('');
-  const [doneRecipes, setDoneRecipes] = useState<FoodCardType[]>([]);
-  const [storage, setStorage] = useState<FoodCardType[]>([]);
-  const [meals, setMeals] = useState([]);
-  const [allMeals, setAllMeals] = useState([]);
-  const [drinks, setDrinks] = useState([]);
-  const [allDrinks, setAllDrinks] = useState([]);
-  const [mealsCategories, setMealsCategories] = useState([]);
-  const [drinksCategories, setDrinksCategories] = useState([]);
-  const [lastCategorieSelected, setLastCategorieSelected] = useState('');
+  const [food, setFood] = useState('meals');
+  const [storage, setStorage] = useState({} as StorageType);
+  const [storeRecipes, setStoreRecipes] = useState<StorageType>(mockStorage);
+  const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
+  const [recipes, setRecipes] = useState([] as FoodCardType[]);
 
   useEffect(() => {
-    const getAPIInfos = async () => {
-      const mealsAPIInfos = await mealsAPI();
-      const drinksAPIInfos = await drinksAPI();
-      const mealsCategoriesInfos = await mealsCategoriesAPI();
-      const drinksCategoriesInfos = await drinksCategoriesAPI();
-      setAllMeals(mealsAPIInfos);
-      setAllDrinks(drinksAPIInfos);
-      setMeals(mealsAPIInfos);
-      setDrinks(drinksAPIInfos);
-      setMealsCategories(mealsCategoriesInfos);
-      setDrinksCategories(drinksCategoriesInfos);
-    };
-    getAPIInfos();
     const storageDoneRecipes:FoodCardType[] = JSON.parse(
       localStorage.getItem('doneRecipes') || '[]',
     );
-    if (storageDoneRecipes.length !== 0) {
-      setStorage(storageDoneRecipes);
-      setDoneRecipes(storageDoneRecipes);
-    } else {
-      setStorage(MockDoneRecipes2);
-      setDoneRecipes(MockDoneRecipes2);
-    }
+    const storageFavRecipes:FoodCardType[] = JSON.parse(
+      localStorage.getItem('favoriteRecipes') || '[]',
+    );
+    setStorage(mockStorage);
+
+    const favStorage = { ...mockStorage, favoriteRecipes: storageFavRecipes };
+    const doneStorage = { ...mockStorage, doneRecipes: storageDoneRecipes };
+
+    if (storageFavRecipes.length !== 0) setStorage(favStorage);
+    if (storageDoneRecipes.length !== 0) setStorage(doneStorage);
   }, []);
 
-  const HandleFood = (Page: string) => {
-    setFood(Page);
+  const handleFood = (page: string) => {
+    setFood(page);
   };
-  const HandleDoneRecipes = (Filter : string) => {
-    const newDoneRecipes = filterRecipes(Filter, storage);
-    setDoneRecipes(newDoneRecipes);
+  const handleDoneRecipes = (filter : string) => {
+    const newDoneRecipes = filterRecipes(filter, storage.doneRecipes);
+    const newStore = { ...storeRecipes, doneRecipes: newDoneRecipes };
+    setStoreRecipes(newStore);
   };
-
-  const categorieSelected = async (categorie: string, type: string) => {
-    if (categorie === lastCategorieSelected) {
-      if (type === 'Meal') {
-        setMeals(allMeals);
-      } else {
-        setDrinks(allDrinks);
-      }
-      setLastCategorieSelected('');
-    } else {
-      const items = await filterByCategorie(categorie, type);
-      if (type === 'Meal') {
-        setMeals(items);
-      } else {
-        setDrinks(items);
-      }
-      setLastCategorieSelected(categorie);
-    }
+  const handleFavorites = (filter : string) => {
+    const newFavRecipes = filterRecipes(filter, storage.favoriteRecipes);
+    const newStore = { ...storeRecipes, favoriteRecipes: newFavRecipes };
+    setStoreRecipes(newStore);
+  };
+  const removeFavorites = (recipe : string) => {
+    const newFavs = storage.favoriteRecipes.filter((favs) => favs.name !== recipe);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavs));
+    setStorage({ ...storage, favoriteRecipes: newFavs });
+    setStoreRecipes({ ...storeRecipes, favoriteRecipes: newFavs });
   };
 
-  const clearFilter = (type: string) => {
-    if (type === 'Meal') {
-      setMeals(allMeals);
-    } else {
-      setDrinks(allDrinks);
-    }
+  const handleScreen = (filter : string, List: FoodCardType[]) => {
+    console.log(filter, List);
+    setRecipesScreen(List);
+  };
+
+  const handleRecipes = (newRecipes: FoodCardType[]) => {
+    setRecipes(newRecipes);
   };
 
   return (
     <StoreContext.Provider
       value={ {
+        recipesScreen,
         food,
-        HandleFood,
-        doneRecipes,
-        HandleDoneRecipes,
-        meals,
-        drinks,
-        mealsCategories,
-        drinksCategories,
-        categorieSelected,
-        clearFilter,
+        handleFood,
+        handleDoneRecipes,
+        handleFavorites,
+        handleScreen,
+        removeFavorites,
+        storeRecipes,
+        recipes,
+        handleRecipes,
       } }
     >
       <div>

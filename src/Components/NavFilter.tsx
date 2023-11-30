@@ -1,16 +1,18 @@
 import { useContext } from 'react';
 import StoreContext from '../Context/StoreContext';
+import { NavProps } from '../Utils/Types';
 
-function NavFilter() {
-  const { HandleDoneRecipes } = useContext(StoreContext);
+function NavFilter({ page } : NavProps) {
+  const { handleDoneRecipes, handleFavorites } = useContext(StoreContext);
 
   function setFilter(filter: string) {
-    HandleDoneRecipes(filter);
+    if (page === 'Favorite') return handleFavorites(filter);
+    if (page === 'DoneRecipes') return handleDoneRecipes(filter);
   }
 
   return (
     <nav>
-      <button onClick={ () => setFilter('All') } data-testid="filter-by-all-btn">
+      <button onClick={ () => setFilter('all') } data-testid="filter-by-all-btn">
         All
       </button>
 

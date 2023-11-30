@@ -8,43 +8,46 @@ export type FoodCardType = {
   image: string,
   doneDate: string,
   tags: string[],
+  instructions: string,
 };
 
-export type MealsType = {
-  idMeal: string,
-  strMeal: string,
-  strMealThumb: string,
+export type StorageType = {
+  email: string,
+  doneRecipes: FoodCardType[],
+  favoriteRecipes: FoodCardType[],
+  inProgressRecipes: {
+    drinks: string,
+    meals: string,
+  },
 };
 
-export type DrinksType = {
-  idDrink: string,
-  strDrink: string,
-  strDrinkThumb: string,
-};
-
-export type StrCategoryType = {
+export type CategoryType = {
   strCategory: string,
-};
-
-export type RecipesType = {
-  title: string,
-  recipes: MealsType[] | DrinksType[],
-  categories: StrCategoryType[],
-};
-
-export type StoreContextType = {
-  food : string,
-  HandleFood : (page : string) => void,
-  doneRecipes : FoodCardType[],
-  HandleDoneRecipes : (Filter : string) => void,
-  meals: MealsType[],
-  drinks: DrinksType[],
-  mealsCategories: StrCategoryType[],
-  drinksCategories: StrCategoryType[],
-  categorieSelected: (categorie: string, type: string) => void,
-  clearFilter: (type: string) => void,
 };
 
 export type StoreProviderProps = {
   children: React.ReactNode;
+};
+
+export type StoreContextType = {
+  handleFood : (page : string) => void,
+  handleDoneRecipes : (filter : string) => void,
+  handleFavorites: (filter : string) => void,
+  handleScreen : (filter : string, string: FoodCardType[]) => void,
+  storeRecipes : StorageType,
+  food : string,
+  recipesScreen: FoodCardType[],
+  removeFavorites: (recipe : string) => void,
+  recipes: FoodCardType[],
+  handleRecipes: (newRecipes: FoodCardType[]) => void,
+};
+
+export type CardRecipeProps = {
+  food : FoodCardType
+  page: string
+  index: number
+};
+
+export type NavProps = {
+  page: string;
 };
