@@ -3,7 +3,7 @@ export type FoodCardType = {
   type:string
   nationality:string
   category:string
-  alcoholicOrNot: string,
+  alcoholicOrNot?: string,
   name: string,
   image: string,
   doneDate: string,
