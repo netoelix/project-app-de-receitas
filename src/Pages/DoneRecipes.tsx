@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import CardRecipe from '../Components/CardRecipe';
 import NavFilter from '../Components/NavFilter';
 import { store } from '../Context/StoreContext';
-import { DoneRecipesContainer } from '../styles/StyledDoneRecipes';
+import { DoneRecipesContainer, Paragraph } from '../styles/StyledDoneRecipes';
 
 function DoneRecipes() {
   const { doneRecipes } = useContext(store);
@@ -19,7 +19,7 @@ function DoneRecipes() {
     <main>
       <NavFilter />
       <div>
-        {doneRecipes.length === 0 && <p>Nenhuma receita feita</p>}
+        {doneRecipes.length === 0 && <Paragraph>Nenhuma receita feita</Paragraph>}
         {doneRecipes.length > 0 && ElementDoneRecipes}
       </div>
     </main>

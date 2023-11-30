@@ -10,7 +10,7 @@ export const StyledHeader = styled.div`
     font-size: calc(10px + 2vmin);
     color: white;
 
-        img {
+        button {
             background-color: #FCDC36;
         }
     `;

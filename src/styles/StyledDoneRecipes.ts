@@ -17,14 +17,22 @@ export const CardRecipeContainer = styled.div`
     margin-bottom: 20px;
     background-color: #fff;
 
-    img {
+    button {
         background-color: white;
+        color: #1A1B1C;
+        font-family: sans-serif;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 50px;
+        margin-right: 10px;
     }
 `;
 
 export const CardRecipeImage = styled.img`
-    width: 163.346px;
-    height: 134.854px;
+    width: 17vh;
+    height: 100%;
     border-radius: 5px 0 0 5px;
 `;
 
@@ -80,4 +88,44 @@ export const TagContainer = styled.div`
         margin-right: 5px;
         color: #797D86;
     }
+`;
+
+export const NavFilterContainer = styled.nav`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        background-color: white;
+        color: #1A1B1C;
+        font-family: sans-serif;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-bottom: 50px;
+        margin-right: 10px;
+        border-radius: 66.72px;
+        border: 2.669px solid #FCC436;
+        margin: 20px;
+    }
+`;
+
+export const Paragraph = styled.p`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #1A1B1C;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 20px;
 `;
