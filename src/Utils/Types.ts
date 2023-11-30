@@ -8,6 +8,7 @@ export type FoodCardType = {
   image: string,
   doneDate: string,
   tags: string[],
+  instructions: string,
 };
 
 export type StorageType = {

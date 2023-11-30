@@ -1,3 +1,5 @@
+import processIngredients from './processIngredients';
+
 function DealResponse(Food: string, List: string[]) {
   switch (Food) {
     case 'drinks':
@@ -13,6 +15,8 @@ function DealResponse(Food: string, List: string[]) {
           tags: recipe.strTags,
           alcoholicOrNot: recipe.strAlcoholic,
           doneDate: '',
+          instructions: recipe.strInstructions,
+          ingredients: processIngredients(recipe, 15),
         };
       });
       return newlist;
@@ -30,6 +34,8 @@ function DealResponse(Food: string, List: string[]) {
           tags: recipe.strTags,
           alcoholicOrNot: recipe.strAlcoholic,
           doneDate: '',
+          instructions: recipe.strInstructions,
+          ingredients: processIngredients(recipe, 20),
         };
       });
       return newlist;

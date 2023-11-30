@@ -16,7 +16,8 @@ function App() {
         <Route path="/meals" element={ <Meals /> } />
         <Route path="/drinks" element={ <Drinks /> } />
         <Route path="/profile" element={ <Profile /> } />
-        <Route path="/done-recipes" element={ <DoneRecipes /> } />
+        <Route path="/meals/:id-da-receita/in-progress" element={ <DoneRecipes /> } />
+        <Route path="/drinks/:id-da-receita/in-progress" element={ <DoneRecipes /> } />
         <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
       </Route>
     </Routes>
