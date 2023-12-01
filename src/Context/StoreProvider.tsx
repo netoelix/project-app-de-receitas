@@ -10,7 +10,7 @@ export type StoreProviderProps = {
 // Se um type só é usado em um compoenente,deixa nele.
 
 function StoreProvider({ children } : StoreProviderProps) {
-  const [food, setFood] = useState('meals');
+  const [food, setFood] = useState('');
   const [storage, setStorage] = useState({} as StorageType);
   const [storeRecipes, setStoreRecipes] = useState<StorageType>(mockStorage);
   const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
@@ -33,6 +33,7 @@ function StoreProvider({ children } : StoreProviderProps) {
   }, []);
 
   const handleFood = (page: string) => {
+    console.log(food);
     setFood(page);
   };
   const handleDoneRecipes = (filter : string) => {

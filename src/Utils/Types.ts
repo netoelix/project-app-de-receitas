@@ -33,6 +33,19 @@ export type StoreContextType = {
   handleRecipes: (newRecipes: FoodCardType[]) => void,
 };
 
+export type CardRecipe = {
+  id: string,
+  type: string,
+  image: string,
+  name: string,
+  category: string,
+  nationality: string,
+  tags: string[],
+  doneDate: string,
+  instructions: string
+  ingredients: string[],
+};
+
 export type CardRecipeProps = {
   food : FoodCardType
   page: string
@@ -41,4 +54,8 @@ export type CardRecipeProps = {
 
 export type NavProps = {
   page: string;
+};
+
+export type CategoryType = {
+  strCategory: string,
 };

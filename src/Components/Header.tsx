@@ -21,21 +21,24 @@ function Header() {
 
   useEffect(() => {
     const path = (window.location.pathname);
-    switch (path) {
-      case '/drinks':
+    const pathSplit = path.split('/');
+    console.log(pathSplit[1]);
+
+    switch (pathSplit[1]) {
+      case 'drinks':
         setTitle('Drinks');
         break;
-      case '/profile':
+      case 'profile':
         setTitle('Profile');
         setShowSearchIcon(false);
         break;
 
-      case '/done-recipes':
+      case 'done-recipes':
         setTitle('Done Recipes');
         setShowSearchIcon(false);
         break;
 
-      case '/favorite-recipes':
+      case 'favorite-recipes':
         setTitle('Favorite Recipes');
         setShowSearchIcon(false);
         break;

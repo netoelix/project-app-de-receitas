@@ -1,41 +1,53 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
 import StoreContext from '../Context/StoreContext';
 import DealResponse from '../Utils/DealResponse';
+import { CardRecipe } from '../Utils/Types';
+import CheckIngredient from '../Components/CheckIngredient';
 
 function RecipeInProgress() {
-  const { id } = useParams();
   const { food } = useContext(StoreContext);
-  const [recipe, setRecipe] = useState<any>({});
-  console.log(id);
-  console.log(food);
+  const [recipe, setRecipe] = useState({} as CardRecipe);
+  const [filterIngredients, setFilterIngredients] = useState([] as string[]);
 
   useEffect(() => {
     async function requestRecipe() {
-      if (id !== undefined) {
-        const response = requestApi(food, 'id', id);
-        const recipeData = await response;
-        const recipeInProgress = recipeData[food];
+      const path = window.location.pathname;
+      const newFood = path.split('/')[1];
+      const newId = path.split('/')[2];
+      if (newId !== undefined) {
+        const response = requestApi(newFood, 'id', newId);
 
-        const [result] = DealResponse(food, recipeInProgress);
+        const recipeData = await response;
+        const recipeInProgress = recipeData[newFood];
+
+        const [result] = DealResponse(newFood, recipeInProgress);
         setRecipe(result);
+        const ingredients = result.ingredients.filter((ingredient) => ingredient !== '');
+        setFilterIngredients(ingredients);
         // ;
       }
     }
     requestRecipe();
-  }, [id, food]);
+  }, [food]);
+
   const { image, name } = recipe;
+
   return (
     <div>
-      <div>{id}</div>
       <img src={ image } alt="recipe-progress" data-testid="recipe-photo" />
       <h1 data-testid="recipe-title">{name}</h1>
       <button data-testid="share-btn">ShareBtn</button>
       <button data-testid="favorite-btn">Favoritar</button>
-      <div data-testid="recipe-category">Categorias</div>
+      <div data-testid="recipe-category">
+        {filterIngredients.map((ingredient, index) => (<CheckIngredient
+          ingredient={ ingredient }
+          key={ ingredient }
+          index={ index }
+        />))}
+      </div>
       <div data-testid="instructions"> Intruções</div>
-      <div data-testid="finish-recipe-btn">Finalizar</div>
+      <button data-testid="finish-recipe-btn">Finalizar</button>
     </div>
   );
 }

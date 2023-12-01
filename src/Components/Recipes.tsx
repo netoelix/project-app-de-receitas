@@ -15,11 +15,14 @@ export default function Recipes() {
 
   useEffect(() => {
     async function requestRecipes() {
-      const response = await requestApi(food, '', '');
+      const path = window.location.pathname;
+      const newFood = path.split('/')[1];
 
-      if (response[food]) {
-        const result = response[food].slice(0, 12);
-        const newList :FoodCardType[] = DealResponse(food, result);
+      const response = await requestApi(newFood, '', '');
+
+      if (response[newFood]) {
+        const result = response[newFood].slice(0, 12);
+        const newList :FoodCardType[] = DealResponse(newFood, result);
         setData(newList);
         handleRecipes(newList);
       }
