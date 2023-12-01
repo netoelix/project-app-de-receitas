@@ -31,8 +31,10 @@ export const CardRecipeContainer = styled.div`
 `;
 
 export const CardRecipeImage = styled.img`
-    width: 150px;
-    /* height: 100%; */
+    width: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px 0 0 5px;
 `;
 
@@ -97,6 +99,10 @@ export const NavFilterContainer = styled.nav`
     align-items: center;
     width: 100%;
 
+    img {
+        width: 42px;
+        height: 31px;
+    }
     button {
         display: flex;
         flex-direction: column;
