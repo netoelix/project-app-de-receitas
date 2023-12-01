@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import validator from 'validator';
 import { useNavigate } from 'react-router-dom';
-import { requestApi } from '../Utils/ApiRequest';
 import { ContainerDiv, LoginContainer } from '../styles/StyledLogin';
 
 function Login() {
