@@ -29,8 +29,7 @@ function RecipeInProgress() {
     requestRecipe();
   }, []);
   console.log(recipe);
-
-  return (
+  const content = (
     <div>
       <img src={ recipe.image } alt="recipe-progress" data-testid="recipe-photo" />
       <h1 data-testid="recipe-title">{recipe.name}</h1>
@@ -47,6 +46,11 @@ function RecipeInProgress() {
       <button data-testid="finish-recipe-btn">Finalizar</button>
     </div>
   );
-}
 
+  return (
+    <div>
+      {(recipe.ingredients !== undefined) && content}
+    </div>
+  );
+}
 export default RecipeInProgress;
