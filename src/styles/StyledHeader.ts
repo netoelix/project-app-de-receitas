@@ -20,9 +20,11 @@ export const HeaderContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    background-color: #41197F;
+    padding: 5px;
 
     h1 {
-        color: #41197F;
+        color: white;
         text-align: center;
         font-family: sans-serif;
         font-size: 40px;
@@ -31,6 +33,7 @@ export const HeaderContainer = styled.div`
         line-height: normal;
         letter-spacing: 2.1px;
         text-transform: uppercase;
+        margin-top: 8px;
     }
     `;
 
