@@ -15,13 +15,14 @@ function RecipeInProgress() {
       const newId = path.split('/')[2];
       if (newId !== undefined) {
         const response = requestApi(newFood, 'id', newId);
-
         const recipeData = await response;
         const recipeInProgress = recipeData[newFood];
-
         const [result] = DealResponse(newFood, recipeInProgress);
+
         setRecipe(result);
         const ingredients = result.ingredients.filter((ingredient) => ingredient !== '');
+        console.log(result);
+
         setFilterIngredients(ingredients);
 
         const storage = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -37,9 +38,9 @@ function RecipeInProgress() {
     requestRecipe();
   }, []);
 
-  const { image, name, instructions, category, id, type } = recipe;
+  const { image, name, instructions, category, id, type, ingredients } = recipe;
 
-  return (
+  const content = (
     <div>
       <img src={ image } alt="recipe-progress" data-testid="recipe-photo" />
       <h1 data-testid="recipe-title">{name}</h1>
@@ -60,6 +61,11 @@ function RecipeInProgress() {
       <button data-testid="finish-recipe-btn">Finalizar</button>
     </div>
   );
-}
 
+  return (
+    <div>
+      {(ingredients !== undefined) && content}
+    </div>
+  );
+}
 export default RecipeInProgress;

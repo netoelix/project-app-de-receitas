@@ -15,14 +15,18 @@ function CheckIngredient({ ingredient, index, type, id } : CheckboxProps) {
 
   useEffect(() => {
     const inProgressLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    setChecked(inProgressLocalStorage[type][id].some((element) => element === index));
+    setChecked(inProgressLocalStorage[type][id].some(
+      (element: number) => element === index,
+    ));
   }, [id, index, type]);
 
   const handleChange = () => {
     setChecked(getValues('checkbox'));
     const inProgressLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (inProgressLocalStorage[type][id].includes(index)) {
-      const newArray = inProgressLocalStorage[type][id].filter((element) => element !== index);
+      const newArray = inProgressLocalStorage[type][id].filter(
+        (element: number) => element !== index,
+      );
       inProgressLocalStorage[type][id] = newArray;
     } else {
       inProgressLocalStorage[type][id].push(index);

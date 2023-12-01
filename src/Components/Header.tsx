@@ -22,7 +22,6 @@ function Header() {
   useEffect(() => {
     const path = (window.location.pathname);
     const pathSplit = path.split('/');
-    console.log(pathSplit[1]);
 
     switch (pathSplit[1]) {
       case 'drinks':
