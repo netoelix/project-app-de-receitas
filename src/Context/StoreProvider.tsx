@@ -33,7 +33,6 @@ function StoreProvider({ children } : StoreProviderProps) {
   }, []);
 
   const handleFood = (page: string) => {
-    console.log(food);
     setFood(page);
   };
   const handleDoneRecipes = (filter : string) => {

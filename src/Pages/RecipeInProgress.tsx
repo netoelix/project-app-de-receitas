@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { requestApi } from '../Utils/ApiRequest';
-import StoreContext from '../Context/StoreContext';
 import DealResponse from '../Utils/DealResponse';
 import { CardRecipe } from '../Utils/Types';
 import CheckIngredient from '../Components/CheckIngredient';
 
 function RecipeInProgress() {
-  const { food } = useContext(StoreContext);
   const [recipe, setRecipe] = useState({} as CardRecipe);
   const [filterIngredients, setFilterIngredients] = useState([] as string[]);
 
@@ -17,26 +15,25 @@ function RecipeInProgress() {
       const newId = path.split('/')[2];
       if (newId !== undefined) {
         const response = requestApi(newFood, 'id', newId);
-
         const recipeData = await response;
         const recipeInProgress = recipeData[newFood];
-
         const [result] = DealResponse(newFood, recipeInProgress);
+
         setRecipe(result);
         const ingredients = result.ingredients.filter((ingredient) => ingredient !== '');
+        console.log(result);
+
         setFilterIngredients(ingredients);
-        // ;
       }
     }
     requestRecipe();
-  }, [food]);
-
-  const { image, name } = recipe;
+  }, []);
+  console.log(recipe);
 
   return (
     <div>
-      <img src={ image } alt="recipe-progress" data-testid="recipe-photo" />
-      <h1 data-testid="recipe-title">{name}</h1>
+      <img src={ recipe.image } alt="recipe-progress" data-testid="recipe-photo" />
+      <h1 data-testid="recipe-title">{recipe.name}</h1>
       <button data-testid="share-btn">ShareBtn</button>
       <button data-testid="favorite-btn">Favoritar</button>
       <div data-testid="recipe-category">

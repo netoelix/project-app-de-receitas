@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import App from '../App';
 import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
-import fetchTrybe from '../../cypress/mocks/fetch';
 
 const handlesearch = 'search-top-btn';
 const handleInput = 'search-input';
