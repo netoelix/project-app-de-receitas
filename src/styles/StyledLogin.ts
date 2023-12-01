@@ -39,11 +39,12 @@ export const ContainerDiv = styled.div`
     padding-top: 2rem;
 `;
 
-// export const ImgContainer = styled.div`
-//     display: flex;
-//     justify-content: center;
-//     img {
-//         width: 47vh;
-//         flex-shrink: 0;
-//     }
-// `;
+export const FooterContainer = styled.div`
+    position: fixed;
+    bottom: 0;
+    background-color: #41197F;
+    background: linear-gradient(to bottom, #41197F 100%, white 34.5%);
+    padding: 24px;
+    text-transform: uppercase;
+    width: 100%;
+    `;
