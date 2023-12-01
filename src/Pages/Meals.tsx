@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react';
-import { store } from '../Context/StoreContext';
 import Footer from '../Components/Footer';
 import StoreContext from '../Context/StoreContext';
 import Recipes from '../Components/Recipes';

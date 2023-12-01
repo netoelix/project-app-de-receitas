@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { store } from '../Context/StoreContext';
 import drinkIcon from '../images/drinkIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 import allFoodIcon from '../images/allFoodIcon.svg';

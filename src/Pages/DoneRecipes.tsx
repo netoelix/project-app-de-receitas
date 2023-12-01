@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import CardRecipe from '../Components/CardRecipe';
 import NavFilter from '../Components/NavFilter';
-import { store } from '../Context/StoreContext';
 import { DoneRecipesContainer, Paragraph } from '../styles/StyledDoneRecipes';
 import StoreContext from '../Context/StoreContext';
 

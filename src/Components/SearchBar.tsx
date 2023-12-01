@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
-import { store } from '../Context/StoreContext';
 import { SearchConteinerBar } from '../styles/StyledHeader';
 import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
