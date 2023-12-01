@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import profileIcon from '../images/icone-perfil.svg';
-import searchIcon from '../images/icone pesquiar.svg';
+import profileIcon from '../images/profileIcon.svg';
+import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import RecipesText from '../images/logo Recipes app.svg';
 import Logo from '../images/ícone Recipes app.svg';

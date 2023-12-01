@@ -5,7 +5,6 @@ import { CardRecipeContainer,
   CardRecipeImage, CardRecipeInfo, TagContainer } from '../styles/StyledDoneRecipes';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import StoreContext from '../Context/StoreContext';
-import styles from './CardRecipe.module.css';
 
 function CardRecipe({ food, page, index } : CardRecipeProps) {
   const { removeFavorites } = useContext(StoreContext);
@@ -36,8 +35,7 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
   );
 
   return (
-    <CardRecipeContainer>
-    <div data-testid={ `${index}-recipe-card` } className={ styles.Card }>
+    <CardRecipeContainer data-testid={ `${index}-recipe-card` }>
       <div className="Img">
         <a href={ link }>
           <CardRecipeImage
@@ -59,22 +57,22 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
           {(type === 'drink') && (
             <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
           )}
-          </div>
-      <div className="Done-Info">
-        {(page === 'DoneRecipes') && (
-          <p data-testid={ `${dataTest}done-date` }>
-            {doneDate}
-          </p>)}
+        </div>
+        <div className="Done-Info">
+          {(page === 'DoneRecipes') && (
+            <p data-testid={ `${dataTest}done-date` }>
+              {doneDate}
+            </p>)}
 
-        <TagContainer className="Tags">
-          {(page === 'DoneRecipes') && tags.map((tagName) => {
-            const dataTestTag = `${index}-${tagName}-horizontal-tag`;
-            return (
-              <p key={ tagName } data-testid={ dataTestTag }>
-                {tagName}
-              </p>
-            );
-          })}
+          <TagContainer className="Tags">
+            {(page === 'DoneRecipes') && tags.map((tagName) => {
+              const dataTestTag = `${index}-${tagName}-horizontal-tag`;
+              return (
+                <p key={ tagName } data-testid={ dataTestTag }>
+                  {tagName}
+                </p>
+              );
+            })}
           </TagContainer>
         </div>
       </CardRecipeInfo>
