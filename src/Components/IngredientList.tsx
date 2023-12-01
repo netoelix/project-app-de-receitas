@@ -1,4 +1,13 @@
-function IngredientsList({ ingredients, checkedIngredients, onIngredientCheck }) {
+type IngredientListProps = {
+  ingredients: string[];
+  checkedIngredients: any,
+  onIngredientCheck: (ingredient: string) => void,
+};
+
+function IngredientsList({
+  ingredients,
+  checkedIngredients,
+  onIngredientCheck }: IngredientListProps) {
   return (
     <ul data-testid="ingredients-list">
       {ingredients.map((ingredient, index) => (

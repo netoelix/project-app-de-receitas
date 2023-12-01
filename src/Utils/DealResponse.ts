@@ -32,6 +32,7 @@ function DealResponse(Food: string, List: string[]) {
           category: recipe.strCategory,
           nationality: recipe.strArea,
           tags: recipe.strTags,
+          alcoholicOrNot: '',
           doneDate: '',
           instructions: recipe.strInstructions,
           ingredients: processIngredients(recipe, 20),

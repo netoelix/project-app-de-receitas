@@ -37,6 +37,10 @@ function StoreProvider({ children } : StoreProviderProps) {
         meals: {},
       }));
     }
+
+    if (localStorage.getItem('favoriteRecipes') === null) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
   }, []);
 
   const handleFood = (page: string) => {
