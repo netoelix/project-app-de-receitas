@@ -1,23 +1,37 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
 import { store } from '../Context/StoreContext';
 import { SearchConteinerBar } from '../styles/StyledHeader';
+import StoreContext from '../Context/StoreContext';
+import { FoodCardType } from '../Utils/Types';
+import DealResponse from '../Utils/DealResponse';
 
 function SearchBar() {
-  const { Food } = useContext(store);
-  const [data, setData] = useState([{}] as any);
+  const { food, handleRecipes } = useContext(StoreContext);
+  const navigate = useNavigate();
 
   const handleSearch = async () => {
     const { searchInput, radioSearch } = getValues();
-    const resultApi = requestApi(Food, radioSearch, searchInput);
+
     if (radioSearch === 'firstLetter' && searchInput.length > 1) {
       window.alert('Your search must have only 1 (one) character');
-    }
-    setData(resultApi);
-    console.log(await resultApi);
+    } else {
+      const response = await requestApi(food, radioSearch, searchInput);
 
-    console.log(getValues());
+      if (response[food] === null) {
+        window.alert('Sorry, we haven\'t found any recipes for these filters');
+      } else if (response[food]) {
+        const result = response[food].slice(0, 12);
+        const newList :FoodCardType[] = DealResponse(food, result);
+        if (newList.length === 1) {
+          navigate(`/${food}/${newList[0].id}`);
+        } else {
+          handleRecipes(newList);
+        }
+      }
+    }
   };
 
   const { register, getValues } = useForm();

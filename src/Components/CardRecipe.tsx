@@ -1,20 +1,21 @@
-import { useState } from 'react';
-import { FoodCardType } from '../Utils/Types';
+import { useContext, useState } from 'react';
+import { CardRecipeProps } from '../Utils/Types';
 import shareIcon from '../images/shareIcon.svg';
 import { CardRecipeContainer,
   CardRecipeImage, CardRecipeInfo, TagContainer } from '../styles/StyledDoneRecipes';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import StoreContext from '../Context/StoreContext';
+import styles from './CardRecipe.module.css';
 
-type CardRecipeProps = {
-  Food : FoodCardType
-  Page: string
-  index: number
-};
-
-function CardRecipe({ Food, Page, index } : CardRecipeProps) {
+function CardRecipe({ food, page, index } : CardRecipeProps) {
+  const { removeFavorites } = useContext(StoreContext);
   const [copied, setCopied] = useState(false);
-  const { image, name, nationality, category, tags, doneDate, type, id } = Food;
+  const { image, name, nationality, category, tags, doneDate, type, id } = food;
   const dataTest = `${index}-horizontal-`;
   const link = `http://localhost:3000/${type}s/${id}`;
+
+  const testIdName = (page === 'recipes') ? (`${index}-card-name`) : (`${dataTest}name`);
+  const testIdImg = (page === 'recipes') ? (`${index}-card-img`) : (`${dataTest}image`);
 
   const copyToClipBoard = () => {
     navigator.clipboard.writeText(link);
@@ -24,58 +25,63 @@ function CardRecipe({ Food, Page, index } : CardRecipeProps) {
   const share = (
     <img data-testid={ `${dataTest}share-btn` } src={ shareIcon } alt="share" />
   );
+  const favBtn = (
+    <button onClick={ () => removeFavorites(name) }>
+      <img
+        data-testid={ `${dataTest}favorite-btn` }
+        src={ blackHeartIcon }
+        alt="fav"
+      />
+    </button>
+  );
 
   return (
     <CardRecipeContainer>
+    <div data-testid={ `${index}-recipe-card` } className={ styles.Card }>
       <div className="Img">
         <a href={ link }>
           <CardRecipeImage
             src={ image }
             alt="food"
             width="150px"
-            data-testid={ `${dataTest}image` }
+            data-testid={ testIdImg }
           />
         </a>
       </div>
       <CardRecipeInfo>
         <div className="Recipe-Info">
           <a href={ link }>
-            <h1 data-testid={ `${dataTest}name` }>{name}</h1>
+            <h1 data-testid={ testIdName }>{name}</h1>
           </a>
           {(type === 'meal') && (
-            <p data-testid={ `${dataTest}top-text` }>
-              <span>
-                {`${nationality} - ${category}`}
-              </span>
-            </p>
+            <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
           )}
           {(type === 'drink') && (
-            <p data-testid={ `${dataTest}top-text` }>{Food.alcoholicOrNot}</p>
+            <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
           )}
+          </div>
+      <div className="Done-Info">
+        {(page === 'DoneRecipes') && (
+          <p data-testid={ `${dataTest}done-date` }>
+            {doneDate}
+          </p>)}
 
-        </div>
-
-        <div className="Done-Info">
-          {(Page === 'DoneRecipes') && (
-            <p data-testid={ `${dataTest}done-date` }>
-              {doneDate}
-            </p>)}
-
-          <TagContainer className="Tags">
-            {tags.map((tagName) => {
-              const dataTestTag = `${index}-${tagName}-horizontal-tag`;
-              return (
-                <p key={ tagName } data-testid={ dataTestTag }>
-                  {tagName}
-                </p>
-              );
-            })}
+        <TagContainer className="Tags">
+          {(page === 'DoneRecipes') && tags.map((tagName) => {
+            const dataTestTag = `${index}-${tagName}-horizontal-tag`;
+            return (
+              <p key={ tagName } data-testid={ dataTestTag }>
+                {tagName}
+              </p>
+            );
+          })}
           </TagContainer>
         </div>
       </CardRecipeInfo>
       <button onClick={ () => copyToClipBoard() }>
         {copied ? 'Link copied!' : share}
       </button>
+      {(page === 'Favorite') && (favBtn)}
     </CardRecipeContainer>
   );
 }

@@ -14,7 +14,9 @@ function Header() {
   const [showSearchIcon, setShowSearchIcon] = useState(true);
   const [showSearchBar, setShowSearchBar] = useState(false);
 
-  const handleProfileClick = () => { navigate('/profile'); };
+  const handleProfileClick = () => {
+    navigate('/profile');
+  };
 
   const handleButtonSearch = () => {
     return !showSearchBar ? setShowSearchBar(true) : setShowSearchBar(false);
@@ -23,9 +25,6 @@ function Header() {
   useEffect(() => {
     const path = (window.location.pathname);
     switch (path) {
-      case '/meals':
-        setTitle('Meals');
-        break;
       case '/drinks':
         setTitle('Drinks');
         break;
@@ -45,9 +44,9 @@ function Header() {
         break;
 
       default:
-        setTitle('Valor Default');
+        setTitle('Meals');
     }
-  }, [title, handleProfileClick]);
+  }, [title, navigate]);
 
   return (
     <>

@@ -4,12 +4,15 @@ import drinkIcon from '../images/drinkIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 import allFoodIcon from '../images/allFoodIcon.svg';
 import { NavFilterContainer } from '../styles/StyledDoneRecipes';
+import StoreContext from '../Context/StoreContext';
+import { NavProps } from '../Utils/Types';
 
-function NavFilter() {
-  const { HandleDoneRecipes } = useContext(store);
+function NavFilter({ page } : NavProps) {
+  const { handleDoneRecipes, handleFavorites } = useContext(StoreContext);
 
   function setFilter(filter: string) {
-    HandleDoneRecipes(filter);
+    if (page === 'Favorite') return handleFavorites(filter);
+    if (page === 'DoneRecipes') return handleDoneRecipes(filter);
   }
 
   return (

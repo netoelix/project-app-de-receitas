@@ -14,11 +14,6 @@ function Login() {
     navigate('/meals');
   };
 
-  async function teste() {
-    console.log(await requestApi('', 'firstLetter', 'E'));
-  }
-  teste();
-
   return (
     <>
       <ContainerDiv>
