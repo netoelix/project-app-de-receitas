@@ -1,15 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './CheckIngredient.css';
 
 type CheckboxProps = {
-  ingredient: string;
-  index:number
+  ingredient: string,
+  index:number,
+  type: string,
+  id: number,
 };
 
-function CheckIngredient({ ingredient, index } : CheckboxProps) {
+function CheckIngredient({ ingredient, index, type, id } : CheckboxProps) {
   const { register, getValues } = useForm();
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState();
+
+  useEffect(() => {
+    const inProgressLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    setChecked(inProgressLocalStorage[type][id].some((element) => element === index));
+  }, [id, index, type]);
+
+  const handleChange = () => {
+    setChecked(getValues('checkbox'));
+    const inProgressLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgressLocalStorage[type][id].includes(index)) {
+      const newArray = inProgressLocalStorage[type][id].filter((element) => element !== index);
+      inProgressLocalStorage[type][id] = newArray;
+    } else {
+      inProgressLocalStorage[type][id].push(index);
+    }
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressLocalStorage));
+  };
 
   return (
     <label
@@ -20,8 +39,9 @@ function CheckIngredient({ ingredient, index } : CheckboxProps) {
       <input
         type="checkbox"
         id={ ingredient }
-        { ...register('checkbox', { onChange: () => setChecked(getValues('checkbox')),
+        { ...register('checkbox', { onChange: () => handleChange(),
         }) }
+        checked={ checked }
       />
       {ingredient}
     </label>

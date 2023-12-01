@@ -30,6 +30,13 @@ function StoreProvider({ children } : StoreProviderProps) {
 
     if (storageFavRecipes.length !== 0) setStorage(favStorage);
     if (storageDoneRecipes.length !== 0) setStorage(doneStorage);
+
+    if (localStorage.getItem('inProgressRecipes') === null) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        drinks: {},
+        meals: {},
+      }));
+    }
   }, []);
 
   const handleFood = (page: string) => {

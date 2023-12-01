@@ -7,7 +7,7 @@ function DealResponse(Food: string, List: string[]) {
       const newlist = List.map((recipe : any) => {
         return {
           id: recipe.idDrink,
-          type: 'drinks',
+          type: 'drink',
           image: recipe.strDrinkThumb,
           name: recipe.strDrink,
           category: recipe.strCategory,
