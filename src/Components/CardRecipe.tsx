@@ -41,7 +41,6 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
           <CardRecipeImage
             src={ image }
             alt="food"
-            width="150px"
             data-testid={ testIdImg }
           />
         </a>

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
-import { SearchConteinerBar } from '../styles/StyledHeader';
+import { CustomInputRadio, InputRadiosContainer, SearchConteinerBar, SearchInput } from '../styles/StyledHeader';
 import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
 import DealResponse from '../Utils/DealResponse';
@@ -38,14 +38,14 @@ function SearchBar() {
   return (
 
     <SearchConteinerBar>
-      <input
+      <SearchInput
         type="text-area"
         data-testid="search-input"
+        placeholder="Search"
         { ...register('searchInput') }
       />
-      <div>
-
-        <label htmlFor="ingredient">
+      <InputRadiosContainer>
+        <CustomInputRadio>
           <input
             type="radio"
             id="ingredient"
@@ -53,10 +53,11 @@ function SearchBar() {
             { ...register('radioSearch') }
             data-testid="ingredient-search-radio"
           />
-          Ingredient
-        </label>
-
-        <label htmlFor="name">
+          <label htmlFor="ingredient">
+            Ingredient
+          </label>
+        </CustomInputRadio>
+        <CustomInputRadio>
           <input
             type="radio"
             id="name"
@@ -64,11 +65,11 @@ function SearchBar() {
             { ...register('radioSearch') }
             data-testid="name-search-radio"
           />
-
-          Name
-        </label>
-
-        <label htmlFor="firstLetter">
+          <label htmlFor="name">
+            Name
+          </label>
+        </CustomInputRadio>
+        <CustomInputRadio>
           <input
             type="radio"
             id="firstLetter"
@@ -76,9 +77,11 @@ function SearchBar() {
             { ...register('radioSearch') }
             data-testid="first-letter-search-radio"
           />
-          First letter
-        </label>
-      </div>
+          <label htmlFor="firstLetter">
+            First letter
+          </label>
+        </CustomInputRadio>
+      </InputRadiosContainer>
 
       <button onClick={ handleSearch } data-testid="exec-search-btn">Search</button>
     </SearchConteinerBar>

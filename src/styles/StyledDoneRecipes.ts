@@ -31,8 +31,8 @@ export const CardRecipeContainer = styled.div`
 `;
 
 export const CardRecipeImage = styled.img`
-    width: 17vh;
-    height: 100%;
+    width: 150px;
+    /* height: 100%; */
     border-radius: 5px 0 0 5px;
 `;
 
