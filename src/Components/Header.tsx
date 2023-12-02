@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
-import RecipesText from '../images/logo Recipes app.svg';
-import Logo from '../images/ícone Recipes app.svg';
 import { StyledHeader, HeaderContainer } from '../styles/StyledHeader';
+import { logoRecipesApp, profileIcon, receipIcon, searchIcon } from '../Utils/exportIcons';
 
 function Header() {
   const navigate = useNavigate();
@@ -52,8 +49,8 @@ function Header() {
     <>
       <StyledHeader>
 
-        <img src={ Logo } alt="" />
-        <img src={ RecipesText } alt="" />
+        <img src={ receipIcon } alt="" />
+        <img src={ logoRecipesApp } alt="" />
 
         <button onClick={ handleProfileClick }>
           <img src={ profileIcon } alt="profileIcon" data-testid="profile-top-btn" />

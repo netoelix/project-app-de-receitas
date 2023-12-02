@@ -1,10 +1,8 @@
 import { useContext } from 'react';
-import drinkIcon from '../images/drinkIcon.svg';
-import mealIcon from '../images/mealIcon.svg';
-import allFoodIcon from '../images/allFoodIcon.svg';
 import { NavFilterContainer } from '../styles/StyledDoneRecipes';
 import StoreContext from '../Context/StoreContext';
 import { NavProps } from '../Utils/Types';
+import { allFoodIcon, drinkIcon, mealIcon } from '../Utils/exportIcons';
 
 function NavFilter({ page } : NavProps) {
   const { handleDoneRecipes, handleFavorites } = useContext(StoreContext);

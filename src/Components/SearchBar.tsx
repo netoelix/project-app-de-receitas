@@ -2,7 +2,8 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
-import { CustomInputRadio, InputRadiosContainer, SearchConteinerBar, SearchInput } from '../styles/StyledHeader';
+import { CustomInputRadio, InputRadiosContainer,
+  SearchConteinerBar, SearchInput } from '../styles/StyledHeader';
 import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
 import DealResponse from '../Utils/DealResponse';

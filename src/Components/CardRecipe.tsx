@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import { CardRecipeProps } from '../Utils/Types';
-import shareIcon from '../images/shareIcon.svg';
 import { CardRecipeContainer,
   CardRecipeImage, CardRecipeInfo, TagContainer } from '../styles/StyledDoneRecipes';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import StoreContext from '../Context/StoreContext';
+import { shareIcon } from '../Utils/exportIcons';
 
 function CardRecipe({ food, page, index } : CardRecipeProps) {
   const { removeFavorites } = useContext(StoreContext);
