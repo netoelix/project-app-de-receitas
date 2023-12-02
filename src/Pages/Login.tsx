@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import validator from 'validator';
 import { useNavigate } from 'react-router-dom';
 import { ContainerDiv, FooterContainer, LoginContainer } from '../styles/StyledLogin';
-import { logoRecipesApp } from '../Utils/exportIcons';
+import { logoIcon } from '../Utils/exportIcons';
 
 function Login() {
   const { register, getValues, handleSubmit, formState: { isValid } } = useForm();
@@ -17,7 +17,7 @@ function Login() {
   return (
     <>
       <ContainerDiv>
-        <img src={ logoRecipesApp } alt="" />
+        <img src={ logoIcon } alt="" />
       </ContainerDiv>
       <LoginContainer>
         <h1>LOGIN</h1>
