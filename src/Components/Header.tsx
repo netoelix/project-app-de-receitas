@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { StyledHeader, HeaderContainer } from '../styles/StyledHeader';
-import { logoRecipesApp, profileIcon, receipIcon, searchIcon } from '../Utils/exportIcons';
+import { logoRecipesApp, profileIcon,
+  receipIcon, searchIcon } from '../Utils/exportIcons';
 
 function Header() {
   const navigate = useNavigate();
