@@ -29,6 +29,7 @@ function App() {
         <Route path="/:type/:id" element={ <RecipeDetails /> } />
         <Route path="/done-recipes" element={ <DoneRecipes /> } />
         <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
+        <Route path="/profile" element={ <Profile /> } />
       </Route>
     </Routes>
   );

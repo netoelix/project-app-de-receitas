@@ -66,9 +66,9 @@ function RecipeInProgress() {
     const link = window.location.origin;
     navigator.clipboard.writeText(`${link}/${type}s/${id}`);
     setLinkCopied('Link copied!');
-    setTimeout(() => {
-      setLinkCopied('');
-    }, 1000);
+    // setTimeout(() => {
+    //   setLinkCopied('');
+    // }, 1000);
   };
 
   const handleFavClick = () => {
@@ -140,7 +140,7 @@ function RecipeInProgress() {
         <img src={ shareIcon } alt="share button" />
 
       </button>
-      <span id="link-copied">{linkCopied}</span>
+      <span id="link-copied" data-testid="message">{linkCopied}</span>
       <button onClick={ handleFavClick }>
         {isFavorite
           ? <img src={ blackHeartIcon } alt="full heart" data-testid="favorite-btn" />

@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
 
-const favoriteRecipesRoute = '/favorites-recipes';
+const favoriteRecipesRoute = '/favorite-recipes';
 
 describe('Testes da página FavoriteRecipes', () => {
   it('Testa se o header é devidamente renderizado', () => {
