@@ -53,3 +53,10 @@ export const meals = [{
   strCreativeCommonsConfirmed: null,
   dateModified: null,
 }];
+
+export const localStorageMock = {
+  drinks: {},
+  meals: {
+    52978: [0, 1, 2, 3, 4, 5],
+  },
+};

@@ -1,6 +1,5 @@
 import { vi } from 'vitest';
-import { act, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, screen } from '@testing-library/react';
 import { meals } from './mocks/mockIdResponse';
 import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
 import App from '../App';
@@ -32,9 +31,9 @@ describe('Testando a tela de receita em progresso', () => {
     expect(await screen.findByRole('button', { name: 'Finalizar' })).toBeInTheDocument();
     const checkbox = screen.getByTestId('2-ingredient-step');
     expect(checkbox).not.toHaveClass('marked');
-    await act(async () => {
-      await userEvent.click(checkbox);
-    });
+
+    fireEvent.click(checkbox);
+
     expect(checkbox).toHaveClass('marked');
     vi.clearAllMocks();
   });
@@ -44,21 +43,22 @@ describe('Testando a tela de receita em progresso', () => {
       json: async () => ({ meals }),
       ok: true,
     } as Response);
+
     renderWithRouterAndProvider(<App />, { route });
     expect(await screen.findByRole('button', { name: 'Finalizar' })).toBeInTheDocument();
     const checkboxes = screen.getAllByRole('checkbox');
+
     expect(checkboxes).toHaveLength(6);
     const finishBtn = screen.getByTestId('finish-recipe-btn');
     expect(finishBtn).toBeDisabled();
-    await act(async () => {
-      await userEvent.click(checkboxes[0]);
-      await userEvent.click(checkboxes[1]);
-      await userEvent.click(checkboxes[2]);
-      await userEvent.click(checkboxes[3]);
-      await userEvent.click(checkboxes[4]);
-      await userEvent.click(checkboxes[5]);
-    });
-
+    fireEvent.click(checkboxes[0]);
+    fireEvent.click(checkboxes[1]);
+    fireEvent.click(checkboxes[2]);
+    fireEvent.click(checkboxes[2]);
+    fireEvent.click(checkboxes[3]);
+    fireEvent.click(checkboxes[4]);
+    fireEvent.click(checkboxes[5]);
+    // screen.debug();
     const newFinishBtn = await screen.findByTestId('finish-recipe-btn');
     expect(newFinishBtn).not.toBeDisabled();
     vi.clearAllMocks();

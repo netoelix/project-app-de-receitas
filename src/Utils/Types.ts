@@ -11,12 +11,18 @@ export type FoodCardType = {
 };
 
 export type StorageType = {
-  email: string,
+  user: {
+    email: string,
+  },
   doneRecipes: FoodCardType[],
   favoriteRecipes: FoodCardType[],
   inProgressRecipes: {
-    drinks: string,
-    meals: string,
+    drinks: {
+      id: number[]
+    },
+    meals: {
+      id: number[]
+    },
   },
 };
 
@@ -31,6 +37,10 @@ export type StoreContextType = {
   removeFavorites: (recipe : string) => void,
   recipes: FoodCardType[],
   handleRecipes: (newRecipes: FoodCardType[]) => void,
+  showByDoneFilter: boolean,
+  filteredDoneRecipes: FoodCardType[],
+  showByFavFilter: boolean,
+  filteredFavRecipes: FoodCardType[],
 };
 
 export type CardRecipe = {

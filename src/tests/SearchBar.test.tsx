@@ -8,6 +8,7 @@ import fetchTrybe from '../../cypress/mocks/fetch';
 const handlesearch = 'search-top-btn';
 const handleInput = 'search-input';
 const handleSubmit = 'exec-search-btn';
+const searchRadioName = 'name-search-radio';
 
 describe('Testes do componente Search Bar', () => {
   test('É renderizado um alert ao tentar procurar um pela primeira letra com 2 digitos ou mais no input', async () => {
@@ -45,7 +46,7 @@ describe('Testes do componente Search Bar', () => {
     await userEvent.click(handleSearch);
 
     const submit = screen.getByTestId(handleSubmit);
-    const ingredientFilter = screen.getByTestId('name-search-radio');
+    const ingredientFilter = screen.getByTestId(searchRadioName);
     const input = screen.getByTestId(handleInput);
 
     await userEvent.type(input, 'xablau');
@@ -63,7 +64,7 @@ describe('Testes do componente Search Bar', () => {
     await userEvent.click(handleSearch);
 
     const submit = screen.getByTestId(handleSubmit);
-    const Filter = screen.getByTestId('name-search-radio');
+    const Filter = screen.getByTestId(searchRadioName);
     const input = screen.getByTestId(handleInput);
 
     await userEvent.type(input, 'Arrabiata');
@@ -71,5 +72,25 @@ describe('Testes do componente Search Bar', () => {
 
     await userEvent.click(submit);
     expect(window.location.pathname).toBe('/meals/52771');
+    vi.clearAllMocks();
+  });
+  test('Teste para dois resultados', async () => {
+    vi.spyOn(global, 'fetch').mockImplementation(fetchTrybe);
+    vi.spyOn(window, 'alert').mockImplementation(() => {});
+
+    renderWithRouterAndProvider(<App />, { route: '/meals' });
+    const handleSearch = screen.getByTestId(handlesearch);
+    await userEvent.click(handleSearch);
+
+    const submit = screen.getByTestId(handleSubmit);
+    const Filter = screen.getByTestId(searchRadioName);
+    const input = screen.getByTestId(handleInput);
+
+    await userEvent.type(input, 'soup');
+    await userEvent.click(Filter);
+
+    await userEvent.click(submit);
+    expect(screen.getByText('Leblebi Soup')).toBeInTheDocument();
+    expect(screen.getByText('Red Peas Soup')).toBeInTheDocument();
   });
 });

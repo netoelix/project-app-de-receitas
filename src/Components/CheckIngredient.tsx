@@ -13,7 +13,7 @@ type CheckboxProps = {
 function CheckIngredient({
   ingredient, index, type, id, handleFinishRecipeBtn } : CheckboxProps) {
   const { register, getValues } = useForm();
-  const [checked, setChecked] = useState();
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const inProgressLocalStorage = JSON.parse(

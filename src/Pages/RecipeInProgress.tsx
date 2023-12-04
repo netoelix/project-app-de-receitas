@@ -73,7 +73,7 @@ function RecipeInProgress() {
 
   const handleFavClick = () => {
     const favRecipesLocalStorage = JSON.parse(
-      localStorage.getItem('favoriteRecipes') as string,
+      localStorage.getItem('favoriteRecipes') || JSON.stringify([]),
     );
 
     if (isFavorite) {
@@ -107,8 +107,26 @@ function RecipeInProgress() {
     }
   };
 
+  const handleClick = () => {
+    const doneRecipesStorage = JSON.parse(localStorage.getItem('doneRecipes')
+    || JSON.stringify([]));
+    doneRecipesStorage.push({
+      id,
+      type,
+      nationality: nationality || '',
+      category: category || '',
+      alcoholicOrNot: alcoholicOrNot || '',
+      name,
+      image,
+      doneDate: new Date(),
+      tags,
+    });
+    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipesStorage));
+    navigate('/done-recipes');
+  };
+
   const { image, name, instructions, category,
-    id, type, ingredients, nationality, alcoholicOrNot } = recipe;
+    id, type, ingredients, nationality, alcoholicOrNot, tags } = recipe;
 
   const content = (
     <div>
@@ -138,16 +156,17 @@ function RecipeInProgress() {
           handleFinishRecipeBtn={ handleFinishRecipeBtn }
         />))}
       </div>
-      <h2>Instruções</h2>
-      <p data-testid="instructions">{instructions}</p>
       <button
         data-testid="finish-recipe-btn"
         disabled={ finishRecipeBtn }
-        onClick={ () => navigate('/done-recipes') }
+        onClick={ handleClick }
       >
         Finalizar
 
       </button>
+      <h2>Instruções</h2>
+      <p data-testid="instructions">{instructions}</p>
+
     </div>
   );
 

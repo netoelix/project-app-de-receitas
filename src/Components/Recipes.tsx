@@ -41,6 +41,9 @@ export default function Recipes() {
   }, [food, handleRecipes, recipes]);
 
   async function changeRecipes(category: string) {
+    console.log(food);
+    console.log(category);
+
     if (category !== categorySelected) {
       const newRecipes = await categoryFoods(food, category);
       if (newRecipes) {
