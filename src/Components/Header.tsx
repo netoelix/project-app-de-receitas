@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
+import { StyledHeader, HeaderContainer } from '../styles/StyledHeader';
+import { logoRecipesApp, profileIcon,
+  receipIcon, searchIcon } from '../Utils/exportIcons';
 
 function Header() {
   const navigate = useNavigate();
@@ -46,27 +47,33 @@ function Header() {
   }, [title, navigate]);
 
   return (
-    <div>
+    <>
+      <StyledHeader>
 
-      <button onClick={ handleProfileClick }>
-        <img src={ profileIcon } alt="profileIcon" data-testid="profile-top-btn" />
-      </button>
+        <img src={ receipIcon } alt="" />
+        <img src={ logoRecipesApp } alt="" />
 
-      {showSearchIcon && (
-        <button onClick={ handleButtonSearch }>
-          <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+        <button onClick={ handleProfileClick }>
+          <img src={ profileIcon } alt="profileIcon" data-testid="profile-top-btn" />
         </button>
-      )}
 
-      {showSearchBar && (
-        <SearchBar />
-      )}
+        {showSearchIcon && (
+          <button onClick={ handleButtonSearch }>
+            <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+          </button>
+        )}
 
-      <h1 data-testid="page-title">
-        {title}
-      </h1>
+      </StyledHeader>
+      <HeaderContainer>
+        <h1 data-testid="page-title">
+          {title}
+        </h1>
 
-    </div>
+        {showSearchBar && (
+          <SearchBar />
+        )}
+      </HeaderContainer>
+    </>
 
   );
 }
