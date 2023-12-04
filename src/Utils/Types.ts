@@ -70,3 +70,17 @@ export type NavProps = {
 export type CategoryType = {
   strCategory: string,
 };
+
+export interface RecipeDetailsProps {
+  idMeal?: string;
+  idDrink?: string;
+  strMeal?: string;
+  strDrink?: string;
+  strCategory?: string;
+  strArea?: string;
+  strInstructions?: string;
+  strMealThumb?: string;
+  strDrinkThumb?: string;
+  strYoutube?: string;
+  strAlcoholic?: string;
+}

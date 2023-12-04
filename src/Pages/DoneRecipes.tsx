@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import CardRecipe from '../Components/CardRecipe';
 import NavFilter from '../Components/NavFilter';
 import StoreContext from '../Context/StoreContext';
-import { FoodCardType } from '../Utils/Types';
 
 function DoneRecipes() {
   // const { storeRecipes: { doneRecipes } } = useContext(StoreContext);

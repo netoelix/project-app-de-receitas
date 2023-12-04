@@ -22,7 +22,7 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
 
   const handleFavorites = () => {
     removeFavorites(name);
-    location.reload();
+    window.location.reload();
   };
 
   const share = (

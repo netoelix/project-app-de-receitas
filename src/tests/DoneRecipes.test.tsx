@@ -2,9 +2,11 @@ import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
 
+const doneRecipesRoute = '/done-recipes';
+
 describe('Testes da página DoneRecipes', () => {
   it('Testa se o header é devidamente renderizado', () => {
-    renderWithRouterAndProvider(<App />, { route: '/done-recipes' });
+    renderWithRouterAndProvider(<App />, { route: doneRecipesRoute });
     const header = screen.getByTestId('page-title');
     expect(header).toHaveTextContent('Done Recipes');
   });
@@ -20,7 +22,7 @@ describe('Testes da página DoneRecipes', () => {
       tags: [],
       doneDate: new Date(),
     }]));
-    renderWithRouterAndProvider(<App />, { route: '/done-recipes' });
+    renderWithRouterAndProvider(<App />, { route: doneRecipesRoute });
     expect(screen.getByText('Bistek')).toBeInTheDocument();
   });
   it('Testa se ao aplicar um filtro os cards das receitas são renderizados corretamente', () => {
@@ -46,7 +48,7 @@ describe('Testes da página DoneRecipes', () => {
       tags: [],
       doneDate: new Date(),
     }]));
-    renderWithRouterAndProvider(<App />, { route: '/done-recipes' });
+    renderWithRouterAndProvider(<App />, { route: doneRecipesRoute });
     const bistek = screen.getByText('Bistek');
     const A1 = screen.getByText('A1');
     expect(bistek).toBeInTheDocument();

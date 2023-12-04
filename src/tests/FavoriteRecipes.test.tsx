@@ -2,9 +2,11 @@ import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 import { renderWithRouterAndProvider } from '../Utils/renderWithRouterAndProvider';
 
+const favoriteRecipesRoute = '/favorites-recipes';
+
 describe('Testes da página FavoriteRecipes', () => {
   it('Testa se o header é devidamente renderizado', () => {
-    renderWithRouterAndProvider(<App />, { route: '/favorite-recipes' });
+    renderWithRouterAndProvider(<App />, { route: favoriteRecipesRoute });
     const header = screen.getByTestId('page-title');
     expect(header).toHaveTextContent('Favorite Recipes');
   });
@@ -20,7 +22,7 @@ describe('Testes da página FavoriteRecipes', () => {
       tags: [],
       doneDate: new Date(),
     }]));
-    renderWithRouterAndProvider(<App />, { route: '/favorite-recipes' });
+    renderWithRouterAndProvider(<App />, { route: favoriteRecipesRoute });
 
     expect(screen.getByText('Bistek')).toBeInTheDocument();
   });
@@ -47,7 +49,7 @@ describe('Testes da página FavoriteRecipes', () => {
       tags: [],
       doneDate: new Date(),
     }]));
-    renderWithRouterAndProvider(<App />, { route: '/favorite-recipes' });
+    renderWithRouterAndProvider(<App />, { route: favoriteRecipesRoute });
     const bistek = screen.getByText('Bistek');
     const A1 = screen.getByText('A1');
     expect(bistek).toBeInTheDocument();

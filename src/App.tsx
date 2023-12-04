@@ -8,6 +8,7 @@ import FavoriteRecipes from './Pages/FavoriteRecipes';
 import Meals from './Pages/Meals';
 import Drinks from './Pages/Drinks';
 import RecipeInProgress from './Pages/RecipeInProgress';
+import RecipeDetails from './Pages/RecipeDetails';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           path="/drinks/:id/in-progress"
           element={ <RecipeInProgress /> }
         />
+        <Route path="/:type/:id" element={ <RecipeDetails /> } />
         <Route path="/done-recipes" element={ <DoneRecipes /> } />
         <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
       </Route>
