@@ -40,7 +40,7 @@ export const CategoryContainer = styled.div`
         align-items: center;
         justify-content: flex-start;
     }
-    p, button {
+    p, button, h3 {
         margin: 10px;
         font-weight: bold;
     }
@@ -54,18 +54,21 @@ export const IngredientsContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     margin: 25px 10px;
-
+    
     h2 {
         margin: 10px;
     }
-    ul {
-        list-style: none;
-        padding: 0;
+    
+    input {
+        margin: 5px;
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         border: 1px solid #B1B1B1;
         border-radius: 5px;
-    }
-    li {
-        margin: 10px;
+        padding: 10px;
     }
 `;
 
@@ -86,79 +89,17 @@ export const InstructionsContainer = styled.div`
     }
 `;
 
-export const VideoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 25px 10px;
-
-    h2 {
-        margin: 10px;
-    }
-    iframe {
-        border: 1px solid #B1B1B1;
-        border-radius: 5px;
-        width: 100%;
-        height: 250px;
-    }
-`;
-
-export const RecomendedContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 25px 10px;
-
-    p {
-        margin: 10px;
-        font-weight: bold;
-        font-size: 28px;
-    }
-`;
-
-export const RecomendedCards = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    overflow-x: scroll;
-    width: 100%;
-
-    .recommendation-card {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        margin: 10px;
-        width: 150px;
-        text-align: center;
-        border: 1px solid #B1B1B1;
-        border-radius: 5px;
-    }
-    img {
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    p {
-        margin: 5px;
-        margin-left: 10px;
-        font-weight: 400;
-        font-size: 18px;
-    }
-`;
-
 export const ButtonContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px auto;
   border-radius: 5px;
   border: none;
   background-color: #FCC436;
   color: white;
   font-weight: bold;
   font-size: 18px;
-  width: 150px;
+  width: 200px;
   height: 50px;
   margin-bottom: 70px;
   margin-left: 25%;
