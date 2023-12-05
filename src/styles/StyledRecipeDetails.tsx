@@ -161,5 +161,5 @@ export const ButtonContainer = styled.button`
   width: 150px;
   height: 50px;
   margin-bottom: 70px;
-  margin-left: 25%;
+  margin-left: 30%;
 `;
