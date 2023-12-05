@@ -1,6 +1,8 @@
 import { useContext } from 'react';
+import { NavFilterContainer } from '../styles/StyledDoneRecipes';
 import StoreContext from '../Context/StoreContext';
 import { NavProps } from '../Utils/Types';
+import { allFoodIcon, drinkIcon, mealIcon } from '../Utils/exportIcons';
 
 function NavFilter({ page } : NavProps) {
   const { handleDoneRecipes, handleFavorites } = useContext(StoreContext);
@@ -11,18 +13,21 @@ function NavFilter({ page } : NavProps) {
   }
 
   return (
-    <nav>
-      <button onClick={ () => setFilter('all') } data-testid="filter-by-all-btn">
+    <NavFilterContainer>
+      <button onClick={ () => setFilter('All') } data-testid="filter-by-all-btn">
+        <img src={ allFoodIcon } alt="" />
         All
       </button>
 
       <button onClick={ () => setFilter('meal') } data-testid="filter-by-meal-btn">
+        <img src={ mealIcon } alt="" />
         Food
       </button>
       <button onClick={ () => setFilter('drink') } data-testid="filter-by-drink-btn">
+        <img src={ drinkIcon } alt="" />
         Drinks
       </button>
-    </nav>
+    </NavFilterContainer>
   );
 }
 export default NavFilter;

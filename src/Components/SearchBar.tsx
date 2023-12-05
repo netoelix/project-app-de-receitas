@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
+import { CustomInputRadio, InputRadiosContainer,
+  SearchConteinerBar, SearchInput } from '../styles/StyledHeader';
 import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
 import DealResponse from '../Utils/DealResponse';
@@ -36,50 +38,54 @@ function SearchBar() {
 
   return (
 
-    <div>
-      <input
+    <SearchConteinerBar>
+      <SearchInput
         type="text-area"
         data-testid="search-input"
+        placeholder="Search"
         { ...register('searchInput') }
-
       />
-
-      <label htmlFor="ingredient">
-        <input
-          type="radio"
-          id="ingredient"
-          value="ingredient"
-          { ...register('radioSearch') }
-          data-testid="ingredient-search-radio"
-        />
-        Ingredient
-      </label>
-
-      <label htmlFor="name">
-        <input
-          type="radio"
-          id="name"
-          value="name"
-          { ...register('radioSearch') }
-          data-testid="name-search-radio"
-        />
-
-        Name
-      </label>
-
-      <label htmlFor="firstLetter">
-        <input
-          type="radio"
-          id="firstLetter"
-          value="firstLetter"
-          { ...register('radioSearch') }
-          data-testid="first-letter-search-radio"
-        />
-        First letter
-      </label>
+      <InputRadiosContainer>
+        <CustomInputRadio>
+          <input
+            type="radio"
+            id="ingredient"
+            value="ingredient"
+            { ...register('radioSearch') }
+            data-testid="ingredient-search-radio"
+          />
+          <label htmlFor="ingredient">
+            Ingredient
+          </label>
+        </CustomInputRadio>
+        <CustomInputRadio>
+          <input
+            type="radio"
+            id="name"
+            value="name"
+            { ...register('radioSearch') }
+            data-testid="name-search-radio"
+          />
+          <label htmlFor="name">
+            Name
+          </label>
+        </CustomInputRadio>
+        <CustomInputRadio>
+          <input
+            type="radio"
+            id="firstLetter"
+            value="firstLetter"
+            { ...register('radioSearch') }
+            data-testid="first-letter-search-radio"
+          />
+          <label htmlFor="firstLetter">
+            First letter
+          </label>
+        </CustomInputRadio>
+      </InputRadiosContainer>
 
       <button onClick={ handleSearch } data-testid="exec-search-btn">Search</button>
-    </div>
+    </SearchConteinerBar>
 
   );
 }
