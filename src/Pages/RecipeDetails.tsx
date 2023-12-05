@@ -5,7 +5,9 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { requestApi } from '../Utils/ApiRequest';
 import Recommendations from '../Components/Recommendation';
-import { ButtonContainer, CategoryContainer, IngredientsContainer, InstructionsContainer, TitleContainer, VideoContainer } from '../styles/StyledRecipeDetails';
+import { ButtonContainer, CategoryContainer,
+  IngredientsContainer, InstructionsContainer,
+  TitleContainer, VideoContainer } from '../styles/StyledRecipeDetails';
 import { shareIcon } from '../Utils/exportIcons';
 
 function RecipeDetails() {
