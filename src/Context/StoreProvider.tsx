@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FoodCardType, StorageType } from '../Utils/Types';
+import { FoodCardType, SmallFoodCardType, StorageType } from '../Utils/Types';
 import { filterRecipes } from '../Utils/FilterRecipes';
 import StoreContext from './StoreContext';
 
@@ -13,7 +13,7 @@ function StoreProvider({ children } : StoreProviderProps) {
   const [storage, setStorage] = useState({} as StorageType);
   const [storeRecipes, setStoreRecipes] = useState<StorageType>({} as StorageType);
   const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
-  const [recipes, setRecipes] = useState([] as FoodCardType[]);
+  const [recipes, setRecipes] = useState([] as FoodCardType[] | SmallFoodCardType[]);
   const [showByDoneFilter, setShowByDoneFilter] = useState(false);
   const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([]);
   const [showByFavFilter, setShowByFavFilter] = useState(false);
@@ -103,7 +103,7 @@ function StoreProvider({ children } : StoreProviderProps) {
     setRecipesScreen(List);
   };
 
-  const handleRecipes = (newRecipes: FoodCardType[]) => {
+  const handleRecipes = (newRecipes: FoodCardType[] | SmallFoodCardType[]) => {
     setRecipes(newRecipes);
   };
 

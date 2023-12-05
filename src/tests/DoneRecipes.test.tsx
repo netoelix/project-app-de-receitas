@@ -57,8 +57,8 @@ describe('Testes da página DoneRecipes', () => {
     const filterByFoodBtn = screen.getByTestId('filter-by-meal-btn');
 
     fireEvent.click(filterByFoodBtn);
-
-    expect(bistek).toBeInTheDocument();
+    screen.debug();
+    expect(screen.getByText('Bistek')).toBeInTheDocument();
     expect(A1).not.toBeInTheDocument();
   });
 });

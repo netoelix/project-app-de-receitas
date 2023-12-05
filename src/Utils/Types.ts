@@ -10,6 +10,13 @@ export type FoodCardType = {
   tags: string[],
 };
 
+export type SmallFoodCardType = {
+  id:string,
+  type:string,
+  name: string,
+  image: string,
+};
+
 export type StorageType = {
   user: {
     email: string,
@@ -35,7 +42,7 @@ export type StoreContextType = {
   food : string,
   recipesScreen: FoodCardType[],
   removeFavorites: (recipe : string) => void,
-  recipes: FoodCardType[],
+  recipes: FoodCardType[] | SmallFoodCardType[],
   handleRecipes: (newRecipes: FoodCardType[]) => void,
   showByDoneFilter: boolean,
   filteredDoneRecipes: FoodCardType[],

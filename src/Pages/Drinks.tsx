@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react';
-import Footer from '../Components/Footer';
 import StoreContext from '../Context/StoreContext';
 import Recipes from '../Components/Recipes';
 
@@ -10,11 +9,7 @@ function Drinks() {
   }, [handleFood]);
 
   return (
-    <>
-      <h1> Pagina de Drinks </h1>
-      <Recipes />
-      <Footer />
-    </>
+    <Recipes />
   );
 }
 
