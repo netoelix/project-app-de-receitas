@@ -48,6 +48,7 @@ export const MockfavoriteRecipes = [
     image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
     doneDate: '',
     tags: [],
+    instructions: 'mockInstructions',
   },
   {
     id: '178319',

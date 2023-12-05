@@ -1,47 +1,98 @@
 import { useEffect, useState } from 'react';
-import { FoodCardType, StorageType, StoreProviderProps } from '../Utils/Types';
-import { mockStorage } from '../Utils/Mock';
+import { FoodCardType, SmallFoodCardType, StorageType } from '../Utils/Types';
 import { filterRecipes } from '../Utils/FilterRecipes';
 import StoreContext from './StoreContext';
 
+export type StoreProviderProps = {
+  children: React.ReactNode;
+};
+// Se um type só é usado em um compoenente,deixa nele.
+
 function StoreProvider({ children } : StoreProviderProps) {
-  const [food, setFood] = useState('meals');
+  const [food, setFood] = useState('');
   const [storage, setStorage] = useState({} as StorageType);
-  const [storeRecipes, setStoreRecipes] = useState<StorageType>(mockStorage);
+  const [storeRecipes, setStoreRecipes] = useState<StorageType>({} as StorageType);
   const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
-  const [recipes, setRecipes] = useState([] as FoodCardType[]);
+  const [recipes, setRecipes] = useState([] as FoodCardType[] | SmallFoodCardType[]);
+  const [showByDoneFilter, setShowByDoneFilter] = useState(false);
+  const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([]);
+  const [showByFavFilter, setShowByFavFilter] = useState(false);
+  const [filteredFavRecipes, setFilteredFavRecipes] = useState([]);
 
   useEffect(() => {
     const storageDoneRecipes:FoodCardType[] = JSON.parse(
-      localStorage.getItem('doneRecipes') || '[]',
+      localStorage.getItem('doneRecipes') || JSON.stringify([]),
     );
     const storageFavRecipes:FoodCardType[] = JSON.parse(
-      localStorage.getItem('favoriteRecipes') || '[]',
+      localStorage.getItem('favoriteRecipes') || JSON.stringify([]),
     );
-    setStorage(mockStorage);
+    const storageUser = JSON.parse(
+      localStorage.getItem('user') || JSON.stringify({
+        email: '',
+      }),
+    );
+    const storageInProgressRecipes = JSON.parse(
+      localStorage.getItem('inProgressRecipes') || JSON.stringify({
+        drinks: {},
+        meals: {},
+      }),
+    );
 
-    const favStorage = { ...mockStorage, favoriteRecipes: storageFavRecipes };
-    const doneStorage = { ...mockStorage, doneRecipes: storageDoneRecipes };
+    // const favStorage = { favoriteRecipes: storageFavRecipes };
+    // const doneStorage = { doneRecipes: storageDoneRecipes };
 
-    if (storageFavRecipes.length !== 0) setStorage(favStorage);
-    if (storageDoneRecipes.length !== 0) setStorage(doneStorage);
+    setStoreRecipes({
+      user: storageUser,
+      favoriteRecipes: storageFavRecipes,
+      doneRecipes: storageDoneRecipes,
+      inProgressRecipes: storageInProgressRecipes,
+    });
+    setStorage({
+      user: storageUser,
+      favoriteRecipes: storageFavRecipes,
+      doneRecipes: storageDoneRecipes,
+      inProgressRecipes: storageInProgressRecipes,
+    });
+    // if (storageFavRecipes.length !== 0) setStorage(favStorage);
+    // if (storageDoneRecipes.length !== 0) setStorage(doneStorage);
+
+    // if (localStorage.getItem('inProgressRecipes') === null) {
+    //   localStorage.setItem('inProgressRecipes', JSON.stringify({
+    //     drinks: {},
+    //     meals: {},
+    //   }));
+    // }
+
+    // if (localStorage.getItem('favoriteRecipes') === null) {
+    //   localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    // }
   }, []);
 
   const handleFood = (page: string) => {
     setFood(page);
   };
   const handleDoneRecipes = (filter : string) => {
-    const newDoneRecipes = filterRecipes(filter, storage.doneRecipes);
-    const newStore = { ...storeRecipes, doneRecipes: newDoneRecipes };
-    setStoreRecipes(newStore);
+    const newDoneRecipes = filterRecipes(
+      filter,
+      JSON.parse(localStorage.getItem('doneRecipes')),
+    );
+    // setStoreRecipes({ ...storeRecipes, doneRecipes: newDoneRecipes });
+    setFilteredDoneRecipes(newDoneRecipes);
+    setShowByDoneFilter(true);
   };
   const handleFavorites = (filter : string) => {
-    const newFavRecipes = filterRecipes(filter, storage.favoriteRecipes);
-    const newStore = { ...storeRecipes, favoriteRecipes: newFavRecipes };
-    setStoreRecipes(newStore);
+    const newFavRecipes = filterRecipes(
+      filter,
+      JSON.parse(localStorage.getItem('favoriteRecipes')),
+    );
+    // const newStore = { ...storeRecipes, favoriteRecipes: newFavRecipes };
+    // setStoreRecipes(newStore);
+    setFilteredFavRecipes(newFavRecipes);
+    setShowByFavFilter(true);
   };
   const removeFavorites = (recipe : string) => {
-    const newFavs = storage.favoriteRecipes.filter((favs) => favs.name !== recipe);
+    const newFavs = JSON.parse(localStorage.getItem('favoriteRecipes'))
+      .filter((favs) => favs.name !== recipe);
     localStorage.setItem('favoriteRecipes', JSON.stringify(newFavs));
     setStorage({ ...storage, favoriteRecipes: newFavs });
     setStoreRecipes({ ...storeRecipes, favoriteRecipes: newFavs });
@@ -52,7 +103,7 @@ function StoreProvider({ children } : StoreProviderProps) {
     setRecipesScreen(List);
   };
 
-  const handleRecipes = (newRecipes: FoodCardType[]) => {
+  const handleRecipes = (newRecipes: FoodCardType[] | SmallFoodCardType[]) => {
     setRecipes(newRecipes);
   };
 
@@ -69,6 +120,10 @@ function StoreProvider({ children } : StoreProviderProps) {
         storeRecipes,
         recipes,
         handleRecipes,
+        showByDoneFilter,
+        filteredDoneRecipes,
+        showByFavFilter,
+        filteredFavRecipes,
       } }
     >
       <div>

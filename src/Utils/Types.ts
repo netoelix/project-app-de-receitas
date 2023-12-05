@@ -3,30 +3,34 @@ export type FoodCardType = {
   type:string
   nationality:string
   category:string
-  alcoholicOrNot?: string,
+  alcoholicOrNot: string,
   name: string,
   image: string,
   doneDate: string,
   tags: string[],
-  instructions: string,
+};
+
+export type SmallFoodCardType = {
+  id:string,
+  type:string,
+  name: string,
+  image: string,
 };
 
 export type StorageType = {
-  email: string,
+  user: {
+    email: string,
+  },
   doneRecipes: FoodCardType[],
   favoriteRecipes: FoodCardType[],
   inProgressRecipes: {
-    drinks: string,
-    meals: string,
+    drinks: {
+      id: number[]
+    },
+    meals: {
+      id: number[]
+    },
   },
-};
-
-export type CategoryType = {
-  strCategory: string,
-};
-
-export type StoreProviderProps = {
-  children: React.ReactNode;
 };
 
 export type StoreContextType = {
@@ -38,8 +42,26 @@ export type StoreContextType = {
   food : string,
   recipesScreen: FoodCardType[],
   removeFavorites: (recipe : string) => void,
-  recipes: FoodCardType[],
+  recipes: FoodCardType[] | SmallFoodCardType[],
   handleRecipes: (newRecipes: FoodCardType[]) => void,
+  showByDoneFilter: boolean,
+  filteredDoneRecipes: FoodCardType[],
+  showByFavFilter: boolean,
+  filteredFavRecipes: FoodCardType[],
+};
+
+export type CardRecipe = {
+  id: string,
+  type: string,
+  image: string,
+  name: string,
+  category: string,
+  nationality: string,
+  tags: string[],
+  doneDate: string,
+  instructions: string
+  ingredients: string[],
+  alcoholicOrNot: string,
 };
 
 export type CardRecipeProps = {
@@ -51,3 +73,21 @@ export type CardRecipeProps = {
 export type NavProps = {
   page: string;
 };
+
+export type CategoryType = {
+  strCategory: string,
+};
+
+export interface RecipeDetailsProps {
+  idMeal?: string;
+  idDrink?: string;
+  strMeal?: string;
+  strDrink?: string;
+  strCategory?: string;
+  strArea?: string;
+  strInstructions?: string;
+  strMealThumb?: string;
+  strDrinkThumb?: string;
+  strYoutube?: string;
+  strAlcoholic?: string;
+}

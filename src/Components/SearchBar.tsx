@@ -5,8 +5,8 @@ import { requestApi } from '../Utils/ApiRequest';
 import { CustomInputRadio, InputRadiosContainer,
   SearchConteinerBar, SearchInput } from '../styles/StyledHeader';
 import StoreContext from '../Context/StoreContext';
-import { FoodCardType } from '../Utils/Types';
-import DealResponse from '../Utils/DealResponse';
+import { SmallFoodCardType } from '../Utils/Types';
+import SmallDealResponse from '../Utils/SmallDealResponse';
 
 function SearchBar() {
   const { food, handleRecipes } = useContext(StoreContext);
@@ -24,7 +24,9 @@ function SearchBar() {
         window.alert('Sorry, we haven\'t found any recipes for these filters');
       } else if (response[food]) {
         const result = response[food].slice(0, 12);
-        const newList :FoodCardType[] = DealResponse(food, result);
+        console.log(food);
+        const newList :SmallFoodCardType[] = SmallDealResponse(food, result);
+
         if (newList.length === 1) {
           navigate(`/${food}/${newList[0].id}`);
         } else {
@@ -52,9 +54,9 @@ function SearchBar() {
             id="ingredient"
             value="ingredient"
             { ...register('radioSearch') }
-            data-testid="ingredient-search-radio"
+
           />
-          <label htmlFor="ingredient">
+          <label data-testid="ingredient-search-radio" htmlFor="ingredient">
             Ingredient
           </label>
         </CustomInputRadio>
@@ -64,9 +66,9 @@ function SearchBar() {
             id="name"
             value="name"
             { ...register('radioSearch') }
-            data-testid="name-search-radio"
+
           />
-          <label htmlFor="name">
+          <label data-testid="name-search-radio" htmlFor="name">
             Name
           </label>
         </CustomInputRadio>
@@ -76,9 +78,9 @@ function SearchBar() {
             id="firstLetter"
             value="firstLetter"
             { ...register('radioSearch') }
-            data-testid="first-letter-search-radio"
+
           />
-          <label htmlFor="firstLetter">
+          <label data-testid="first-letter-search-radio" htmlFor="firstLetter">
             First letter
           </label>
         </CustomInputRadio>

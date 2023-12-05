@@ -1,4 +1,5 @@
 import processIngredients from './processIngredients';
+import processTags from './processTags';
 
 function DealResponse(Food: string, List: string[]) {
   switch (Food) {
@@ -7,12 +8,12 @@ function DealResponse(Food: string, List: string[]) {
       const newlist = List.map((recipe : any) => {
         return {
           id: recipe.idDrink,
-          type: 'drinks',
+          type: 'drink',
           image: recipe.strDrinkThumb,
           name: recipe.strDrink,
           category: recipe.strCategory,
           nationality: recipe.strArea,
-          tags: recipe.strTags,
+          tags: processTags(recipe.strTags),
           alcoholicOrNot: recipe.strAlcoholic,
           doneDate: '',
           instructions: recipe.strInstructions,
@@ -31,7 +32,8 @@ function DealResponse(Food: string, List: string[]) {
           name: recipe.strMeal,
           category: recipe.strCategory,
           nationality: recipe.strArea,
-          tags: recipe.strTags,
+          tags: processTags(recipe.strTags),
+          alcoholicOrNot: '',
           doneDate: '',
           instructions: recipe.strInstructions,
           ingredients: processIngredients(recipe, 20),

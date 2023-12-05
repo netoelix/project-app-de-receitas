@@ -1,0 +1,15 @@
+.recommendation-card-container {
+  text-align: center;
+}
+
+.recommendation-cards {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 100px;
+  overflow-x: scroll;
+  width: 350px;
+}
+
+.recommendation-card {
+  margin: 10px;
+}

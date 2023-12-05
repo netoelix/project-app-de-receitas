@@ -21,11 +21,16 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
     setCopied(true);
   };
 
+  const handleFavorites = () => {
+    removeFavorites(name);
+    window.location.reload();
+  };
+
   const share = (
     <img data-testid={ `${dataTest}share-btn` } src={ shareIcon } alt="share" />
   );
   const favBtn = (
-    <button onClick={ () => removeFavorites(name) }>
+    <button onClick={ () => handleFavorites() }>
       <img
         data-testid={ `${dataTest}favorite-btn` }
         src={ blackHeartIcon }
@@ -56,6 +61,23 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
           {(type === 'drink') && (
             <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
           )}
+
+        </div>
+        <div className="Done-Info">
+          {(page === 'DoneRecipes') && (
+            <p data-testid={ `${dataTest}done-date` }>
+              {doneDate}
+            </p>)}
+        </div>
+        <div className="Tags">
+          {(page === 'DoneRecipes' && tags.length > 0) && tags.map((tagName) => {
+            const dataTestTag = `${index}-${tagName}-horizontal-tag`;
+            return (
+              <p key={ tagName } data-testid={ dataTestTag }>
+                {tagName}
+              </p>
+            );
+          })}
         </div>
         <div className="Done-Info">
           {(page === 'DoneRecipes') && (
