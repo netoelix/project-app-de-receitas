@@ -3,6 +3,7 @@ import NavFilter from '../Components/NavFilter';
 import { DoneRecipesContainer, Paragraph } from '../styles/StyledDoneRecipes';
 import StoreContext from '../Context/StoreContext';
 import CardRecipe from '../Components/CardRecipe';
+import { StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
 
 function DoneRecipes() {
   // const { storeRecipes: { doneRecipes } } = useContext(StoreContext);
@@ -34,11 +35,11 @@ function DoneRecipes() {
   return (
     <main>
       <NavFilter page="DoneRecipes" />
-      <div>
+      <StyledFavoriteRecipes>
         {doneRecipes.length === 0 && <Paragraph>Nenhuma receita feita</Paragraph>}
         {doneRecipes.length > 0 && showByDoneFilter
           ? FilteredDoneRecipes : ElementDoneRecipes}
-      </div>
+      </StyledFavoriteRecipes>
     </main>
   );
 }

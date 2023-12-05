@@ -7,7 +7,9 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import DealResponse from '../Utils/DealResponse';
-import { ButtonContainer, CategoryContainer, IngredientsContainer, InstructionsContainer, TitleContainer } from '../styles/StyledRecipeInProgress';
+import { ButtonContainer, CategoryContainer,
+  IngredientsContainer, InstructionsContainer,
+  TitleContainer } from '../styles/StyledRecipeInProgress';
 
 function RecipeInProgress() {
   const [recipe, setRecipe] = useState({} as CardRecipe);
