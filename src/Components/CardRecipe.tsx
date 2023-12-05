@@ -50,36 +50,6 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
           />
         </a>
       </div>
-<<<<<<< HEAD
-      <div className="Recipe-Info">
-        <a href={ link }>
-          <h1 data-testid={ testIdName }>{name}</h1>
-        </a>
-        {(type === 'meal') && (
-          <p data-testid={ `${dataTest}top-text` }>{`${nationality} - ${category}`}</p>
-        )}
-        {(type === 'drink') && (
-          <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
-        )}
-
-      </div>
-
-      <div className="Done-Info">
-        {(page === 'DoneRecipes') && (
-          <p data-testid={ `${dataTest}done-date` }>
-            {doneDate}
-          </p>)}
-
-        <div className="Tags">
-          {(page === 'DoneRecipes' && tags.length > 0) && tags.map((tagName) => {
-            const dataTestTag = `${index}-${tagName}-horizontal-tag`;
-            return (
-              <p key={ tagName } data-testid={ dataTestTag }>
-                {tagName}
-              </p>
-            );
-          })}
-=======
       <CardRecipeInfo>
         <div className="Recipe-Info">
           <a href={ link }>
@@ -91,7 +61,23 @@ function CardRecipe({ food, page, index } : CardRecipeProps) {
           {(type === 'drink') && (
             <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
           )}
->>>>>>> 60f01fee8919bbb7e31368a678b2ceaac51721f0
+
+        </div>
+        <div className="Done-Info">
+          {(page === 'DoneRecipes') && (
+            <p data-testid={ `${dataTest}done-date` }>
+              {doneDate}
+            </p>)}
+        </div>
+        <div className="Tags">
+          {(page === 'DoneRecipes' && tags.length > 0) && tags.map((tagName) => {
+            const dataTestTag = `${index}-${tagName}-horizontal-tag`;
+            return (
+              <p key={ tagName } data-testid={ dataTestTag }>
+                {tagName}
+              </p>
+            );
+          })}
         </div>
         <div className="Done-Info">
           {(page === 'DoneRecipes') && (

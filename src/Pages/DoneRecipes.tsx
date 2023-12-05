@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import CardRecipe from '../Components/CardRecipe';
 import NavFilter from '../Components/NavFilter';
 import { DoneRecipesContainer, Paragraph } from '../styles/StyledDoneRecipes';
 import StoreContext from '../Context/StoreContext';
+import CardRecipe from '../Components/CardRecipe';
 
 function DoneRecipes() {
   // const { storeRecipes: { doneRecipes } } = useContext(StoreContext);
@@ -35,14 +35,9 @@ function DoneRecipes() {
     <main>
       <NavFilter page="DoneRecipes" />
       <div>
-<<<<<<< HEAD
-        {doneRecipes.length === 0 && <p>Nenhuma receita feita</p>}
+        {doneRecipes.length === 0 && <Paragraph>Nenhuma receita feita</Paragraph>}
         {doneRecipes.length > 0 && showByDoneFilter
           ? FilteredDoneRecipes : ElementDoneRecipes}
-=======
-        {doneRecipes.length === 0 && <Paragraph>Nenhuma receita feita</Paragraph>}
-        {doneRecipes.length > 0 && ElementDoneRecipes}
->>>>>>> 60f01fee8919bbb7e31368a678b2ceaac51721f0
       </div>
     </main>
   );
