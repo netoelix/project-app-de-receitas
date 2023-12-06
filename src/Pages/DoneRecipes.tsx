@@ -17,11 +17,13 @@ function DoneRecipes() {
   }, []);
 
   const ElementDoneRecipes = (
-    <DoneRecipesContainer>
-      {doneRecipes.map((recipe, index) => (
-        <CardRecipe index={ index } key={ index } food={ recipe } page="DoneRecipes" />
-      ))}
-    </DoneRecipesContainer>
+    <div>
+      <DoneRecipesContainer>
+        {doneRecipes.map((recipe, index) => (
+          <CardRecipe index={ index } key={ index } food={ recipe } page="DoneRecipes" />
+        ))}
+      </DoneRecipesContainer>
+    </div>
   );
 
   const FilteredDoneRecipes = (

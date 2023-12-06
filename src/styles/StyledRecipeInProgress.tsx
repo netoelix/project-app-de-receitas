@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { checkedIcon } from '../Utils/exportIcons';
 
 export const TitleContainer = styled.div`
   position: relative;
@@ -103,4 +104,28 @@ export const ButtonContainer = styled.button`
   height: 50px;
   margin-bottom: 70px;
   margin-left: 25%;
+`;
+
+export const CheckBoxCustom = styled.section`
+    padding: 3px;
+    input {
+        display: none;
+    }
+    input + label:before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 3px solid #FCC436;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-bottom: 3px;
+    }
+    input:checked + label:before {
+    background-image: url(${checkedIcon});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 `;

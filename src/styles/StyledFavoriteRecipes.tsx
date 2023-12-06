@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledFavoriteRecipes = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   height: 100%;
   overflow-y: auto;
