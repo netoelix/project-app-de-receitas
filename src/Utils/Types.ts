@@ -42,7 +42,7 @@ export type StoreContextType = {
   food : string,
   recipesScreen: FoodCardType[],
   removeFavorites: (recipe : string) => void,
-  recipes: FoodCardType[] | SmallFoodCardType[],
+  recipes: FoodCardType[],
   handleRecipes: (newRecipes: FoodCardType[]) => void,
   showByDoneFilter: boolean,
   filteredDoneRecipes: FoodCardType[],

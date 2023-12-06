@@ -25,9 +25,7 @@ function Recommendations({ type }: Props) {
             ? 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
             : 'https://www.themealdb.com/api/json/v1/1/search.php?s=',
         );
-        console.log('Resposta da API:', responseSearch);
         const dataSearch = await responseSearch.json();
-        console.log('Dados da API:', dataSearch);
 
         setRecommendations(dataSearch.meals || dataSearch.drinks);
       } catch (error) {

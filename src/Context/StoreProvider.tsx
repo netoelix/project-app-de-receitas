@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FoodCardType, SmallFoodCardType, StorageType } from '../Utils/Types';
+import { FoodCardType, StorageType } from '../Utils/Types';
 import { filterRecipes } from '../Utils/FilterRecipes';
 import StoreContext from './StoreContext';
 
@@ -13,11 +13,11 @@ function StoreProvider({ children } : StoreProviderProps) {
   const [storage, setStorage] = useState({} as StorageType);
   const [storeRecipes, setStoreRecipes] = useState<StorageType>({} as StorageType);
   const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
-  const [recipes, setRecipes] = useState([] as FoodCardType[] | SmallFoodCardType[]);
+  const [recipes, setRecipes] = useState([] as FoodCardType[]);
   const [showByDoneFilter, setShowByDoneFilter] = useState(false);
-  const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([]);
+  const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([] as FoodCardType[]);
   const [showByFavFilter, setShowByFavFilter] = useState(false);
-  const [filteredFavRecipes, setFilteredFavRecipes] = useState([]);
+  const [filteredFavRecipes, setFilteredFavRecipes] = useState([] as FoodCardType[]);
 
   useEffect(() => {
     const storageDoneRecipes:FoodCardType[] = JSON.parse(
@@ -38,9 +38,6 @@ function StoreProvider({ children } : StoreProviderProps) {
       }),
     );
 
-    // const favStorage = { favoriteRecipes: storageFavRecipes };
-    // const doneStorage = { doneRecipes: storageDoneRecipes };
-
     setStoreRecipes({
       user: storageUser,
       favoriteRecipes: storageFavRecipes,
@@ -53,19 +50,6 @@ function StoreProvider({ children } : StoreProviderProps) {
       doneRecipes: storageDoneRecipes,
       inProgressRecipes: storageInProgressRecipes,
     });
-    // if (storageFavRecipes.length !== 0) setStorage(favStorage);
-    // if (storageDoneRecipes.length !== 0) setStorage(doneStorage);
-
-    // if (localStorage.getItem('inProgressRecipes') === null) {
-    //   localStorage.setItem('inProgressRecipes', JSON.stringify({
-    //     drinks: {},
-    //     meals: {},
-    //   }));
-    // }
-
-    // if (localStorage.getItem('favoriteRecipes') === null) {
-    //   localStorage.setItem('favoriteRecipes', JSON.stringify([]));
-    // }
   }, []);
 
   const handleFood = (page: string) => {
@@ -74,8 +58,9 @@ function StoreProvider({ children } : StoreProviderProps) {
   const handleDoneRecipes = (filter : string) => {
     const newDoneRecipes = filterRecipes(
       filter,
-      JSON.parse(localStorage.getItem('doneRecipes')),
+      JSON.parse(localStorage.getItem('doneRecipes') || '[]'),
     );
+
     // setStoreRecipes({ ...storeRecipes, doneRecipes: newDoneRecipes });
     setFilteredDoneRecipes(newDoneRecipes);
     setShowByDoneFilter(true);
@@ -83,7 +68,7 @@ function StoreProvider({ children } : StoreProviderProps) {
   const handleFavorites = (filter : string) => {
     const newFavRecipes = filterRecipes(
       filter,
-      JSON.parse(localStorage.getItem('favoriteRecipes')),
+      JSON.parse(localStorage.getItem('favoriteRecipes') || '[]'),
     );
     // const newStore = { ...storeRecipes, favoriteRecipes: newFavRecipes };
     // setStoreRecipes(newStore);
@@ -91,8 +76,10 @@ function StoreProvider({ children } : StoreProviderProps) {
     setShowByFavFilter(true);
   };
   const removeFavorites = (recipe : string) => {
-    const newFavs = JSON.parse(localStorage.getItem('favoriteRecipes'))
-      .filter((favs) => favs.name !== recipe);
+    console.log(localStorage.getItem('favoriteRecipes') || '[]');
+
+    const newFavs = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]')
+      .filter((favs :any) => favs.name !== recipe);
     localStorage.setItem('favoriteRecipes', JSON.stringify(newFavs));
     setStorage({ ...storage, favoriteRecipes: newFavs });
     setStoreRecipes({ ...storeRecipes, favoriteRecipes: newFavs });
@@ -103,7 +90,7 @@ function StoreProvider({ children } : StoreProviderProps) {
     setRecipesScreen(List);
   };
 
-  const handleRecipes = (newRecipes: FoodCardType[] | SmallFoodCardType[]) => {
+  const handleRecipes = (newRecipes: FoodCardType[]) => {
     setRecipes(newRecipes);
   };
 
