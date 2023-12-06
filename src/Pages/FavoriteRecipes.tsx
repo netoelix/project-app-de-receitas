@@ -5,7 +5,6 @@ import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
 
 function FavoriteRecipes() {
-  // const { storeRecipes: { favoriteRecipes } } = useContext(StoreContext);
   const { filteredFavRecipes, showByFavFilter } = useContext(StoreContext);
   const [favoriteRecipes, setFavoriteRecipes] = useState<FoodCardType[]>([]);
 

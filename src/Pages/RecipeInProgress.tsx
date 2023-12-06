@@ -54,8 +54,6 @@ function RecipeInProgress() {
             setIsFavorite(true);
           }
         }
-
-        // ;
       }
     }
 

@@ -5,7 +5,6 @@ import StoreContext from '../Context/StoreContext';
 import CardRecipe from '../Components/CardRecipe';
 
 function DoneRecipes() {
-  // const { storeRecipes: { doneRecipes } } = useContext(StoreContext);
   const { filteredDoneRecipes, showByDoneFilter } = useContext(StoreContext);
   const [doneRecipes, setDoneRecipes] = useState([]);
 

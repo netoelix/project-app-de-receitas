@@ -2,6 +2,7 @@ import { requestApi } from './ApiRequest';
 
 async function categoryFoods(type: string, category: string) {
   const response = await requestApi(type, 'category-data', category);
+
   if (response[type]) {
     const result = response[type].slice(0, 12);
     if (type === 'meals') {

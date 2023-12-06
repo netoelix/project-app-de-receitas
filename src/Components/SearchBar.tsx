@@ -5,15 +5,16 @@ import { requestApi } from '../Utils/ApiRequest';
 import { CustomInputRadio, InputRadiosContainer,
   SearchConteinerBar, SearchInput } from '../styles/StyledHeader';
 import StoreContext from '../Context/StoreContext';
-import { SmallFoodCardType } from '../Utils/Types';
-import SmallDealResponse from '../Utils/SmallDealResponse';
+import DealResponse from '../Utils/DealResponse';
 
 function SearchBar() {
-  const { food, handleRecipes } = useContext(StoreContext);
+  const { handleRecipes } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const handleSearch = async () => {
     const { searchInput, radioSearch } = getValues();
+    const pathSplit = window.location.pathname.split('/');
+    const food = pathSplit[1];
 
     if (radioSearch === 'firstLetter' && searchInput.length > 1) {
       window.alert('Your search must have only 1 (one) character');
@@ -24,8 +25,7 @@ function SearchBar() {
         window.alert('Sorry, we haven\'t found any recipes for these filters');
       } else if (response[food]) {
         const result = response[food].slice(0, 12);
-        console.log(food);
-        const newList :SmallFoodCardType[] = SmallDealResponse(food, result);
+        const newList = DealResponse(food, result);
 
         if (newList.length === 1) {
           navigate(`/${food}/${newList[0].id}`);
