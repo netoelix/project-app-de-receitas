@@ -25,9 +25,15 @@ import favoriteIcon from '../images/favoriteIcon.svg';
 import exitIcon from '../images/exitIcon.svg';
 import profileYellowIcon from '../images/profileYellowIcon.svg';
 
+const imagesIconsMeals = [beefIcon, breakFastIcon, chickenIcon, dessertIcon, goatIcon];
+const imagesIconsDrinks = [ordinaryDrinkIcon,
+  cocktailIcon, shakeIcon, beerIcon, cocoaIcon];
+
 export { allFoodIcon, beerIcon, blackHeartIcon,
   cocktailIcon, cocoaIcon, drinkIcon, logoIcon, logoRecipesApp,
   mealIcon, ordinaryDrinkIcon, profileIcon, searchIcon, shakeIcon,
   shareIcon, whiteHeartIcon, receipIcon, dessertIcon, breakFastIcon,
   chickenIcon, goatIcon, beefIcon, checkedIcon, doneIcon,
-  favoriteIcon, exitIcon, profileYellowIcon };
+  favoriteIcon, exitIcon, profileYellowIcon,
+  imagesIconsDrinks, imagesIconsMeals,
+};

@@ -27,13 +27,18 @@ export const HeaderContainer = styled.div`
         color: white;
         text-align: center;
         font-family: sans-serif;
-        font-size: 40px;
+        font-size: 30px;
         font-style: normal;
         font-weight: 900;
         line-height: normal;
         letter-spacing: 2.1px;
         text-transform: uppercase;
-        margin-top: 8px;
+    
+    }
+
+    img {
+        width: 60px;
+        height: 60px;
     }
     `;
 
