@@ -2,6 +2,7 @@ const createUrlFood = (type: string, action : string, input : string) => {
   const url = (type === 'drinks') ? (
     'https://www.thecocktaildb.com/api/json/v1/1/') : (
     'https://www.themealdb.com/api/json/v1/1/');
+    // random.php
   switch (action) {
     case 'firstLetter':
     {
@@ -26,6 +27,11 @@ const createUrlFood = (type: string, action : string, input : string) => {
     case 'category-data':
     {
       const newUrl = `${url}filter.php?c=${input}`;
+      return newUrl;
+    }
+    case 'random':
+    {
+      const newUrl = `${url}random.php`;
       return newUrl;
     }
     default:

@@ -47,7 +47,6 @@ export default function Recipes() {
 
   async function changeRecipes(category: string) {
     if (category !== categorySelected) {
-      // const newRecipes = await categoryFoods(newFood, category);
       const response = await requestApi(newFood, 'category-data', category);
       const newRecipes = DealResponse(newFood, response[newFood]).slice(0, 12);
 

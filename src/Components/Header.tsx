@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import { StyledHeader, HeaderContainer } from '../styles/StyledHeader';
 import { logoRecipesApp, profileIcon,
   receipIcon, searchIcon } from '../Utils/exportIcons';
+import RandomRecipe from './RandomRecipe';
 
 function Header() {
   const navigate = useNavigate();
@@ -74,7 +75,10 @@ function Header() {
         </h1>
 
         {showSearchBar && (
-          <SearchBar />
+          <>
+            <RandomRecipe />
+            <SearchBar />
+          </>
         )}
       </HeaderContainer>
     </>
