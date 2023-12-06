@@ -25,8 +25,13 @@ function Header() {
     const pathSplit = path.split('/');
 
     switch (pathSplit[1]) {
+      case 'meals':
+        setTitle('Meals');
+        setShowSearchIcon(true);
+        break;
       case 'drinks':
         setTitle('Drinks');
+        setShowSearchIcon(true);
         break;
       case 'profile':
         setTitle('Profile');
@@ -44,7 +49,8 @@ function Header() {
         break;
 
       default:
-        setTitle('Meals');
+        setTitle('Home');
+        setShowSearchIcon(false);
     }
   }, [title, navigate]);
 
