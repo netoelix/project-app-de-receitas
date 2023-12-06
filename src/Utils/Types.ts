@@ -42,7 +42,7 @@ export type StoreContextType = {
 
   // food : string,
   // recipesScreen: FoodCardType[],
-  storeRecipes : StorageType,
+  // storeRecipes : StorageType,
   recipes: FoodCardType[],
   filteredDoneRecipes: FoodCardType[],
   filteredFavRecipes: FoodCardType[],
@@ -68,10 +68,6 @@ export type CardRecipeProps = {
   food : FoodCardType
   page: string
   index: number
-};
-
-export type NavProps = {
-  page: string;
 };
 
 export type CategoryType = {

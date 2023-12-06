@@ -5,7 +5,6 @@ import { requestApi } from '../Utils/ApiRequest';
 import DealResponse from '../Utils/DealResponse';
 import { CategoryType, FoodCardType } from '../Utils/Types';
 import CardRecipe from './CardRecipe';
-import categoryFoods from '../Utils/categoryFoods';
 
 export default function Recipes() {
   const { recipes } = useContext(StoreContext);
@@ -48,7 +47,9 @@ export default function Recipes() {
 
   async function changeRecipes(category: string) {
     if (category !== categorySelected) {
-      const newRecipes = await categoryFoods(newFood, category);
+      // const newRecipes = await categoryFoods(newFood, category);
+      const response = await requestApi(newFood, 'category-data', category);
+      const newRecipes = DealResponse(newFood, response[newFood]).slice(0, 12);
 
       if (newRecipes) {
         setCard(newRecipes);

@@ -2,6 +2,8 @@ import processIngredients from './processIngredients';
 import processTags from './processTags';
 
 function DealResponse(Food: string, List: string[]) {
+  // console.log(List);
+
   switch (Food) {
     case 'drinks':
     {
