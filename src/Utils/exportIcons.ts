@@ -23,10 +23,11 @@ import checkedIcon from '../images/checked.svg';
 import doneIcon from '../images/doneIcon.svg';
 import favoriteIcon from '../images/favoriteIcon.svg';
 import exitIcon from '../images/exitIcon.svg';
+import profileYellowIcon from '../images/profileYellowIcon.svg';
 
 export { allFoodIcon, beerIcon, blackHeartIcon,
   cocktailIcon, cocoaIcon, drinkIcon, logoIcon, logoRecipesApp,
   mealIcon, ordinaryDrinkIcon, profileIcon, searchIcon, shakeIcon,
   shareIcon, whiteHeartIcon, receipIcon, dessertIcon, breakFastIcon,
   chickenIcon, goatIcon, beefIcon, checkedIcon, doneIcon,
-  favoriteIcon, exitIcon };
+  favoriteIcon, exitIcon, profileYellowIcon };
