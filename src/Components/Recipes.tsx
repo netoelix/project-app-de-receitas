@@ -8,7 +8,7 @@ import CardRecipe from './CardRecipe';
 import categoryFoods from '../Utils/categoryFoods';
 import {
   imagesIconsMeals, allFoodIcon,
-  imagesIconsDrinks, drinkIcon
+  imagesIconsDrinks, drinkIcon,
 } from '../Utils/exportIcons';
 import { CategoriesContainer, ImageContainer } from '../styles/StyledMealsAndDrinks';
 
@@ -90,25 +90,25 @@ export default function Recipes() {
 
       <button
         data-testid="All-category-filter"
-        onClick={() => handleRecipes(data)}
+        onClick={ () => handleRecipes(data) }
       >
         <ImageContainer>
-          <img src={allIcon} alt="Button" />
+          <img src={ allIcon } alt="Button" />
         </ImageContainer>
         <div>
           All
         </div>
-      </button >
+      </button>
 
       {
         categories.map(({ strCategory }, index) => (
           <button
-            key={index}
-            data-testid={`${strCategory}-category-filter`}
-            onClick={() => changeRecipes(strCategory)}
+            key={ index }
+            data-testid={ `${strCategory}-category-filter` }
+            onClick={ () => changeRecipes(strCategory) }
           >
             <ImageContainer>
-              <img src={icons(index)} alt={`Button-${icons(index)}`} />
+              <img src={ icons(index) } alt={ `Button-${icons(index)}` } />
             </ImageContainer>
             <div>
               {strCategory}
@@ -118,7 +118,7 @@ export default function Recipes() {
         ))
       }
 
-    </CategoriesContainer >
+    </CategoriesContainer>
   );
 
   return (
@@ -126,9 +126,9 @@ export default function Recipes() {
       {FilterCategories}
       {
         recipes.map((recipe, index) => (
-          <div key={index}>
-            <Link to={`/${food}/${recipe.id}`}>
-              <CardRecipe food={recipe} page="recipes" index={index} />
+          <div key={ index }>
+            <Link to={ `/${food}/${recipe.id}` }>
+              <CardRecipe food={ recipe } page="recipes" index={ index } />
             </Link>
           </div>))
       }
