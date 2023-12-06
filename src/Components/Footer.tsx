@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledFooter } from '../styles/StyledFooter';
 import { drinkIcon, mealIcon } from '../Utils/exportIcons';
