@@ -64,9 +64,6 @@ function RecipeInProgress() {
     const link = window.location.origin;
     navigator.clipboard.writeText(`${link}/${type}s/${id}`);
     setLinkCopied('Link copied!');
-    // setTimeout(() => {
-    //   setLinkCopied('');
-    // }, 1000);
   };
 
   const handleFavClick = () => {

@@ -8,15 +8,13 @@ export type StoreProviderProps = {
 };
 
 function StoreProvider({ children } : StoreProviderProps) {
-  const [food, setFood] = useState('');
-  const [storage, setStorage] = useState({} as StorageType);
   const [storeRecipes, setStoreRecipes] = useState<StorageType>({} as StorageType);
-  const [recipesScreen, setRecipesScreen] = useState<FoodCardType[]>([]);
 
   const [recipes, setRecipes] = useState([] as FoodCardType[]);
 
   const [showByDoneFilter, setShowByDoneFilter] = useState(false);
   const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([] as FoodCardType[]);
+
   const [showByFavFilter, setShowByFavFilter] = useState(false);
   const [filteredFavRecipes, setFilteredFavRecipes] = useState([] as FoodCardType[]);
 
@@ -45,17 +43,8 @@ function StoreProvider({ children } : StoreProviderProps) {
       doneRecipes: storageDoneRecipes,
       inProgressRecipes: storageInProgressRecipes,
     });
-    setStorage({
-      user: storageUser,
-      favoriteRecipes: storageFavRecipes,
-      doneRecipes: storageDoneRecipes,
-      inProgressRecipes: storageInProgressRecipes,
-    });
   }, []);
-
-  const handleFood = (page: string) => {
-    setFood(page);
-  };
+  // Anotação: É possível unir as duas funções abaixo em uma apenas.
   const handleDoneRecipes = (filter : string) => {
     const newDoneRecipes = filterRecipes(
       filter,
@@ -73,19 +62,12 @@ function StoreProvider({ children } : StoreProviderProps) {
     setFilteredFavRecipes(newFavRecipes);
     setShowByFavFilter(true);
   };
-  const removeFavorites = (recipe : string) => {
-    console.log(localStorage.getItem('favoriteRecipes') || '[]');
 
+  const removeFavorites = (recipe : string) => {
     const newFavs = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]')
       .filter((favs :any) => favs.name !== recipe);
     localStorage.setItem('favoriteRecipes', JSON.stringify(newFavs));
-    setStorage({ ...storage, favoriteRecipes: newFavs });
     setStoreRecipes({ ...storeRecipes, favoriteRecipes: newFavs });
-  };
-
-  const handleScreen = (filter : string, List: FoodCardType[]) => {
-    console.log(filter, List);
-    setRecipesScreen(List);
   };
 
   // Recipes e SearchBar
@@ -96,16 +78,12 @@ function StoreProvider({ children } : StoreProviderProps) {
   return (
     <StoreContext.Provider
       value={ {
-        recipesScreen,
-        food,
-        handleFood,
         handleDoneRecipes,
         handleFavorites,
-        handleScreen,
         removeFavorites,
+        handleRecipes,
         storeRecipes,
         recipes,
-        handleRecipes,
         showByDoneFilter,
         filteredDoneRecipes,
         showByFavFilter,

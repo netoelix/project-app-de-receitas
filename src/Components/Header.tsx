@@ -27,6 +27,7 @@ function Header() {
     switch (pathSplit[1]) {
       case 'drinks':
         setTitle('Drinks');
+        setShowSearchIcon(true);
         break;
       case 'profile':
         setTitle('Profile');
@@ -45,6 +46,7 @@ function Header() {
 
       default:
         setTitle('Meals');
+        setShowSearchIcon(true);
     }
   }, [title, navigate]);
 
