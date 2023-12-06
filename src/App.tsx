@@ -9,12 +9,14 @@ import Meals from './Pages/Meals';
 import Drinks from './Pages/Drinks';
 import RecipeInProgress from './Pages/RecipeInProgress';
 import RecipeDetails from './Pages/RecipeDetails';
+import Home from './Pages/Home';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={ <Login /> } />
       <Route element={ <Layout /> }>
+        <Route path="/home" element={ <Home /> } />
         <Route path="/meals" element={ <Meals /> } />
         <Route path="/drinks" element={ <Drinks /> } />
         <Route path="/profile" element={ <Profile /> } />

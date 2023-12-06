@@ -11,7 +11,7 @@ function Login() {
   const handleButtonEnter = () => {
     const { email } = getValues();
     localStorage.setItem('user', JSON.stringify({ email }));
-    navigate('/meals');
+    navigate('/home');
   };
 
   return (
