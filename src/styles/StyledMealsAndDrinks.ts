@@ -6,10 +6,14 @@ export const CategoriesContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
   margin-bottom: 40px;
-  width: 90vh;
-  height: 10vh;
+  /* width: 90vh;
+  height: 10vh; */
 
 
   button {
@@ -21,6 +25,8 @@ export const CategoriesContainer = styled.div`
     padding: 3px;
     margin: 3px;
     justify-content: center;
+    margin-bottom: 25px;
+    color: black;
     
     &:hover {
       font-weight: bold;

@@ -5,8 +5,6 @@ import { requestApi } from '../Utils/ApiRequest';
 import DealResponse from '../Utils/DealResponse';
 import { CategoryType, FoodCardType } from '../Utils/Types';
 import CardRecipe from './CardRecipe';
-
-import categoryFoods from '../Utils/categoryFoods';
 import {
   imagesIconsMeals, allFoodIcon,
   imagesIconsDrinks, drinkIcon,
@@ -14,7 +12,6 @@ import {
 import { CategoriesContainer, ImageContainer,
   TextContainer } from '../styles/StyledMealsAndDrinks';
 import styles from '../styles/StylesMeals.module.css';
-
 
 export default function Recipes() {
   const { recipes } = useContext(StoreContext);
@@ -125,7 +122,6 @@ export default function Recipes() {
             <TextContainer>
               {strCategory}
             </TextContainer>
-
           </button>
         ))
       }
@@ -138,12 +134,11 @@ export default function Recipes() {
       {FilterCategories}
       {
         recipes.map((recipe, index) => (
-          <div key={ index } className={ styles.teste2 }>
+          <div key={ index }>
             <Link to={ `/${newFood}/${recipe.id}` }>
               <CardRecipe food={ recipe } page="recipes" index={ index } />
             </Link>
           </div>))
-
       }
     </div>
   );
