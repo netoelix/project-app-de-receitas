@@ -17,7 +17,7 @@ function RandomRecipe() {
 
   return (
     <RandomButton onClick={ () => stortRecipe() }>
-      Surpreenda-me
+      Surprise me
     </RandomButton>
   );
 }
