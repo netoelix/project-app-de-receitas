@@ -6,7 +6,6 @@ import CardRecipe from '../Components/CardRecipe';
 import { StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
 
 function DoneRecipes() {
-  // const { storeRecipes: { doneRecipes } } = useContext(StoreContext);
   const { filteredDoneRecipes, showByDoneFilter } = useContext(StoreContext);
   const [doneRecipes, setDoneRecipes] = useState([]);
 

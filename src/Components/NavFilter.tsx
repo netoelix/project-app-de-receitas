@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { NavFilterContainer } from '../styles/StyledDoneRecipes';
 import StoreContext from '../Context/StoreContext';
-import { NavProps } from '../Utils/Types';
 import { allFoodIcon, drinkIcon, mealIcon } from '../Utils/exportIcons';
+
+type NavProps = {
+  page: string;
+};
 
 function NavFilter({ page } : NavProps) {
   const { handleDoneRecipes, handleFavorites } = useContext(StoreContext);

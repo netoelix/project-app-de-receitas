@@ -34,20 +34,20 @@ export type StorageType = {
 };
 
 export type StoreContextType = {
-  handleFood : (page : string) => void,
+  // handleFood : (page : string) => void,
   handleDoneRecipes : (filter : string) => void,
   handleFavorites: (filter : string) => void,
-  handleScreen : (filter : string, string: FoodCardType[]) => void,
-  storeRecipes : StorageType,
-  food : string,
-  recipesScreen: FoodCardType[],
   removeFavorites: (recipe : string) => void,
-  recipes: FoodCardType[] | SmallFoodCardType[],
   handleRecipes: (newRecipes: FoodCardType[]) => void,
-  showByDoneFilter: boolean,
+
+  // food : string,
+  // recipesScreen: FoodCardType[],
+  // storeRecipes : StorageType,
+  recipes: FoodCardType[],
   filteredDoneRecipes: FoodCardType[],
-  showByFavFilter: boolean,
   filteredFavRecipes: FoodCardType[],
+  showByDoneFilter: boolean,
+  showByFavFilter: boolean,
 };
 
 export type CardRecipe = {
@@ -68,10 +68,6 @@ export type CardRecipeProps = {
   food : FoodCardType
   page: string
   index: number
-};
-
-export type NavProps = {
-  page: string;
 };
 
 export type CategoryType = {

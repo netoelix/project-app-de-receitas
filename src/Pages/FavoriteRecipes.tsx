@@ -7,7 +7,6 @@ import { StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
 import { Paragraph } from '../styles/StyledDoneRecipes';
 
 function FavoriteRecipes() {
-  // const { storeRecipes: { favoriteRecipes } } = useContext(StoreContext);
   const { filteredFavRecipes, showByFavFilter } = useContext(StoreContext);
   const [favoriteRecipes, setFavoriteRecipes] = useState<FoodCardType[]>([]);
 

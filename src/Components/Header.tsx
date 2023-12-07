@@ -38,6 +38,7 @@ function Header() {
         setTitle('Drinks');
         setShowSearchIcon(true);
         setPageIcon(drinkIcon);
+
         break;
       case 'profile':
         setTitle('Profile');
@@ -89,7 +90,10 @@ function Header() {
         </h1>
 
         {showSearchBar && (
-          <SearchBar />
+          <>
+            <RandomRecipe />
+            <SearchBar />
+          </>
         )}
       </HeaderContainer>
     </>

@@ -5,6 +5,7 @@ import { requestApi } from '../Utils/ApiRequest';
 import DealResponse from '../Utils/DealResponse';
 import { CategoryType, FoodCardType } from '../Utils/Types';
 import CardRecipe from './CardRecipe';
+
 import categoryFoods from '../Utils/categoryFoods';
 import {
   imagesIconsMeals, allFoodIcon,
@@ -14,52 +15,58 @@ import { CategoriesContainer, ImageContainer,
   TextContainer } from '../styles/StyledMealsAndDrinks';
 import styles from '../styles/StylesMeals.module.css';
 
+
 export default function Recipes() {
-  const { food, recipes, handleRecipes } = useContext(StoreContext);
+  const { recipes } = useContext(StoreContext);
   const [data, setData] = useState([] as FoodCardType[]);
+  const [cards, setCard] = useState([] as FoodCardType[]);
   const [categories, setCategories] = useState([] as CategoryType[]);
   const [categorySelected, setCategorySelected] = useState('');
   const [allIcon, setAllIcon] = useState(allFoodIcon);
 
+  const path = window.location.pathname;
+  const newFood = path.split('/')[1];
+
+  // O primeiro Effect é chamado quando a página é carregada.
   useEffect(() => {
     async function requestRecipes() {
-      const path = window.location.pathname;
-      const newFood = path.split('/')[1];
-
       const response = await requestApi(newFood, '', '');
 
       if (response[newFood]) {
         const result = response[newFood].slice(0, 12);
         const newList: FoodCardType[] = DealResponse(newFood, result);
         setData(newList);
-        handleRecipes(newList);
+        setCard(newList);
       }
     }
     async function requestCategories() {
-      const response = await requestApi(food, 'categories', '');
-      if (response[food]) {
-        const result: CategoryType[] = response[food].slice(0, 5);
+      const response = await requestApi(newFood, 'categories', '');
+      if (response[newFood]) {
+        const result: CategoryType[] = response[newFood].slice(0, 5);
         setCategories(result);
       }
     }
-    if (recipes.length === 0) {
-      requestRecipes();
-    }
+
+    requestRecipes();
     requestCategories();
-  }, [food, handleRecipes, recipes]);
+  }, [newFood]);
+
+  // O segundo Effect é chamado quando a variável recipes é alterada pelo searchBar
+  useEffect(() => {
+    setCard(recipes);
+  }, [recipes]);
 
   async function changeRecipes(category: string) {
-    console.log(food);
-    console.log(category);
-
     if (category !== categorySelected) {
-      const newRecipes = await categoryFoods(food, category);
+      const response = await requestApi(newFood, 'category-data', category);
+      const newRecipes = DealResponse(newFood, response[newFood]).slice(0, 12);
+
       if (newRecipes) {
-        handleRecipes(newRecipes);
+        setCard(newRecipes);
         setCategorySelected(category);
       }
     } else {
-      handleRecipes(data);
+      setCard(data);
       setCategorySelected('');
     }
   }
@@ -92,7 +99,7 @@ export default function Recipes() {
 
       <button
         data-testid="All-category-filter"
-        onClick={ () => handleRecipes(data) }
+        onClick={ () => setCard(data) }
       >
         <ImageContainer>
           <img src={ allIcon } alt="Button" />
@@ -132,10 +139,11 @@ export default function Recipes() {
       {
         recipes.map((recipe, index) => (
           <div key={ index } className={ styles.teste2 }>
-            <Link to={ `/${food}/${recipe.id}` }>
+            <Link to={ `/${newFood}/${recipe.id}` }>
               <CardRecipe food={ recipe } page="recipes" index={ index } />
             </Link>
           </div>))
+
       }
     </div>
   );

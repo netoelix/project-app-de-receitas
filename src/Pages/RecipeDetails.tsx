@@ -37,23 +37,6 @@ function RecipeDetails() {
 
         setRecipeDetails(recipeDetailData[0]);
 
-        //   let apiUrl;
-
-        //   if (type === 'meals') {
-        //     apiUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-        //   } else if (type === 'drinks') {
-        //     apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-        //   }
-
-        //   if (apiUrl) {
-        //     const response = await fetch(apiUrl);
-        //     const data = await response.json();
-        //     setRecipeDetails(data.meals ? data.meals[0] : data.drinks[0]);
-        //   } else {
-        //     console.error('A URL da API não está definida.');
-        //   }
-        // }
-
         const favoriteRecipesStorage = JSON.parse(localStorage.getItem('favoriteRecipes')
     || JSON.stringify([]));
         if (favoriteRecipesStorage.length > 0) {
