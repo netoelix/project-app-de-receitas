@@ -33,12 +33,13 @@ export const HeaderContainer = styled.div`
         line-height: normal;
         letter-spacing: 2.1px;
         text-transform: uppercase;
-    
+        margin-bottom: 5px;
     }
 
     img {
         width: 60px;
         height: 60px;
+        margin: 15px;
     }
     `;
 

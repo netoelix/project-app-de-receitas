@@ -13,13 +13,6 @@ export const ProfileContainer = styled.div`
         width: 100%;
         margin-bottom: 20px;
 
-        img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
-
         p {
             color: #1A1B1C;
             font-size: 18px;
@@ -47,6 +40,10 @@ export const ProfileContainer = styled.div`
         border-bottom: 1px solid #ccc;
         background-color: #fff;
         margin-right: 60px;
+        color: #1A1B1C;
+        font-size: 18px;
+        font-style: normal;
+        line-height: normal;
 
         img {
             margin-right: 20px;

@@ -7,6 +7,7 @@ import {
   receipIcon, searchIcon,
   mealIcon, drinkIcon, logoIcon, doneIcon,
   favoriteIcon, profileYellowIcon } from '../Utils/exportIcons';
+import RandomRecipe from './RandomRecipe';
 
 function Header() {
   const navigate = useNavigate();
