@@ -77,7 +77,7 @@ export default function Recipes() {
       }
     };
     iconsATT();
-  }, []);
+  }, [path]);
 
   const icons = (index: number) => {
     if (path === '/meals') {
@@ -131,7 +131,7 @@ export default function Recipes() {
       {FilterCategories}
       <FinalContainer>
         {
-        recipes.map((recipe, index) => (
+        cards.map((recipe, index) => (
           <div key={ index }>
             <Link to={ `/${newFood}/${recipe.id}` }>
               <CardRecipe food={ recipe } page="recipes" index={ index } />
