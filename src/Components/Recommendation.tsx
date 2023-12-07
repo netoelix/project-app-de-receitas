@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Recommendation.css';
+import { RecomendedCards, RecomendedContainer } from '../styles/StyledRecipeDetails';
 
 interface Props {
   type: string;
@@ -37,9 +38,9 @@ function Recommendations({ type }: Props) {
   }, [type]);
 
   return (
-    <div className="recommendation-card-container">
+    <RecomendedContainer className="recommendation-card-container">
       <p>Recommendations</p>
-      <div className="recommendation-cards">
+      <RecomendedCards className="recommendation-cards">
         {recommendations.slice(0, 6).map((recipe, index1) => (
           <div
             key={ recipe.idDrink || recipe.idMeal }
@@ -56,8 +57,8 @@ function Recommendations({ type }: Props) {
             </p>
           </div>
         ))}
-      </div>
-    </div>
+      </RecomendedCards>
+    </RecomendedContainer>
   );
 }
 

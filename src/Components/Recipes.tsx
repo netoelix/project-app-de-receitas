@@ -6,12 +6,23 @@ import DealResponse from '../Utils/DealResponse';
 import { CategoryType, FoodCardType } from '../Utils/Types';
 import CardRecipe from './CardRecipe';
 
+import categoryFoods from '../Utils/categoryFoods';
+import {
+  imagesIconsMeals, allFoodIcon,
+  imagesIconsDrinks, drinkIcon,
+} from '../Utils/exportIcons';
+import { CategoriesContainer, ImageContainer,
+  TextContainer } from '../styles/StyledMealsAndDrinks';
+import styles from '../styles/StylesMeals.module.css';
+
+
 export default function Recipes() {
   const { recipes } = useContext(StoreContext);
   const [data, setData] = useState([] as FoodCardType[]);
   const [cards, setCard] = useState([] as FoodCardType[]);
   const [categories, setCategories] = useState([] as CategoryType[]);
   const [categorySelected, setCategorySelected] = useState('');
+  const [allIcon, setAllIcon] = useState(allFoodIcon);
 
   const path = window.location.pathname;
   const newFood = path.split('/')[1];
@@ -23,7 +34,7 @@ export default function Recipes() {
 
       if (response[newFood]) {
         const result = response[newFood].slice(0, 12);
-        const newList :FoodCardType[] = DealResponse(newFood, result);
+        const newList: FoodCardType[] = DealResponse(newFood, result);
         setData(newList);
         setCard(newList);
       }
@@ -60,37 +71,79 @@ export default function Recipes() {
     }
   }
 
+  useEffect(() => {
+    const iconsATT = () => {
+      const path = window.location.pathname;
+      if (path === '/meals') {
+        setAllIcon(allFoodIcon);
+      }
+      if (path === '/drinks') {
+        setAllIcon(drinkIcon);
+      }
+    };
+    iconsATT();
+  }, []);
+
+  const icons = (index: number) => {
+    const path = window.location.pathname;
+    if (path === '/meals') {
+      return imagesIconsMeals[index];
+    }
+    if (path === '/drinks') {
+      return imagesIconsDrinks[index];
+    }
+  };
+
   const FilterCategories = (
-    <div>
-      {categories.map(({ strCategory }, index) => (
-        <button
-          key={ index }
-          data-testid={ `${strCategory}-category-filter` }
-          onClick={ () => changeRecipes(strCategory) }
-        >
-          {strCategory}
-        </button>
-      ))}
+    <CategoriesContainer>
+
       <button
         data-testid="All-category-filter"
         onClick={ () => setCard(data) }
       >
-        All
+        <ImageContainer>
+          <img src={ allIcon } alt="Button" />
+        </ImageContainer>
+
+        <TextContainer>
+          All
+        </TextContainer>
 
       </button>
-    </div>
+
+      {
+        categories.map(({ strCategory }, index) => (
+          <button
+            key={ index }
+            data-testid={ `${strCategory}-category-filter` }
+            onClick={ () => changeRecipes(strCategory) }
+          >
+            <ImageContainer>
+              <img src={ icons(index) } alt={ `Button-${icons(index)}` } />
+            </ImageContainer>
+
+            <TextContainer>
+              {strCategory}
+            </TextContainer>
+
+          </button>
+        ))
+      }
+
+    </CategoriesContainer>
   );
 
   return (
     <div>
       {FilterCategories}
       {
-  cards.map((recipe, index) => (
-    <div key={ index }>
-      <Link to={ `/${newFood}/${recipe.id}` }>
-        <CardRecipe food={ recipe } page="recipes" index={ index } />
-      </Link>
-    </div>))
+        recipes.map((recipe, index) => (
+          <div key={ index } className={ styles.teste2 }>
+            <Link to={ `/${newFood}/${recipe.id}` }>
+              <CardRecipe food={ recipe } page="recipes" index={ index } />
+            </Link>
+          </div>))
+
       }
     </div>
   );

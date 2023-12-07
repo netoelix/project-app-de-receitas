@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const DoneRecipesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
 `;
 
 export const CardRecipeContainer = styled.div`

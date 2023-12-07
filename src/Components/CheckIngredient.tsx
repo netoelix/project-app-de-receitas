@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './CheckIngredient.css';
+import { CheckBoxCustom } from '../styles/StyledRecipeInProgress';
 
 type CheckboxProps = {
   ingredient: string,
@@ -42,11 +43,7 @@ function CheckIngredient({
   };
 
   return (
-    <label
-      className={ (checked ? 'marked' : '') }
-      data-testid={ `${index}-ingredient-step` }
-      htmlFor={ ingredient }
-    >
+    <CheckBoxCustom>
       <input
         type="checkbox"
         id={ ingredient }
@@ -54,8 +51,15 @@ function CheckIngredient({
         }) }
         checked={ checked }
       />
-      {ingredient}
-    </label>
+      <label
+        className={ (checked ? 'marked' : '') }
+        data-testid={ `${index}-ingredient-step` }
+        htmlFor={ ingredient }
+      >
+        {ingredient}
+      </label>
+
+    </CheckBoxCustom>
   );
 }
 

@@ -7,6 +7,9 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import DealResponse from '../Utils/DealResponse';
+import { ButtonContainer, CategoryContainer,
+  IngredientsContainer, InstructionsContainer,
+  TitleContainer } from '../styles/StyledRecipeInProgress';
 
 function RecipeInProgress() {
   const [recipe, setRecipe] = useState({} as CardRecipe);
@@ -125,43 +128,59 @@ function RecipeInProgress() {
 
   const content = (
     <div>
-      <img src={ image } alt="recipe-progress" data-testid="recipe-photo" />
-      <h1 data-testid="recipe-title">{name}</h1>
-      <h3 data-testid="recipe-category">{category}</h3>
-      <button
-        data-testid="share-btn"
-        onClick={ handleShareClick }
-      >
-        <img src={ shareIcon } alt="share button" />
+      <CategoryContainer>
+        <div>
+          <h3 data-testid="recipe-category">{category}</h3>
+        </div>
+        <div>
+          <button
+            data-testid="share-btn"
+            onClick={ handleShareClick }
+          >
+            <img src={ shareIcon } alt="share button" />
 
-      </button>
-      <span id="link-copied" data-testid="message">{linkCopied}</span>
-      <button onClick={ handleFavClick }>
-        {isFavorite
-          ? <img src={ blackHeartIcon } alt="full heart" data-testid="favorite-btn" />
-          : <img src={ whiteHeartIcon } alt="empty heart" data-testid="favorite-btn" />}
-      </button>
-      <div>
-        {filterIngredients.map((ingredient, index) => (<CheckIngredient
-          ingredient={ ingredient }
-          key={ ingredient }
-          index={ index }
-          type={ `${type}s` }
-          id={ Number(id) }
-          handleFinishRecipeBtn={ handleFinishRecipeBtn }
-        />))}
-      </div>
-      <button
+          </button>
+          <span id="link-copied" data-testid="message">{linkCopied}</span>
+          <button onClick={ handleFavClick }>
+            {isFavorite
+              ? <img src={ blackHeartIcon } alt="full heart" data-testid="favorite-btn" />
+              : <img
+                  src={ whiteHeartIcon }
+                  alt="empty heart"
+                  data-testid="favorite-btn"
+              />}
+          </button>
+        </div>
+      </CategoryContainer>
+      <TitleContainer>
+        <h1 data-testid="recipe-title">{name}</h1>
+        <img src={ image } alt="recipe-progress" data-testid="recipe-photo" />
+      </TitleContainer>
+      <IngredientsContainer>
+        <h2>Ingredients</h2>
+        <div>
+          {filterIngredients.map((ingredient, index) => (<CheckIngredient
+            ingredient={ ingredient }
+            key={ ingredient }
+            index={ index }
+            type={ `${type}s` }
+            id={ Number(id) }
+            handleFinishRecipeBtn={ handleFinishRecipeBtn }
+          />))}
+        </div>
+      </IngredientsContainer>
+      <InstructionsContainer>
+        <h2>Instructions</h2>
+        <p data-testid="instructions">{instructions}</p>
+      </InstructionsContainer>
+      <ButtonContainer
         data-testid="finish-recipe-btn"
         disabled={ finishRecipeBtn }
         onClick={ handleClick }
       >
-        Finalizar
+        FINISH RECIPE
 
-      </button>
-      <h2>Instruções</h2>
-      <p data-testid="instructions">{instructions}</p>
-
+      </ButtonContainer>
     </div>
   );
 

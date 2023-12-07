@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './profile.css';
+import { ProfileContainer } from '../../styles/StyledProfile';
+import { doneIcon, exitIcon,
+  favoriteIcon, profileYellowIcon } from '../../Utils/exportIcons';
 
 function Profile() {
   const [email, setEmail] = useState('');
@@ -27,23 +29,26 @@ function Profile() {
   };
 
   return (
-    <div className="profile-container">
+    <ProfileContainer className="profile-container">
       <div className="profile-info">
-        <h2>User Profile</h2>
+        <img src={ profileYellowIcon } alt="profile_picture" />
         <p data-testid="profile-email" className="user-email">{email}</p>
       </div>
       <div className="profile-buttons">
         <button data-testid="profile-done-btn" onClick={ handleDoneRecipesClick }>
+          <img src={ doneIcon } alt="" />
           Done Recipes
         </button>
         <button data-testid="profile-favorite-btn" onClick={ handleFavoriteRecipesClick }>
+          <img src={ favoriteIcon } alt="" />
           Favorite Recipes
         </button>
         <button data-testid="profile-logout-btn" onClick={ handleLogoutClick }>
+          <img src={ exitIcon } alt="" />
           Logout
         </button>
       </div>
-    </div>
+    </ProfileContainer>
   );
 }
 

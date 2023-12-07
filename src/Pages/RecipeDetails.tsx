@@ -5,6 +5,10 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { requestApi } from '../Utils/ApiRequest';
 import Recommendations from '../Components/Recommendation';
+import { ButtonContainer, CategoryContainer,
+  IngredientsContainer, InstructionsContainer,
+  TitleContainer, VideoContainer } from '../styles/StyledRecipeDetails';
+import { shareIcon } from '../Utils/exportIcons';
 
 function RecipeDetails() {
   const navigate = useNavigate();
@@ -89,53 +93,78 @@ function RecipeDetails() {
 
   return (
     <div>
-      <h1 data-testid="recipe-title">
-        {recipeDetails.strMeal || recipeDetails.strDrink}
-      </h1>
-      <img
-        src={ recipeDetails.strMealThumb || recipeDetails.strDrinkThumb }
-        alt="Recipe"
-        data-testid="recipe-photo"
-        width="350px"
-      />
-
-      {type === 'meals' && (
-        <>
-          <p data-testid="recipe-category">
-            {recipeDetails.strCategory}
-          </p>
-          <p>
-            {recipeDetails.strArea}
-          </p>
-        </>
-      )}
-      {type === 'drinks' && (
-        <p data-testid="recipe-category">
-          {recipeDetails.strCategory}
-          <br />
-          {recipeDetails.strAlcoholic}
-        </p>
-      )}
-      <h2>Ingredients</h2>
-      <ul>
-        {Object.entries(recipeDetails)
-          .filter(([key, value]) => key.startsWith('strIngredient') && value)
-          .map(([key, ingredient], index) => {
-            const measureKey = `strMeasure${key.split('strIngredient')[1]}`;
-            const measure = (recipeDetails as any)[measureKey];
-            return (
-              <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
-                {`${ingredient}: ${measure}`}
-              </li>
-            );
-          })}
-      </ul>
-
-      <h2>Instructions</h2>
-      <p data-testid="instructions">{recipeDetails.strInstructions}</p>
-
-      {type === 'meals' && recipeDetails.strYoutube && (
+      <CategoryContainer>
         <div>
+          {type === 'meals' && (
+            <>
+              <p data-testid="recipe-category">
+                {recipeDetails.strCategory}
+              </p>
+              <p>
+                {recipeDetails.strArea}
+              </p>
+            </>
+          )}
+          {type === 'drinks' && (
+            <p data-testid="recipe-category">
+              {recipeDetails.strCategory}
+              <br />
+              {recipeDetails.strAlcoholic}
+            </p>
+          )}
+        </div>
+        <div>
+          <button
+            onClick={ shareButton }
+            data-testid="share-btn"
+          >
+            <img src={ shareIcon } alt={ shareIcon } />
+          </button>
+          <div data-tesid="copy">{copyMessage}</div>
+          <button
+            onClick={ favoriteButton }
+          >
+            <img
+              data-testid="favorite-btn"
+              src={ favButton ? blackHeartIcon : whiteHeartIcon }
+              alt={ favButton ? 'Favorited' : 'Unfavorited' }
+            />
+          </button>
+        </div>
+      </CategoryContainer>
+      <TitleContainer>
+        <h1 data-testid="recipe-title">
+          {recipeDetails.strMeal || recipeDetails.strDrink}
+        </h1>
+        <img
+          src={ recipeDetails.strMealThumb || recipeDetails.strDrinkThumb }
+          alt="Recipe"
+          data-testid="recipe-photo"
+          width="350px"
+        />
+      </TitleContainer>
+      <IngredientsContainer>
+        <h2>Ingredients</h2>
+        <ul>
+          {Object.entries(recipeDetails)
+            .filter(([key, value]) => key.startsWith('strIngredient') && value)
+            .map(([key, ingredient], index) => {
+              const measureKey = `strMeasure${key.split('strIngredient')[1]}`;
+              const measure = (recipeDetails as any)[measureKey];
+              return (
+                <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
+                  {`${ingredient}: ${measure}`}
+                </li>
+              );
+            })}
+        </ul>
+      </IngredientsContainer>
+      <InstructionsContainer>
+        <h2>Instructions</h2>
+        <p data-testid="instructions">{recipeDetails.strInstructions}</p>
+      </InstructionsContainer>
+      {type === 'meals' && recipeDetails.strYoutube && (
+        <VideoContainer>
           <h2 data-testid="video">Video</h2>
           <iframe
             title="Recipe Video"
@@ -145,24 +174,8 @@ function RecipeDetails() {
             allowFullScreen
             data-testid="video"
           />
-        </div>
+        </VideoContainer>
       )}
-      <button
-        onClick={ shareButton }
-        data-testid="share-btn"
-      >
-        Compartilhar
-      </button>
-      <div data-tesid="copy">{copyMessage}</div>
-      <button
-        onClick={ favoriteButton }
-      >
-        <img
-          data-testid="favorite-btn"
-          src={ favButton ? blackHeartIcon : whiteHeartIcon }
-          alt={ favButton ? 'Favorited' : 'Unfavorited' }
-        />
-      </button>
       <div>
         {type && (
           <div>
@@ -172,14 +185,14 @@ function RecipeDetails() {
       </div>
       {!doneRecipes
       && (
-        <button
+        <ButtonContainer
           className="Start-Recipe"
           data-testid="start-recipe-btn"
         // style={ { display: doneRecipes ? 'none' : 'block' } }
           onClick={ recipeButton }
         >
           {recipeInProgress ? 'Continue Recipe' : 'Start Recipe'}
-        </button>)}
+        </ButtonContainer>)}
     </div>
   );
 }

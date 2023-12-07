@@ -3,6 +3,8 @@ import NavFilter from '../Components/NavFilter';
 import CardRecipe from '../Components/CardRecipe';
 import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
+import { StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
+import { Paragraph } from '../styles/StyledDoneRecipes';
 
 function FavoriteRecipes() {
   const { filteredFavRecipes, showByFavFilter } = useContext(StoreContext);
@@ -34,12 +36,15 @@ function FavoriteRecipes() {
     </div>
   );
   return (
-    <div>
-      <NavFilter page="Favorite" />
-      {favoriteRecipes.length === 0 && <p>Nenhuma receita favoritada</p>}
-      {favoriteRecipes.length > 0 && showByFavFilter
-        ? FilteredFavRecipes : ElementFavRecipes}
-    </div>
+    <StyledFavoriteRecipes>
+      <div>
+        <NavFilter page="Favorite" />
+        {favoriteRecipes.length === 0
+        && <Paragraph>Nenhuma receita favoritada</Paragraph>}
+        {favoriteRecipes.length > 0 && showByFavFilter
+          ? FilteredFavRecipes : ElementFavRecipes}
+      </div>
+    </StyledFavoriteRecipes>
   );
 }
 
