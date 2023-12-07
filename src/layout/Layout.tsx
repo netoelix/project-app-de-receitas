@@ -7,9 +7,6 @@ function Layout() {
     <>
       <Header />
       <Outlet />
-      {/* <footer>
-        <span>Trybe - todos os direitos reservados</span>
-      </footer> */}
       <Footer />
     </>
   );

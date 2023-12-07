@@ -11,7 +11,6 @@ export const CategoriesContainer = styled.div`
   margin-bottom: 40px;
   width: 95%;
 
-  
   button {
     align-items: center;
     background-color: white;
@@ -21,11 +20,9 @@ export const CategoriesContainer = styled.div`
     font-size: 12px;
     justify-content: center;
     
-    
     &:hover {
       font-weight: bold;
       font-size: 14px;
-      
     }
 
     img {
@@ -33,9 +30,7 @@ export const CategoriesContainer = styled.div`
       width: 40px;
     }
 
-
   }
-
   `;
 
 export const ImageContainer = styled.div`

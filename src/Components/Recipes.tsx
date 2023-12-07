@@ -12,6 +12,7 @@ import {
 } from '../Utils/exportIcons';
 import { CategoriesContainer, ImageContainer,
   TextContainer } from '../styles/StyledMealsAndDrinks';
+import styles from '../styles/StylesMeals.module.css';
 
 export default function Recipes() {
   const { food, recipes, handleRecipes } = useContext(StoreContext);
@@ -130,7 +131,7 @@ export default function Recipes() {
       {FilterCategories}
       {
         recipes.map((recipe, index) => (
-          <div key={ index }>
+          <div key={ index } className={ styles.teste }>
             <Link to={ `/${food}/${recipe.id}` }>
               <CardRecipe food={ recipe } page="recipes" index={ index } />
             </Link>
