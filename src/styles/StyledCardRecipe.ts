@@ -11,6 +11,7 @@ export const PrincipalContainer = styled.div`
     padding: 6px;
     text-decoration: none;
     transition: transform 0.3s ease-in-out;
+    width: 300px;
 
     button {
         background-color: #41197f;

@@ -127,9 +127,10 @@ export default function Recipes() {
   );
 
   return (
-    <FinalContainer>
+    <div>
       {FilterCategories}
-      {
+      <FinalContainer>
+        {
         recipes.map((recipe, index) => (
           <div key={ index }>
             <Link to={ `/${newFood}/${recipe.id}` }>
@@ -137,6 +138,7 @@ export default function Recipes() {
             </Link>
           </div>))
       }
-    </FinalContainer>
+      </FinalContainer>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FooterContainer } from './StyledLogin';
+import { FooterContainer, ContainerDiv } from './StyledLogin';
 
 export const CategoriesContainer = styled.div`
   
@@ -72,4 +72,10 @@ export const TextContainer = styled.div`
 
 export const FinalContainer = styled.div`
   margin-bottom: 70px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   `;
