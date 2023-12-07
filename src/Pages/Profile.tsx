@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProfileContainer } from '../styles/StyledProfile';
 import { doneIcon, exitIcon,
-  favoriteIcon, profileYellowIcon } from '../Utils/exportIcons';
+  favoriteIcon } from '../Utils/exportIcons';
 
 function Profile() {
   const [email, setEmail] = useState('');
