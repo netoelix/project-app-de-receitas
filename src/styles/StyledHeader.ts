@@ -50,7 +50,6 @@ export const SearchConteinerBar = styled.div`
     justify-content: space-around;
     background-color: #41197F;
     color: #fff;
-    width: 100%;
     padding: 10px;
 
     button {

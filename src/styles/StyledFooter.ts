@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledFooter = styled.footer`
     position: fixed;
     bottom: 0;
-    width: 97%;
     display: flex;
     justify-content: space-around;
     padding: 10px;
