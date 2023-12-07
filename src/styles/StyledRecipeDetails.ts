@@ -154,12 +154,17 @@ export const ButtonContainer = styled.button`
   margin: 10px auto;
   border-radius: 5px;
   border: none;
-  background-color: #FCC436;
-  color: white;
+  background-color: #41197F;
+  color: #FCC436;
   font-weight: bold;
   font-size: 18px;
   width: 150px;
   height: 50px;
-  margin-bottom: 70px;
-  margin-left: 30%;
+  margin-bottom: 55px;
 `;
+
+export const ButtonStartContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    `;

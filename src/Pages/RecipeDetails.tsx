@@ -5,7 +5,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { requestApi } from '../Utils/ApiRequest';
 import Recommendations from '../Components/Recommendation';
-import { ButtonContainer, CategoryContainer,
+import { ButtonContainer, ButtonStartContainer, CategoryContainer,
   IngredientsContainer, InstructionsContainer,
   TitleContainer, VideoContainer } from '../styles/StyledRecipeDetails';
 import { shareIcon } from '../Utils/exportIcons';
@@ -183,16 +183,17 @@ function RecipeDetails() {
           </div>
         )}
       </div>
-      {!doneRecipes
+      <ButtonStartContainer>
+        {!doneRecipes
       && (
         <ButtonContainer
           className="Start-Recipe"
           data-testid="start-recipe-btn"
-        // style={ { display: doneRecipes ? 'none' : 'block' } }
           onClick={ recipeButton }
         >
           {recipeInProgress ? 'Continue Recipe' : 'Start Recipe'}
         </ButtonContainer>)}
+      </ButtonStartContainer>
     </div>
   );
 }

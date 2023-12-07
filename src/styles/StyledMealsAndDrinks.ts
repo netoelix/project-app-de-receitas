@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FooterContainer, ContainerDiv } from './StyledLogin';
 
 export const CategoriesContainer = styled.div`
   
@@ -13,9 +12,6 @@ export const CategoriesContainer = styled.div`
   align-items: center;
   margin-top: 20px;
   margin-bottom: 40px;
-  /* width: 90vh;
-  height: 10vh; */
-
 
   button {
     align-items: center;

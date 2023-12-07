@@ -7,11 +7,14 @@ export const PrincipalContainer = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
     margin: 20px;
     padding: 6px;
     text-decoration: none;
     transition: transform 0.3s ease-in-out;
     width: 300px;
+    height: 400px;
 
     button {
         background-color: #41197f;
