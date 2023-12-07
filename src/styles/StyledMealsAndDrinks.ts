@@ -6,10 +6,10 @@ export const CategoriesContainer = styled.div`
   flex-direction: row;
   height: 10vh;
   justify-content: space-between;
-  padding: 10px;
-  margin-top: 30px;
-  margin-bottom: 46px;
-  width: 90%;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 95%;
 
   
   button {
@@ -18,13 +18,14 @@ export const CategoriesContainer = styled.div`
     color: blueviolet;
     display: flex;
     flex-direction: column;
-    font-size: 15px;
+    font-size: 12px;
     justify-content: center;
     
     
     &:hover {
       font-weight: bold;
-      font-size: 15px;
+      font-size: 14px;
+      
     }
 
     img {
@@ -41,7 +42,7 @@ export const ImageContainer = styled.div`
     border: 3px solid #fcc436;
     border-radius: 50%;
     padding: 10px;
-    margin: 6px;
+    margin: 4px;
     margin-bottom: 8px;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -56,3 +57,10 @@ export const ImageContainer = styled.div`
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
   `;
+
+export const TextContainer = styled.div`
+  margin-top: 100px;
+  align-items: center;
+  background-color: white;
+  position: absolute;
+`;

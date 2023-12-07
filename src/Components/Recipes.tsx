@@ -10,7 +10,8 @@ import {
   imagesIconsMeals, allFoodIcon,
   imagesIconsDrinks, drinkIcon,
 } from '../Utils/exportIcons';
-import { CategoriesContainer, ImageContainer } from '../styles/StyledMealsAndDrinks';
+import { CategoriesContainer, ImageContainer,
+  TextContainer } from '../styles/StyledMealsAndDrinks';
 
 export default function Recipes() {
   const { food, recipes, handleRecipes } = useContext(StoreContext);
@@ -95,9 +96,11 @@ export default function Recipes() {
         <ImageContainer>
           <img src={ allIcon } alt="Button" />
         </ImageContainer>
-        <div>
+
+        <TextContainer>
           All
-        </div>
+        </TextContainer>
+
       </button>
 
       {
@@ -110,9 +113,10 @@ export default function Recipes() {
             <ImageContainer>
               <img src={ icons(index) } alt={ `Button-${icons(index)}` } />
             </ImageContainer>
-            <div>
+
+            <TextContainer>
               {strCategory}
-            </div>
+            </TextContainer>
 
           </button>
         ))

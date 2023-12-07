@@ -27,7 +27,22 @@ export const LoginContainer = styled.div`
         font-size: 1.5rem;
         font-weight: 600;
         cursor: pointer;
+        transition: opacity 0.3s ease-in-out;
+
+        &:disabled {
+            opacity: 0.5; 
+            cursor: not-allowed;
+        }
+          
+    
+          
+
     }
+
+
+
+
+
     `;
 export const ContainerDiv = styled.div`
     display: flex;
