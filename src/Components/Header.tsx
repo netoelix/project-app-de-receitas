@@ -92,8 +92,8 @@ function Header() {
 
         {showSearchBar && (
           <>
-            <RandomRecipe />
             <SearchBar />
+            <RandomRecipe />
           </>
         )}
       </HeaderContainer>

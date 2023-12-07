@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const DoneRecipesContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 70px;
 `;
 
 export const CardRecipeContainer = styled.div`
@@ -56,9 +57,6 @@ export const CardRecipeInfo = styled.div`
     }
     a:visited {
         text-decoration:none;
-    }
-    a:hover {
-        text-decoration:underline;
     }
     p {
         color: #1A1B1C;

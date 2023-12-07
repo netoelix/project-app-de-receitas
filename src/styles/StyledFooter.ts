@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledFooter = styled.footer`
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 97%;
     display: flex;
     justify-content: space-around;
     padding: 10px;
@@ -19,5 +19,6 @@ export const StyledFooter = styled.footer`
         border-radius: 5px;
         padding-left: 5px;
         padding-right: 5px;
+        text-align: center;
     }
     `;

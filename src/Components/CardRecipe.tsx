@@ -1,13 +1,10 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { CardRecipeProps } from '../Utils/Types';
-import {
-  CardRecipeContainer,
-  CardRecipeImage, CardRecipeInfo, TagContainer,
-} from '../styles/StyledDoneRecipes';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import StoreContext from '../Context/StoreContext';
 import { shareIcon } from '../Utils/exportIcons';
-import styles from '../styles/StylesMeals.module.css';
+import { ContainerImage, ContainerInfo,
+  PrincipalContainer } from '../styles/StyledCardRecipe';
 
 function CardRecipe({ food, page, index }: CardRecipeProps) {
   const { removeFavorites } = useContext(StoreContext);
@@ -44,88 +41,12 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
     </button>
   );
 
-  useEffect(() => {
-    const path = window.location.pathname;
-    const newCssClass = !!(path === '/meals' || path === '/drinks');
-    setCssClass(newCssClass);
-  }, []);
-
-  function renderCardRecipe1() {
+  function renderCardRecipe() {
     return (
-      <CardRecipeContainer data-testid={ `${index}-recipe-card` }>
-        <div className="Img">
-          <a href={ link }>
-            <CardRecipeImage
-              src={ image }
-              alt="food"
-              data-testid={ testIdImg }
-            />
-          </a>
-        </div>
-        <CardRecipeInfo>
-          <div className="Recipe-Info">
-            <a href={ link }>
-              <h1 data-testid={ testIdName }>{name}</h1>
-            </a>
-            {(type === 'meal') && (
-              <p data-testid={ `${dataTest}top-text` }>
-                {`${nationality} - ${category}`}
-              </p>
-            )}
-            {(type === 'drink') && (
-              <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
-            )}
-
-          </div>
-          <div className="Done-Info">
-            {(page === 'DoneRecipes') && (
-              <p data-testid={ `${dataTest}done-date` }>
-                {doneDate}
-              </p>)}
-          </div>
-          <div className="Tags">
-            {(page === 'DoneRecipes' && tags.length > 0) && tags.map((tagName) => {
-              const dataTestTag = `${index}-${tagName}-horizontal-tag`;
-              return (
-                <p key={ tagName } data-testid={ dataTestTag }>
-                  {tagName}
-                </p>
-              );
-            })}
-          </div>
-          <div className="Done-Info">
-            {(page === 'DoneRecipes') && (
-              <p data-testid={ `${dataTest}done-date` }>
-                {doneDate}
-              </p>)}
-
-            <TagContainer className="Tags">
-              {(page === 'DoneRecipes') && tags.map((tagName) => {
-                const dataTestTag = `${index}-${tagName}-horizontal-tag`;
-                return (
-                  <p key={ tagName } data-testid={ dataTestTag }>
-                    {tagName}
-                  </p>
-                );
-              })}
-            </TagContainer>
-          </div>
-        </CardRecipeInfo>
-        <button onClick={ () => copyToClipBoard() }>
-          {copied ? 'Link copied!' : share}
-        </button>
-        {(page === 'Favorite') && (favBtn)}
-      </CardRecipeContainer>
-    );
-  }
-
-  function renderCardRecipe2() {
-    return (
-      <div
+      <PrincipalContainer
         data-testid={ `${index}-recipe-card` }
-        className={ styles.containerPrincipal }
       >
-        <div className={ `${styles.containerImage}` }>
+        <ContainerImage>
           <a href={ link }>
             <img
               src={ image }
@@ -133,9 +54,9 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
               data-testid={ testIdImg }
             />
           </a>
-        </div>
+        </ContainerImage>
         <div>
-          <div className={ `${styles.containerInfo} Recipe-Info` }>
+          <ContainerInfo className="Recipe-Info">
             <a href={ link }>
               <h1 data-testid={ testIdName }>{name}</h1>
             </a>
@@ -148,7 +69,7 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
               <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
             )}
 
-          </div>
+          </ContainerInfo>
           <div className="Done-Info">
             {(page === 'DoneRecipes') && (
               <p data-testid={ `${dataTest}done-date` }>
@@ -187,16 +108,10 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
           {copied ? 'Link copied!' : share}
         </button>
         {(page === 'Favorite') && (favBtn)}
-      </div>
+      </PrincipalContainer>
     );
   }
-
-  if (!cssClass) {
-    return renderCardRecipe1();
-  }
-  if (cssClass) {
-    return renderCardRecipe2();
-  }
+  return renderCardRecipe();
 }
 
 export default CardRecipe;

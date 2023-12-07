@@ -9,7 +9,7 @@ import {
   imagesIconsMeals, allFoodIcon,
   imagesIconsDrinks, drinkIcon,
 } from '../Utils/exportIcons';
-import { CategoriesContainer, ImageContainer,
+import { CategoriesContainer, FinalContainer, ImageContainer,
   TextContainer } from '../styles/StyledMealsAndDrinks';
 import styles from '../styles/StylesMeals.module.css';
 
@@ -130,7 +130,7 @@ export default function Recipes() {
   );
 
   return (
-    <div>
+    <FinalContainer>
       {FilterCategories}
       {
         recipes.map((recipe, index) => (
@@ -140,6 +140,6 @@ export default function Recipes() {
             </Link>
           </div>))
       }
-    </div>
+    </FinalContainer>
   );
 }

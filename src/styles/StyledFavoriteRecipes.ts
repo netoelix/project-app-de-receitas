@@ -10,6 +10,7 @@ export const StyledFavoriteRecipes = styled.div`
   overflow-x: hidden;
   padding: 0 10px;
   box-sizing: border-box;
+  margin-bottom: 70px;
 `;
 
 export const Paragraph = styled.p`

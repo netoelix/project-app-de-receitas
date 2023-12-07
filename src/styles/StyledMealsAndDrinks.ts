@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FooterContainer } from './StyledLogin';
 
 export const CategoriesContainer = styled.div`
   
@@ -68,3 +69,7 @@ export const TextContainer = styled.div`
   position: absolute;
   font-size: 12px;
 `;
+
+export const FinalContainer = styled.div`
+  margin-bottom: 70px;
+  `;

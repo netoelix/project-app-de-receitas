@@ -3,6 +3,13 @@
   padding: 0;
   border: 0;
   font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  cursor: pointer;
 }
 body {
   margin: 0;
