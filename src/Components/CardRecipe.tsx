@@ -125,7 +125,7 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
         data-testid={ `${index}-recipe-card` }
         className={ styles.containerPrincipal }
       >
-        <div className={ `${styles.containerImage} Img` }>
+        <div className={ `${styles.containerImage}` }>
           <a href={ link }>
             <img
               src={ image }

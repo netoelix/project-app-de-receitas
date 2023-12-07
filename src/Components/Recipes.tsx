@@ -131,7 +131,7 @@ export default function Recipes() {
       {FilterCategories}
       {
         recipes.map((recipe, index) => (
-          <div key={ index } className={ styles.teste }>
+          <div key={ index } className={ styles.teste2 }>
             <Link to={ `/${food}/${recipe.id}` }>
               <CardRecipe food={ recipe } page="recipes" index={ index } />
             </Link>

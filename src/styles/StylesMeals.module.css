@@ -1,6 +1,8 @@
-.teste {
+.teste2 {
   display: inline-block;
+
 }
+
 
 .containerPrincipal {
   border: 1px solid #ccc;
@@ -8,13 +10,12 @@
   box-shadow: 8px 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   display: flex;
-  flex: 0 0 calc(50% - 10px);
   flex-direction: column;
   margin: 10px;
   padding: 6px;
   text-decoration: none;
   transition: transform 0.3s ease-in-out;
-  width: 300px;
+  width: 220px;
 
 }
 
@@ -49,13 +50,16 @@ button:hover {
 }
 
 .containerInfo {
-  align-items: center;
   color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
-
 }
 
+.containerInfo h1 {
+  font-size: 20px;
+}
+
+.containerInfo p {
+  font-size: 11px;
+}
