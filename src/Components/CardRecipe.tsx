@@ -16,8 +16,6 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
   const testIdName = (page === 'recipes') ? (`${index}-card-name`) : (`${dataTest}name`);
   const testIdImg = (page === 'recipes') ? (`${index}-card-img`) : (`${dataTest}image`);
 
-  const [cssClass, setCssClass] = useState(false);
-
   const copyToClipBoard = () => {
     navigator.clipboard.writeText(link);
     setCopied(true);

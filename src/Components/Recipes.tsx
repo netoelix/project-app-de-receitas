@@ -11,7 +11,6 @@ import {
 } from '../Utils/exportIcons';
 import { CategoriesContainer, FinalContainer, ImageContainer,
   TextContainer } from '../styles/StyledMealsAndDrinks';
-import styles from '../styles/StylesMeals.module.css';
 
 export default function Recipes() {
   const { recipes } = useContext(StoreContext);
@@ -70,7 +69,6 @@ export default function Recipes() {
 
   useEffect(() => {
     const iconsATT = () => {
-      const path = window.location.pathname;
       if (path === '/meals') {
         setAllIcon(allFoodIcon);
       }
@@ -82,7 +80,6 @@ export default function Recipes() {
   }, []);
 
   const icons = (index: number) => {
-    const path = window.location.pathname;
     if (path === '/meals') {
       return imagesIconsMeals[index];
     }
