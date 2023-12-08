@@ -3,7 +3,8 @@ import NavFilter from '../Components/NavFilter';
 import CardRecipe from '../Components/CardRecipe';
 import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
-import { FavoriteContainer, StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
+import { FavoriteContainer,
+  StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
 import { Paragraph } from '../styles/StyledDoneRecipes';
 
 function FavoriteRecipes() {
