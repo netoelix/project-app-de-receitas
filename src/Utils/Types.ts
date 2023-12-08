@@ -39,6 +39,7 @@ export type StoreContextType = {
   handleFavorites: (filter : string) => void,
   removeFavorites: (recipe : string) => void,
   handleRecipes: (newRecipes: FoodCardType[]) => void,
+  setLoadingPage: (value: boolean) => void,
 
   // food : string,
   // recipesScreen: FoodCardType[],
@@ -48,6 +49,7 @@ export type StoreContextType = {
   filteredFavRecipes: FoodCardType[],
   showByDoneFilter: boolean,
   showByFavFilter: boolean,
+  loadingPage : boolean,
 };
 
 export type CardRecipe = {

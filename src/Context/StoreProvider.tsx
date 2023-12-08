@@ -9,7 +9,7 @@ export type StoreProviderProps = {
 
 function StoreProvider({ children } : StoreProviderProps) {
   const [recipes, setRecipes] = useState([] as FoodCardType[]);
-
+  const [loadingPage, setLoadingPage] = useState(false);
   const [showByDoneFilter, setShowByDoneFilter] = useState(false);
   const [filteredDoneRecipes, setFilteredDoneRecipes] = useState([] as FoodCardType[]);
 
@@ -52,11 +52,13 @@ function StoreProvider({ children } : StoreProviderProps) {
         handleFavorites,
         removeFavorites,
         handleRecipes,
+        setLoadingPage,
         recipes,
         showByDoneFilter,
         filteredDoneRecipes,
         showByFavFilter,
         filteredFavRecipes,
+        loadingPage,
       } }
     >
       <div>

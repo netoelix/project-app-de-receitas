@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
 import { CardRecipe, FoodCardType } from '../Utils/Types';
@@ -10,6 +10,8 @@ import DealResponse from '../Utils/DealResponse';
 import { ButtonContainer, CategoryContainer,
   IngredientsContainer, InstructionsContainer,
   TitleContainer } from '../styles/StyledRecipeInProgress';
+import StoreContext from '../Context/StoreContext';
+import LoadingPage from './Loading';
 
 function RecipeInProgress() {
   const [recipe, setRecipe] = useState({} as CardRecipe);
@@ -17,24 +19,27 @@ function RecipeInProgress() {
   const [linkCopied, setLinkCopied] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
   const [finishRecipeBtn, setFinishRecipeBtn] = useState(true);
+  const { loadingPage, setLoadingPage } = useContext(StoreContext);
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('request');
+
     async function requestRecipe() {
       const path = window.location.pathname;
       const newFood = path.split('/')[1];
       const newId = path.split('/')[2];
       if (newId !== undefined) {
+        setLoadingPage(true);
         const response = requestApi(newFood, 'id', newId);
         const recipeData = await response;
         const recipeInProgress = recipeData[newFood];
         const [result] = DealResponse(newFood, recipeInProgress);
-
         setRecipe(result);
         const ingredients = result.ingredients.filter((ingredient) => ingredient !== '');
 
         setFilterIngredients(ingredients);
-
+        setLoadingPage(false);
         const storage = JSON.parse(localStorage.getItem('inProgressRecipes')
         || JSON.stringify({
           drinks: {},
@@ -61,7 +66,7 @@ function RecipeInProgress() {
     }
 
     requestRecipe();
-  });
+  }, [setLoadingPage]);
 
   const handleShareClick = () => {
     const link = window.location.origin;
@@ -183,7 +188,7 @@ function RecipeInProgress() {
       </ButtonContainer>
     </div>
   );
-
+  if (loadingPage) return <LoadingPage />;
   return (
     <div>
       {(ingredients !== undefined) && content}

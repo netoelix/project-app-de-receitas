@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RecipeDetailsProps } from '../Utils/Types';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -8,7 +8,10 @@ import Recommendations from '../Components/Recommendation';
 import { ButtonContainer, ButtonStartContainer, CategoryContainer,
   IngredientsContainer, InstructionsContainer,
   TitleContainer, VideoContainer } from '../styles/StyledRecipeDetails';
+
 import { shareIcon } from '../Utils/exportIcons';
+import StoreContext from '../Context/StoreContext';
+import LoadingPage from './Loading';
 
 function RecipeDetails() {
   const navigate = useNavigate();
@@ -18,30 +21,32 @@ function RecipeDetails() {
   const [recipeInProgress, setRecipeInProgress] = useState(false);
   const [favButton, setFavButton] = useState(false);
   const [copyMessage, setCopyMessage] = useState('');
-  const recipeDone = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
-  const isRecipeDone = recipeDone.some((recipe: any) => recipe.id === id);
-
-  const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipes')
-    || '{}');
-  const isRecipeInProgress = recipesInProgress[type as string]?.[id as string];
+  const { loadingPage, setLoadingPage } = useContext(StoreContext);
 
   useEffect(() => {
+    const path = window.location.pathname;
+    const newFood = path.split('/')[1];
+    const newId = path.split('/')[2];
+    const recipeDone = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
+    const isRecipeDone = recipeDone.some((recipe: any) => recipe.id === newId);
+    const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipes')
+    || '{}');
+    const isRecipeInProgress = recipesInProgress[newFood as string]?.[newId as string];
+
     const fetchRecipeDetails = async () => {
-      const path = window.location.pathname;
-      const newFood = path.split('/')[1];
-      const newId = path.split('/')[2];
       if (newId !== undefined) {
+        setLoadingPage(true);
         const response = requestApi(newFood, 'id', newId);
         const recipeData = await response;
         const recipeDetailData = recipeData[newFood];
 
         setRecipeDetails(recipeDetailData[0]);
-
+        setLoadingPage(false);
         const favoriteRecipesStorage = JSON.parse(localStorage.getItem('favoriteRecipes')
     || JSON.stringify([]));
         if (favoriteRecipesStorage.length > 0) {
           const findIsFavorite = favoriteRecipesStorage
-            .some((favRecipe: any) => favRecipe.id === id);
+            .some((favRecipe: any) => favRecipe.id === newId);
           if (findIsFavorite) {
             setFavButton(true);
           }
@@ -52,7 +57,7 @@ function RecipeDetails() {
     setDoneRecipes(isRecipeDone);
     setRecipeInProgress(!!isRecipeInProgress);
     fetchRecipeDetails();
-  }, [type, id, isRecipeDone, isRecipeInProgress]);
+  }, [setLoadingPage]);
 
   const recipeButton = () => {
     navigate(`/${type}/${id}/in-progress`);
@@ -99,6 +104,7 @@ function RecipeDetails() {
       </p>
     ));
 
+  if (loadingPage) return <LoadingPage />;
   return (
     <div>
       <CategoryContainer>
