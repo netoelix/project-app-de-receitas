@@ -20,14 +20,15 @@ export const StyledFooter = styled.footer`
         padding-left: 5px;
         padding-right: 5px;
         text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 35px 10px 0px;
     }
     img {
     height: 24px;
     width: 24px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 30px 10px 0px;
     }
     button {
     background: none;
-    border: none;
     cursor: pointer;
     }
     `;

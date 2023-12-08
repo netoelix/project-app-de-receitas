@@ -74,7 +74,7 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
                 {doneDate}
               </p>)}
           </div>
-          <div className="Tags">
+          {/* <div className="Tags">
             {(page === 'DoneRecipes' && tags.length > 0) && tags.map((tagName) => {
               const dataTestTag = `${index}-${tagName}-horizontal-tag`;
               return (
@@ -83,8 +83,8 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
                 </p>
               );
             })}
-          </div>
-          <div className="Done-Info">
+          </div> */}
+          {/* <div className="Done-Info">
             {(page === 'DoneRecipes') && (
               <p data-testid={ `${dataTest}done-date` }>
                 {doneDate}
@@ -100,7 +100,7 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
                 );
               })}
             </div>
-          </div>
+          </div> */}
         </div>
         <button onClick={ () => copyToClipBoard() }>
           {copied ? 'Link copied!' : share}

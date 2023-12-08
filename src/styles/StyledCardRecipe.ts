@@ -23,7 +23,7 @@ export const PrincipalContainer = styled.div`
         color: white;
         cursor: pointer;
         margin-top: 10px;
-        padding: 8px 15px;
+        padding: 5px 15px;
     }
     button:hover {
         background-color: #0056b3;
@@ -44,8 +44,8 @@ export const ContainerImage = styled.div`
     text-align: center;
     img {
         border-radius: 8px;
-        height: auto;
-        width: 100%;
+        height: 270px;
+        width: 280px;
     }
 `;
 

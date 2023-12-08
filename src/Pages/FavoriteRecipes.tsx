@@ -3,7 +3,7 @@ import NavFilter from '../Components/NavFilter';
 import CardRecipe from '../Components/CardRecipe';
 import StoreContext from '../Context/StoreContext';
 import { FoodCardType } from '../Utils/Types';
-import { StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
+import { FavoriteContainer, StyledFavoriteRecipes } from '../styles/StyledFavoriteRecipes';
 import { Paragraph } from '../styles/StyledDoneRecipes';
 
 function FavoriteRecipes() {
@@ -17,23 +17,23 @@ function FavoriteRecipes() {
   }, []);
 
   const ElementFavRecipes = (
-    <div>
+    <FavoriteContainer>
       {
       favoriteRecipes.map((recipe, index) => (
         <CardRecipe index={ index } key={ index } food={ recipe } page="Favorite" />
       ))
 }
-    </div>
+    </FavoriteContainer>
   );
 
   const FilteredFavRecipes = (
-    <div>
+    <FavoriteContainer>
       {
       filteredFavRecipes.map((recipe, index) => (
         <CardRecipe index={ index } key={ index } food={ recipe } page="Favorite" />
       ))
 }
-    </div>
+    </FavoriteContainer>
   );
   return (
     <StyledFavoriteRecipes>

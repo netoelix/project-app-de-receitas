@@ -29,6 +29,7 @@ export const CategoryContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     color: #FCC436;
+    /* text-shadow: 5px 5px 5px #000000; */
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -41,10 +42,14 @@ export const CategoryContainer = styled.div`
     }
     p, button {
         margin: 10px;
-        font-weight: bold;
+        font-weight: bolder;
     }
     button {
         background-color:transparent;
+    }
+    img {
+        width: 24px;
+        height: 24px;
     }
 `;
 
