@@ -78,10 +78,12 @@ export const InstructionsContainer = styled.div`
     h2 {
         margin: 10px;
     }
-    p {
+    div {
         border: 1px solid #B1B1B1;
         border-radius: 5px;
         padding: 10px;
+    }
+    p {
         text-align: justify;
     }
 `;
