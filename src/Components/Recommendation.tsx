@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Recommendation.css';
 import { RecomendedCards, RecomendedContainer } from '../styles/StyledRecipeDetails';
 
+// Precisa de estilização na tag 'a' para que fique com o mesmo estilo dos cards
 interface Props {
   type: string;
 }
@@ -17,7 +18,7 @@ interface Recipe {
 
 function Recommendations({ type }: Props) {
   const [recommendations, setRecommendations] = useState<Recipe[]>([]);
-
+  const path = window.location.pathname;
   useEffect(() => {
     const fetchRecommendation = async () => {
       try {
@@ -35,14 +36,17 @@ function Recommendations({ type }: Props) {
     };
 
     fetchRecommendation();
-  }, [type]);
+  }, [type, path]);
+
+  const link = (type === 'meals') ? 'drinks' : 'meals';
 
   return (
     <RecomendedContainer className="recommendation-card-container">
       <p>Recommendations</p>
       <RecomendedCards className="recommendation-cards">
         {recommendations.slice(0, 6).map((recipe, index1) => (
-          <div
+          <a
+            href={ `/${link}/${recipe.idDrink || recipe.idMeal}` }
             key={ recipe.idDrink || recipe.idMeal }
             className="recommendation-card"
             data-testid={ `${index1}-recommendation-card` }
@@ -55,7 +59,7 @@ function Recommendations({ type }: Props) {
             <p data-testid={ `${index1}-recommendation-title` }>
               {recipe.strDrink || recipe.strMeal}
             </p>
-          </div>
+          </a>
         ))}
       </RecomendedCards>
     </RecomendedContainer>
