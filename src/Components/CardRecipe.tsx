@@ -55,13 +55,15 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
         </ContainerImage>
         <div>
           <ContainerInfo className="Recipe-Info">
+
             <h1 data-testid={ testIdName }>{name}</h1>
-            {(type === 'meal') && (
+
+            {(type === 'meal' && nationality !== undefined) && (
               <p data-testid={ `${dataTest}top-text` }>
                 {`${nationality} - ${category}`}
               </p>
             )}
-            {(type === 'drink') && (
+            {(type === 'drink' && food.alcoholicOrNot !== undefined) && (
               <p data-testid={ `${dataTest}top-text` }>{food.alcoholicOrNot}</p>
             )}
 
