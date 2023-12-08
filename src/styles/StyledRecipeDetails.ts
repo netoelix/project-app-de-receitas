@@ -20,7 +20,6 @@ export const TitleContainer = styled.div`
     height: 250px;
     object-fit: cover;
     filter: brightness(70%);
-    /* filter: blur(2px) */
   }
 `;
 
@@ -78,10 +77,12 @@ export const InstructionsContainer = styled.div`
     h2 {
         margin: 10px;
     }
-    p {
+    div {
         border: 1px solid #B1B1B1;
         border-radius: 5px;
         padding: 10px;
+    }
+    p {
         text-align: justify;
     }
 `;
@@ -161,6 +162,10 @@ export const ButtonContainer = styled.button`
   width: 150px;
   height: 50px;
   margin-bottom: 55px;
+  bottom: 0;
+  display: flex;
+  position: fixed;
+  z-index: 2;
 `;
 
 export const ButtonStartContainer = styled.div`

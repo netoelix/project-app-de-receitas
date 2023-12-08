@@ -5,10 +5,11 @@ export const StyledFooter = styled.footer`
     bottom: 0;
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 10px 0px;
     border-top: 1px solid #ccc;
     z-index: 100;
     background-color: #41197F;
+    width: 100%;
     
     p {
         color: #FCDC36;
@@ -19,5 +20,14 @@ export const StyledFooter = styled.footer`
         padding-left: 5px;
         padding-right: 5px;
         text-align: center;
+    }
+    img {
+    height: 24px;
+    width: 24px;
+    }
+    button {
+    background: none;
+    border: none;
+    cursor: pointer;
     }
     `;
