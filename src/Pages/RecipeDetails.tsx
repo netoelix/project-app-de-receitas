@@ -91,6 +91,22 @@ function RecipeDetails() {
     }
   };
 
+  // const Passos = recipeDetails.strInstructions?.trim().split('.')
+  //   .map((passo, index) => (<>
+  //     {' '}
+  //     {passo}
+  //     {' '}
+  //                           </>));
+
+  const Steps = recipeDetails.strInstructions?.split('\n')
+    .map((Step, index) => (
+      <div key={ index }>
+        {`${Step}`}
+        <br />
+      </div>
+    ));
+  console.log(recipeDetails.strInstructions);
+
   return (
     <div>
       <CategoryContainer>
@@ -161,7 +177,7 @@ function RecipeDetails() {
       </IngredientsContainer>
       <InstructionsContainer>
         <h2>Instructions</h2>
-        <p data-testid="instructions">{recipeDetails.strInstructions}</p>
+        <p data-testid="instructions">{Steps}</p>
       </InstructionsContainer>
       {type === 'meals' && recipeDetails.strYoutube && (
         <VideoContainer>

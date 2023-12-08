@@ -81,7 +81,7 @@ export interface RecipeDetailsProps {
   strDrink?: string;
   strCategory?: string;
   strArea?: string;
-  strInstructions?: string;
+  strInstructions?: string | undefined;
   strMealThumb?: string;
   strDrinkThumb?: string;
   strYoutube?: string;

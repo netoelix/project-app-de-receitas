@@ -71,7 +71,7 @@ function Header() {
         setPageIcon(logoIcon);
         setShowProfileIcon(false);
     }
-  }, [title, navigate]);
+  }, [title, navigate, pathSplit]);
 
   return (
     <>
