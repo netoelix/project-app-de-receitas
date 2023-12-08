@@ -1,4 +1,4 @@
-import { StyledLoading, StyledButtonLoading, StyledParagraf } from '../styles/StyledLoading';
+import { StyledLoading, StyledButtonLoading } from '../styles/StyledLoading';
 
 function LoadingPage() {
   return (
