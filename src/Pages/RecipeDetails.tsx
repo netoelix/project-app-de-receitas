@@ -91,21 +91,13 @@ function RecipeDetails() {
     }
   };
 
-  // const Passos = recipeDetails.strInstructions?.trim().split('.')
-  //   .map((passo, index) => (<>
-  //     {' '}
-  //     {passo}
-  //     {' '}
-  //                           </>));
-
   const Steps = recipeDetails.strInstructions?.split('\n')
     .map((Step, index) => (
-      <div key={ index }>
+      <p key={ index }>
         {`${Step}`}
         <br />
-      </div>
+      </p>
     ));
-  console.log(recipeDetails.strInstructions);
 
   return (
     <div>
@@ -177,7 +169,7 @@ function RecipeDetails() {
       </IngredientsContainer>
       <InstructionsContainer>
         <h2>Instructions</h2>
-        <p data-testid="instructions">{Steps}</p>
+        <div data-testid="instructions">{Steps}</div>
       </InstructionsContainer>
       {type === 'meals' && recipeDetails.strYoutube && (
         <VideoContainer>

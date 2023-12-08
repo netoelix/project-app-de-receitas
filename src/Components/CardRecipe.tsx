@@ -45,19 +45,17 @@ function CardRecipe({ food, page, index }: CardRecipeProps) {
         data-testid={ `${index}-recipe-card` }
       >
         <ContainerImage>
-          <a href={ link }>
-            <img
-              src={ image }
-              alt="food"
-              data-testid={ testIdImg }
-            />
-          </a>
+
+          <img
+            src={ image }
+            alt="food"
+            data-testid={ testIdImg }
+          />
+
         </ContainerImage>
         <div>
           <ContainerInfo className="Recipe-Info">
-            <a href={ link }>
-              <h1 data-testid={ testIdName }>{name}</h1>
-            </a>
+            <h1 data-testid={ testIdName }>{name}</h1>
             {(type === 'meal') && (
               <p data-testid={ `${dataTest}top-text` }>
                 {`${nationality} - ${category}`}
