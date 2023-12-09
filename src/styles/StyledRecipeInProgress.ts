@@ -34,6 +34,8 @@ export const CategoryContainer = styled.div`
     position: absolute;
     z-index: 1;
     width: 100%;
+    text-transform: uppercase;
+    text-shadow: 5px 5px 5px #000000;
 
     div {
         display: flex;
@@ -103,8 +105,13 @@ export const ButtonContainer = styled.button`
   width: 200px;
   height: 50px;
   margin-bottom: 70px;
-  margin-left: 25%;
 `;
+
+export const ButtonContainer2 = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    `;
 
 export const CheckBoxCustom = styled.section`
     padding: 3px;

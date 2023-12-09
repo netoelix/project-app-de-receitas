@@ -7,7 +7,7 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import DealResponse from '../Utils/DealResponse';
-import { ButtonContainer, CategoryContainer,
+import { ButtonContainer, ButtonContainer2, CategoryContainer,
   IngredientsContainer, InstructionsContainer,
   TitleContainer } from '../styles/StyledRecipeInProgress';
 import StoreContext from '../Context/StoreContext';
@@ -178,14 +178,16 @@ function RecipeInProgress() {
         <h2>Instructions</h2>
         <p data-testid="instructions">{instructions}</p>
       </InstructionsContainer>
-      <ButtonContainer
-        data-testid="finish-recipe-btn"
-        disabled={ finishRecipeBtn }
-        onClick={ handleClick }
-      >
-        FINISH RECIPE
+      <ButtonContainer2>
+        <ButtonContainer
+          data-testid="finish-recipe-btn"
+          disabled={ finishRecipeBtn }
+          onClick={ handleClick }
+        >
+          FINISH RECIPE
+        </ButtonContainer>
 
-      </ButtonContainer>
+      </ButtonContainer2>
     </div>
   );
   if (loadingPage) return <LoadingDetails />;
