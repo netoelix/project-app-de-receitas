@@ -9,7 +9,6 @@ import Drinks from './Pages/Drinks';
 import RecipeInProgress from './Pages/RecipeInProgress';
 import RecipeDetails from './Pages/RecipeDetails';
 import Home from './Pages/Home';
-// import LoadingPage from './Pages/Loading';
 
 function App() {
   return (
@@ -32,7 +31,6 @@ function App() {
         <Route path="/done-recipes" element={ <DoneRecipes /> } />
         <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
         <Route path="/profile" element={ <Profile /> } />
-        {/* <Route path="/loading" element={ <LoadingPage /> } /> */}
       </Route>
     </Routes>
   );

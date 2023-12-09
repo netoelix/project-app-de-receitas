@@ -11,7 +11,7 @@ import { ButtonContainer, ButtonStartContainer, CategoryContainer,
 
 import { shareIcon } from '../Utils/exportIcons';
 import StoreContext from '../Context/StoreContext';
-import LoadingPage from './Loading';
+import LoadingDetails from '../Components/LoadingDetails';
 
 function RecipeDetails() {
   const navigate = useNavigate();
@@ -104,7 +104,7 @@ function RecipeDetails() {
       </p>
     ));
 
-  if (loadingPage) return <LoadingPage />;
+  if (loadingPage) return <LoadingDetails />;
   return (
     <div>
       <CategoryContainer>

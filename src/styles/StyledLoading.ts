@@ -70,3 +70,70 @@ export const StyledButtonLoading = styled.div`
         animation: ${loading} 2s alternate infinite;
     }
     `;
+
+export const StyledLoadingText = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+
+    div {
+        width: 150px;
+        height: 15px;
+        border: 3px solid grey;
+        border-radius: 5px;
+        background-color: grey;
+        padding: 10px;
+        margin: 2px 10px;
+        margin-bottom: 8px;
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        animation: ${loading} 2s alternate infinite;
+    }
+    `;
+
+export const StyledLoadingImage = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid grey;
+    margin-bottom: 45px;
+
+    div {
+        width: 100%;
+        height: 250px;
+        background-color: grey;
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        animation: ${loading} 2s alternate infinite;
+    }
+    `;
+
+export const StyledLoadingInformation = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0px;
+
+    div {
+        width: 97%;
+        height: 500px;
+        border: 3px solid grey;
+        border-radius: 5px;
+        background-color: grey;
+        padding: 10px;
+        margin: 2px 10px;
+        margin-bottom: 8px;
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        animation: ${loading} 2s alternate infinite;
+    }
+    `;

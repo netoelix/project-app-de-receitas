@@ -11,7 +11,7 @@ import {
 } from '../Utils/exportIcons';
 import { CategoriesContainer, FinalContainer, ImageContainer,
   TextContainer } from '../styles/StyledMealsAndDrinks';
-import LoadingPage from '../Pages/Loading';
+import LoadingPage from './Loading';
 
 export default function Recipes() {
   const { recipes, setLoadingPage, loadingPage } = useContext(StoreContext);

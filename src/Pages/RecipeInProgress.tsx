@@ -11,7 +11,7 @@ import { ButtonContainer, CategoryContainer,
   IngredientsContainer, InstructionsContainer,
   TitleContainer } from '../styles/StyledRecipeInProgress';
 import StoreContext from '../Context/StoreContext';
-import LoadingPage from './Loading';
+import LoadingDetails from '../Components/LoadingDetails';
 
 function RecipeInProgress() {
   const [recipe, setRecipe] = useState({} as CardRecipe);
@@ -188,7 +188,7 @@ function RecipeInProgress() {
       </ButtonContainer>
     </div>
   );
-  if (loadingPage) return <LoadingPage />;
+  if (loadingPage) return <LoadingDetails />;
   return (
     <div>
       {(ingredients !== undefined) && content}
