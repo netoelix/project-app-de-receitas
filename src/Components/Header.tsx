@@ -7,6 +7,7 @@ import {
   receipIcon, searchIcon,
   mealIcon, drinkIcon, logoIcon, doneIcon,
   favoriteIcon, profileYellowIcon } from '../Utils/exportIcons';
+import RandomRecipe from './RandomRecipe';
 
 function Header() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function Header() {
   const [pageIcon, setPageIcon] = useState(mealIcon);
   const [showSearchIcon, setShowSearchIcon] = useState(true);
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showProfileIcon, setShowProfileIcon] = useState(true);
 
   const handleProfileClick = () => {
     navigate('/profile');
@@ -24,46 +26,52 @@ function Header() {
     return !showSearchBar ? setShowSearchBar(true) : setShowSearchBar(false);
   };
 
-  useEffect(() => {
-    const path = (window.location.pathname);
-    const pathSplit = path.split('/');
+  const path = (window.location.pathname);
+  const pathSplit = path.split('/');
 
+  useEffect(() => {
     switch (pathSplit[1]) {
       case 'meals':
         setTitle('Meals');
         setShowSearchIcon(true);
         setPageIcon(mealIcon);
+        setShowProfileIcon(true);
         break;
       case 'drinks':
         setTitle('Drinks');
         setShowSearchIcon(true);
         setPageIcon(drinkIcon);
+        setShowProfileIcon(true);
 
         break;
       case 'profile':
         setTitle('Profile');
         setShowSearchIcon(false);
         setPageIcon(profileYellowIcon);
+        setShowProfileIcon(false);
         break;
 
       case 'done-recipes':
         setTitle('Done Recipes');
         setShowSearchIcon(false);
         setPageIcon(doneIcon);
+        setShowProfileIcon(true);
         break;
 
       case 'favorite-recipes':
         setTitle('Favorite Recipes');
         setShowSearchIcon(false);
         setPageIcon(favoriteIcon);
+        setShowProfileIcon(true);
         break;
 
       default:
         setTitle('Home');
         setShowSearchIcon(false);
         setPageIcon(logoIcon);
+        setShowProfileIcon(false);
     }
-  }, [title, navigate]);
+  }, [title, navigate, pathSplit]);
 
   return (
     <>
@@ -72,9 +80,13 @@ function Header() {
         <img src={ receipIcon } alt="" />
         <img src={ logoRecipesApp } alt="" />
 
-        <button onClick={ handleProfileClick }>
-          <img src={ profileIcon } alt="profileIcon" data-testid="profile-top-btn" />
-        </button>
+        {!showProfileIcon ? (
+          null
+        ) : (
+          <button onClick={ handleProfileClick }>
+            <img src={ profileIcon } alt="profileIcon" data-testid="profile-top-btn" />
+          </button>
+        )}
 
         {showSearchIcon && (
           <button onClick={ handleButtonSearch }>
@@ -91,8 +103,8 @@ function Header() {
 
         {showSearchBar && (
           <>
-            <RandomRecipe />
             <SearchBar />
+            <RandomRecipe />
           </>
         )}
       </HeaderContainer>

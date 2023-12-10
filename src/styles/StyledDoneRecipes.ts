@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
 export const DoneRecipesContainer = styled.div`
+  margin-bottom: 70px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 `;
 
 export const CardRecipeContainer = styled.div`
@@ -53,12 +58,6 @@ export const CardRecipeInfo = styled.div`
     }
     a {
         text-decoration:none;
-    }
-    a:visited {
-        text-decoration:none;
-    }
-    a:hover {
-        text-decoration:underline;
     }
     p {
         color: #1A1B1C;
@@ -132,4 +131,19 @@ export const Paragraph = styled.p`
     font-weight: 700;
     line-height: normal;
     margin: 20px;
+`;
+
+export const StyledDoneRecipes = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 10px;
+    box-sizing: border-box;
 `;

@@ -8,7 +8,7 @@ import StoreContext from '../Context/StoreContext';
 import DealResponse from '../Utils/DealResponse';
 
 function SearchBar() {
-  const { handleRecipes } = useContext(StoreContext);
+  const { handleRecipes, setLoadingPage } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const handleSearch = async () => {
@@ -19,8 +19,9 @@ function SearchBar() {
     if (radioSearch === 'firstLetter' && searchInput.length > 1) {
       window.alert('Your search must have only 1 (one) character');
     } else {
+      setLoadingPage(true);
       const response = await requestApi(food, radioSearch, searchInput);
-
+      setLoadingPage(false);
       if (response[food] === null) {
         window.alert('Sorry, we haven\'t found any recipes for these filters');
       } else if (response[food]) {

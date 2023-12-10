@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
 import { CardRecipe, FoodCardType } from '../Utils/Types';
@@ -7,9 +7,11 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import DealResponse from '../Utils/DealResponse';
-import { ButtonContainer, CategoryContainer,
+import { ButtonContainer, ButtonContainer2, CategoryContainer,
   IngredientsContainer, InstructionsContainer,
   TitleContainer } from '../styles/StyledRecipeInProgress';
+import StoreContext from '../Context/StoreContext';
+import LoadingDetails from '../Components/LoadingDetails';
 
 function RecipeInProgress() {
   const [recipe, setRecipe] = useState({} as CardRecipe);
@@ -17,24 +19,27 @@ function RecipeInProgress() {
   const [linkCopied, setLinkCopied] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);
   const [finishRecipeBtn, setFinishRecipeBtn] = useState(true);
+  const { loadingPage, setLoadingPage } = useContext(StoreContext);
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('request');
+
     async function requestRecipe() {
       const path = window.location.pathname;
       const newFood = path.split('/')[1];
       const newId = path.split('/')[2];
       if (newId !== undefined) {
+        setLoadingPage(true);
         const response = requestApi(newFood, 'id', newId);
         const recipeData = await response;
         const recipeInProgress = recipeData[newFood];
         const [result] = DealResponse(newFood, recipeInProgress);
-
         setRecipe(result);
         const ingredients = result.ingredients.filter((ingredient) => ingredient !== '');
 
         setFilterIngredients(ingredients);
-
+        setLoadingPage(false);
         const storage = JSON.parse(localStorage.getItem('inProgressRecipes')
         || JSON.stringify({
           drinks: {},
@@ -61,7 +66,7 @@ function RecipeInProgress() {
     }
 
     requestRecipe();
-  });
+  }, [setLoadingPage]);
 
   const handleShareClick = () => {
     const link = window.location.origin;
@@ -173,17 +178,19 @@ function RecipeInProgress() {
         <h2>Instructions</h2>
         <p data-testid="instructions">{instructions}</p>
       </InstructionsContainer>
-      <ButtonContainer
-        data-testid="finish-recipe-btn"
-        disabled={ finishRecipeBtn }
-        onClick={ handleClick }
-      >
-        FINISH RECIPE
+      <ButtonContainer2>
+        <ButtonContainer
+          data-testid="finish-recipe-btn"
+          disabled={ finishRecipeBtn }
+          onClick={ handleClick }
+        >
+          FINISH RECIPE
+        </ButtonContainer>
 
-      </ButtonContainer>
+      </ButtonContainer2>
     </div>
   );
-
+  if (loadingPage) return <LoadingDetails />;
   return (
     <div>
       {(ingredients !== undefined) && content}

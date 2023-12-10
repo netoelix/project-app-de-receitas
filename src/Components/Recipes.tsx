@@ -5,19 +5,16 @@ import { requestApi } from '../Utils/ApiRequest';
 import DealResponse from '../Utils/DealResponse';
 import { CategoryType, FoodCardType } from '../Utils/Types';
 import CardRecipe from './CardRecipe';
-
-import categoryFoods from '../Utils/categoryFoods';
 import {
   imagesIconsMeals, allFoodIcon,
   imagesIconsDrinks, drinkIcon,
 } from '../Utils/exportIcons';
-import { CategoriesContainer, ImageContainer,
+import { CategoriesContainer, FinalContainer, ImageContainer,
   TextContainer } from '../styles/StyledMealsAndDrinks';
-import styles from '../styles/StylesMeals.module.css';
-
+import LoadingPage from './Loading';
 
 export default function Recipes() {
-  const { recipes } = useContext(StoreContext);
+  const { recipes, setLoadingPage, loadingPage } = useContext(StoreContext);
   const [data, setData] = useState([] as FoodCardType[]);
   const [cards, setCard] = useState([] as FoodCardType[]);
   const [categories, setCategories] = useState([] as CategoryType[]);
@@ -30,26 +27,29 @@ export default function Recipes() {
   // O primeiro Effect é chamado quando a página é carregada.
   useEffect(() => {
     async function requestRecipes() {
+      setLoadingPage(true);
       const response = await requestApi(newFood, '', '');
-
       if (response[newFood]) {
         const result = response[newFood].slice(0, 12);
         const newList: FoodCardType[] = DealResponse(newFood, result);
         setData(newList);
         setCard(newList);
       }
+      setLoadingPage(false);
     }
     async function requestCategories() {
+      setLoadingPage(true);
       const response = await requestApi(newFood, 'categories', '');
       if (response[newFood]) {
         const result: CategoryType[] = response[newFood].slice(0, 5);
         setCategories(result);
       }
+      setLoadingPage(false);
     }
 
     requestRecipes();
     requestCategories();
-  }, [newFood]);
+  }, [newFood, setLoadingPage]);
 
   // O segundo Effect é chamado quando a variável recipes é alterada pelo searchBar
   useEffect(() => {
@@ -57,6 +57,7 @@ export default function Recipes() {
   }, [recipes]);
 
   async function changeRecipes(category: string) {
+    setLoadingPage(true);
     if (category !== categorySelected) {
       const response = await requestApi(newFood, 'category-data', category);
       const newRecipes = DealResponse(newFood, response[newFood]).slice(0, 12);
@@ -69,11 +70,11 @@ export default function Recipes() {
       setCard(data);
       setCategorySelected('');
     }
+    setLoadingPage(false);
   }
 
   useEffect(() => {
     const iconsATT = () => {
-      const path = window.location.pathname;
       if (path === '/meals') {
         setAllIcon(allFoodIcon);
       }
@@ -82,10 +83,9 @@ export default function Recipes() {
       }
     };
     iconsATT();
-  }, []);
+  }, [path]);
 
   const icons = (index: number) => {
-    const path = window.location.pathname;
     if (path === '/meals') {
       return imagesIconsMeals[index];
     }
@@ -125,26 +125,26 @@ export default function Recipes() {
             <TextContainer>
               {strCategory}
             </TextContainer>
-
           </button>
         ))
       }
 
     </CategoriesContainer>
   );
-
+  if (loadingPage) return <LoadingPage />;
   return (
     <div>
       {FilterCategories}
-      {
-        recipes.map((recipe, index) => (
-          <div key={ index } className={ styles.teste2 }>
+      <FinalContainer>
+        {
+        cards.map((recipe, index) => (
+          <div key={ index }>
             <Link to={ `/${newFood}/${recipe.id}` }>
               <CardRecipe food={ recipe } page="recipes" index={ index } />
             </Link>
           </div>))
-
       }
+      </FinalContainer>
     </div>
   );
 }

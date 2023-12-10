@@ -20,7 +20,6 @@ export const TitleContainer = styled.div`
     height: 250px;
     object-fit: cover;
     filter: brightness(70%);
-    /* filter: blur(2px) */
   }
 `;
 
@@ -30,6 +29,8 @@ export const CategoryContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     color: #FCC436;
+    text-transform: uppercase;
+    text-shadow: 5px 5px 5px #000000;
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -42,10 +43,14 @@ export const CategoryContainer = styled.div`
     }
     p, button {
         margin: 10px;
-        font-weight: bold;
+        font-weight: bolder;
     }
     button {
         background-color:transparent;
+    }
+    img {
+        width: 24px;
+        height: 24px;
     }
 `;
 
@@ -78,10 +83,12 @@ export const InstructionsContainer = styled.div`
     h2 {
         margin: 10px;
     }
-    p {
+    div {
         border: 1px solid #B1B1B1;
         border-radius: 5px;
         padding: 10px;
+    }
+    p {
         text-align: justify;
     }
 `;
@@ -154,12 +161,21 @@ export const ButtonContainer = styled.button`
   margin: 10px auto;
   border-radius: 5px;
   border: none;
-  background-color: #FCC436;
-  color: white;
+  background-color: #41197F;
+  color: #FCC436;
   font-weight: bold;
   font-size: 18px;
   width: 150px;
   height: 50px;
-  margin-bottom: 70px;
-  margin-left: 30%;
+  margin-bottom: 55px;
+  bottom: 0;
+  display: flex;
+  position: fixed;
+  z-index: 2;
 `;
+
+export const ButtonStartContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    `;

@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RecipeDetailsProps } from '../Utils/Types';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { requestApi } from '../Utils/ApiRequest';
 import Recommendations from '../Components/Recommendation';
-import { ButtonContainer, CategoryContainer,
+import { ButtonContainer, ButtonStartContainer, CategoryContainer,
   IngredientsContainer, InstructionsContainer,
   TitleContainer, VideoContainer } from '../styles/StyledRecipeDetails';
+
 import { shareIcon } from '../Utils/exportIcons';
+import StoreContext from '../Context/StoreContext';
+import LoadingDetails from '../Components/LoadingDetails';
 
 function RecipeDetails() {
   const navigate = useNavigate();
@@ -18,30 +21,32 @@ function RecipeDetails() {
   const [recipeInProgress, setRecipeInProgress] = useState(false);
   const [favButton, setFavButton] = useState(false);
   const [copyMessage, setCopyMessage] = useState('');
-  const recipeDone = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
-  const isRecipeDone = recipeDone.some((recipe: any) => recipe.id === id);
-
-  const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipes')
-    || '{}');
-  const isRecipeInProgress = recipesInProgress[type as string]?.[id as string];
+  const { loadingPage, setLoadingPage } = useContext(StoreContext);
 
   useEffect(() => {
+    const path = window.location.pathname;
+    const newFood = path.split('/')[1];
+    const newId = path.split('/')[2];
+    const recipeDone = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
+    const isRecipeDone = recipeDone.some((recipe: any) => recipe.id === newId);
+    const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipes')
+    || '{}');
+    const isRecipeInProgress = recipesInProgress[newFood as string]?.[newId as string];
+
     const fetchRecipeDetails = async () => {
-      const path = window.location.pathname;
-      const newFood = path.split('/')[1];
-      const newId = path.split('/')[2];
       if (newId !== undefined) {
+        setLoadingPage(true);
         const response = requestApi(newFood, 'id', newId);
         const recipeData = await response;
         const recipeDetailData = recipeData[newFood];
 
         setRecipeDetails(recipeDetailData[0]);
-
+        setLoadingPage(false);
         const favoriteRecipesStorage = JSON.parse(localStorage.getItem('favoriteRecipes')
     || JSON.stringify([]));
         if (favoriteRecipesStorage.length > 0) {
           const findIsFavorite = favoriteRecipesStorage
-            .some((favRecipe: any) => favRecipe.id === id);
+            .some((favRecipe: any) => favRecipe.id === newId);
           if (findIsFavorite) {
             setFavButton(true);
           }
@@ -52,7 +57,7 @@ function RecipeDetails() {
     setDoneRecipes(isRecipeDone);
     setRecipeInProgress(!!isRecipeInProgress);
     fetchRecipeDetails();
-  }, [type, id, isRecipeDone, isRecipeInProgress]);
+  }, [setLoadingPage]);
 
   const recipeButton = () => {
     navigate(`/${type}/${id}/in-progress`);
@@ -91,6 +96,15 @@ function RecipeDetails() {
     }
   };
 
+  const Steps = recipeDetails.strInstructions?.split('\n')
+    .map((Step, index) => (
+      <p key={ index }>
+        {`${Step}`}
+        <br />
+      </p>
+    ));
+
+  if (loadingPage) return <LoadingDetails />;
   return (
     <div>
       <CategoryContainer>
@@ -161,7 +175,7 @@ function RecipeDetails() {
       </IngredientsContainer>
       <InstructionsContainer>
         <h2>Instructions</h2>
-        <p data-testid="instructions">{recipeDetails.strInstructions}</p>
+        <div data-testid="instructions">{Steps}</div>
       </InstructionsContainer>
       {type === 'meals' && recipeDetails.strYoutube && (
         <VideoContainer>
@@ -183,16 +197,17 @@ function RecipeDetails() {
           </div>
         )}
       </div>
-      {!doneRecipes
+      <ButtonStartContainer>
+        {!doneRecipes
       && (
         <ButtonContainer
           className="Start-Recipe"
           data-testid="start-recipe-btn"
-        // style={ { display: doneRecipes ? 'none' : 'block' } }
           onClick={ recipeButton }
         >
           {recipeInProgress ? 'Continue Recipe' : 'Start Recipe'}
         </ButtonContainer>)}
+      </ButtonStartContainer>
     </div>
   );
 }

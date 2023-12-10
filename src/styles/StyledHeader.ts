@@ -33,12 +33,13 @@ export const HeaderContainer = styled.div`
         line-height: normal;
         letter-spacing: 2.1px;
         text-transform: uppercase;
-    
+        margin-bottom: 5px;
     }
 
     img {
         width: 60px;
         height: 60px;
+        margin: 15px;
     }
     `;
 
@@ -49,7 +50,6 @@ export const SearchConteinerBar = styled.div`
     justify-content: space-around;
     background-color: #41197F;
     color: #fff;
-    width: 100%;
     padding: 10px;
 
     button {
@@ -67,7 +67,7 @@ export const SearchConteinerBar = styled.div`
         font-weight: 700;
         line-height: normal;
         text-transform: uppercase;
-        width: 150px
+        width: 150px;
     }
 
     input {
@@ -117,4 +117,22 @@ export const SearchInput = styled.input`
     border: 1px solid #B1B1B1;
     text-align: center;
     font-weight: 500;
+`;
+
+export const RandomButton = styled.button`
+    background-color: #FCC436;
+    color: #41197F;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #FFF;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    width: 150px;
 `;

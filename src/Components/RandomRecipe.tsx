@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { requestApi } from '../Utils/ApiRequest';
 import DealResponse from '../Utils/DealResponse';
+import { RandomButton } from '../styles/StyledHeader';
 
 function RandomRecipe() {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ function RandomRecipe() {
   };
 
   return (
-    <button onClick={ () => stortRecipe() }>
-      Surpreenda-me
-    </button>
+    <RandomButton onClick={ () => stortRecipe() }>
+      Surprise me
+    </RandomButton>
   );
 }
 
