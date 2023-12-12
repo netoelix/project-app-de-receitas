@@ -165,10 +165,8 @@ export default function Recipes() {
           </div>))
       }
       </FinalContainer>
-      <div>
-        <button id="Plus" onClick={ renderCards }>+Cards</button>
-        <h1>TST</h1>
-
+      <div id="Plus">
+        +Cards
       </div>
     </div>
   );
