@@ -23,8 +23,6 @@ function RecipeInProgress() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('request');
-
     async function requestRecipe() {
       const path = window.location.pathname;
       const newFood = path.split('/')[1];

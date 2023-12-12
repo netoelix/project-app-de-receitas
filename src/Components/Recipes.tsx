@@ -15,22 +15,25 @@ import LoadingPage from '../Pages/Loading';
 
 export default function Recipes() {
   const { recipes, setLoadingPage, loadingPage } = useContext(StoreContext);
+
   const [data, setData] = useState([] as FoodCardType[]);
   const [cards, setCard] = useState([] as FoodCardType[]);
+  const [screen, setScreen] = useState([] as FoodCardType[]);
+
   const [categories, setCategories] = useState([] as CategoryType[]);
   const [categorySelected, setCategorySelected] = useState('');
   const [allIcon, setAllIcon] = useState(allFoodIcon);
 
   const path = window.location.pathname;
   const newFood = path.split('/')[1];
-
+  const endList = document.getElementById('Plus');
   // O primeiro Effect é chamado quando a página é carregada.
   useEffect(() => {
     async function requestRecipes() {
       setLoadingPage(true);
       const response = await requestApi(newFood, '', '');
       if (response[newFood]) {
-        const result = response[newFood].slice(0, 12);
+        const result = response[newFood];
         const newList: FoodCardType[] = DealResponse(newFood, result);
         setData(newList);
         setCard(newList);
@@ -56,23 +59,6 @@ export default function Recipes() {
     setCard(recipes);
   }, [recipes]);
 
-  async function changeRecipes(category: string) {
-    setLoadingPage(true);
-    if (category !== categorySelected) {
-      const response = await requestApi(newFood, 'category-data', category);
-      const newRecipes = DealResponse(newFood, response[newFood]).slice(0, 12);
-
-      if (newRecipes) {
-        setCard(newRecipes);
-        setCategorySelected(category);
-      }
-    } else {
-      setCard(data);
-      setCategorySelected('');
-    }
-    setLoadingPage(false);
-  }
-
   useEffect(() => {
     const iconsATT = () => {
       if (path === '/meals') {
@@ -84,6 +70,27 @@ export default function Recipes() {
     };
     iconsATT();
   }, [path]);
+
+  useEffect(() => {
+    setScreen(cards.slice(0, 12));
+  }, [cards]);
+
+  async function changeRecipes(category: string) {
+    setLoadingPage(true);
+    if (category !== categorySelected) {
+      const response = await requestApi(newFood, 'category-data', category);
+      const newRecipes = DealResponse(newFood, response[newFood]);
+
+      if (newRecipes) {
+        setCard(newRecipes);
+        setCategorySelected(category);
+      }
+    } else {
+      setCard(data);
+      setCategorySelected('');
+    }
+    setLoadingPage(false);
+  }
 
   const icons = (index: number) => {
     if (path === '/meals') {
@@ -131,13 +138,26 @@ export default function Recipes() {
 
     </CategoriesContainer>
   );
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      renderCards();
+    }
+  });
+  if (endList)observer.observe(endList);
+
+  const renderCards = () => {
+    const NCards = (screen.length + 4) > cards.length ? cards.length : screen.length + 4;
+    setScreen(cards.slice(0, NCards));
+  };
+
   if (loadingPage) return <LoadingPage />;
   return (
     <div>
       {FilterCategories}
       <FinalContainer>
         {
-        cards.map((recipe, index) => (
+        screen.map((recipe, index) => (
           <div key={ index }>
             <Link to={ `/${newFood}/${recipe.id}` }>
               <CardRecipe food={ recipe } page="recipes" index={ index } />
@@ -145,6 +165,11 @@ export default function Recipes() {
           </div>))
       }
       </FinalContainer>
+      <div>
+        <button id="Plus" onClick={ renderCards }>+Cards</button>
+        <h1>TST</h1>
+
+      </div>
     </div>
   );
 }
