@@ -9,7 +9,7 @@ import { ContainerImage, ContainerInfo,
 function CardRecipe({ food, page, index }: CardRecipeProps) {
   const { removeFavorites } = useContext(StoreContext);
   const [copied, setCopied] = useState(false);
-  const { image, name, nationality, category, tags, doneDate, type, id } = food;
+  const { image, name, nationality, category, doneDate, type, id } = food;
   const dataTest = `${index}-horizontal-`;
   const link = `http://localhost:3000/${type}s/${id}`;
 
