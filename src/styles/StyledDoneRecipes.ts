@@ -76,6 +76,7 @@ export const CardRecipeInfo = styled.div`
 export const TagContainer = styled.div`
     display: flex;
     flex-direction: row;
+    
     p {
         width: 29px;
         height: 14px;
