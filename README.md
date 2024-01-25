@@ -1,5 +1,8 @@
 # App de receitas
 
+## Versão publicada (Deploy)
+[App de receitas](https://app-de-receitas-netoelix.vercel.app/)
+
 ## Recursos Principais:
 
 - **Login Personalizado:**
